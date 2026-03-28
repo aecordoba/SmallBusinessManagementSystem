@@ -2,7 +2,7 @@ DROP DATABASE IF EXISTS sbms;
 DROP ROLE IF EXISTS sbmsapp;
 
 -- -----------------------------------------------------
--- Database liniers_sur
+-- Database sbms
 -- -----------------------------------------------------
 CREATE DATABASE sbms;
 
@@ -11,6 +11,7 @@ CREATE DATABASE sbms;
 -- -----------------------------------------------------
 CREATE ROLE sbmsapp WITH LOGIN PASSWORD 'sbmsapp123';
 GRANT ALL PRIVILEGES ON DATABASE sbms TO sbmsapp;
+
 \c sbms
 
 -- -----------------------------------------------------
@@ -124,6 +125,9 @@ CREATE TABLE Accounting(
     credit NUMERIC(15,2)
 );
 
+
+
+GRANT ALL PRIVILEGES ON SCHEMA public TO sbmsapp;
 GRANT ALL ON ALL TABLES IN SCHEMA public TO sbmsapp;
 GRANT ALL ON ALL SEQUENCES IN SCHEMA public TO sbmsapp;
 GRANT ALL ON ALL FUNCTIONS IN SCHEMA public TO sbmsapp;

@@ -8,7 +8,7 @@ echo -e "\n"
 
 echo "---------------------------------------" >> /home/adrian/Development/Applications/SmallBusinessManagementSystem/System/Database/scripts/creation.log
 echo "-- " $(date ) " --" >> /home/adrian/Development/Applications/SmallBusinessManagementSystem/System/Database/scripts/creation.log
-echo "- Database liniers_sur on " $host " -" >> /home/adrian/Development/Applications/SmallBusinessManagementSystem/System/Database/scripts/creation.log
+echo "- Database sbms on " $host " -" >> /home/adrian/Development/Applications/SmallBusinessManagementSystem/System/Database/scripts/creation.log
 echo "---------------------------------------" >> /home/adrian/Development/Applications/SmallBusinessManagementSystem/System/Database/scripts/creation.log
 ./automation.sh $host $admin_password  >> /home/adrian/Development/Applications/SmallBusinessManagementSystem/System/Database/scripts/creation.log
 echo -e "End of scripts."
