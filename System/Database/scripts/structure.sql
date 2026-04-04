@@ -20,13 +20,14 @@ GRANT ALL PRIVILEGES ON DATABASE sbms TO sbmsapp;
 
 CREATE TABLE Countries(
     id SERIAL PRIMARY KEY,
-    name VARCHAR(35) NOT NULL
+    name VARCHAR(35) NOT NULL UNIQUE
 );
 
 CREATE TABLE States(
     id SERIAL PRIMARY KEY,
     name VARCHAR(35) NOT NULL,
     country INT NOT NULL,
+    UNIQUE(name, country),
     CONSTRAINT fk_states_countries FOREIGN KEY (country) REFERENCES Countries(id)
         ON DELETE RESTRICT ON UPDATE CASCADE
 );
@@ -35,23 +36,20 @@ CREATE TABLE Cities(
     id SERIAL PRIMARY KEY,
     name VARCHAR(35) NOT NULL,
     state INT NOT NULL,
+    UNIQUE(name, state),
     CONSTRAINT fk_cities_states FOREIGN KEY (state) REFERENCES States(id)
         ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
-CREATE TABLE Positions(
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(20) NOT NULL
-);
 
 CREATE TABLE Doc_Types(
     id SERIAL PRIMARY KEY,
-    name VARCHAR(20) NOT NULL
+    name VARCHAR(20) NOT NULL UNIQUE
 );
 
 CREATE TABLE Sexes(
     id SERIAL PRIMARY KEY,
-    name VARCHAR(10) NOT NULL
+    name VARCHAR(10) NOT NULL UNIQUE
 );
 
 CREATE TABLE Addresses(
@@ -67,12 +65,14 @@ CREATE TABLE Persons(
     id SERIAL PRIMARY KEY,
     doc_type INT NOT NULL,
     doc_number INT NOT NULL,
+    social_security VARCHAR(15) UNIQUE,
     last_name VARCHAR(30) NOT NULL,
     first_name VARCHAR(30) NOT NULL,
     birthdate DATE NOT NULL,
     sex INT NOT NULL,
     address INT NOT NULL,
     cellphone VARCHAR(10),
+    UNIQUE(doc_type, doc_number),
     CONSTRAINT fk_persons_doc_types FOREIGN KEY (doc_type) REFERENCES Doc_Types(id)
         ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT fk_persons_sexes FOREIGN KEY (sex) REFERENCES Sexes(id)
@@ -81,16 +81,28 @@ CREATE TABLE Persons(
         ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
+CREATE TABLE Positions(
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(20) NOT NULL UNIQUE
+);
+
+CREATE TABLE Partner_Status(
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(20) NOT NULL UNIQUE
+);
+
 CREATE TABLE Partners(
     id SERIAL PRIMARY KEY,
     person INT NOT NULL,
-    partner_number INT NOT NULL,
-    pami_number VARCHAR(15),
+    partner_number INT NOT NULL UNIQUE,
     incorporation DATE NOT NULL,
     position INT NOT NULL,
+    status INT NOT NULL,
     CONSTRAINT fk_partners_persons FOREIGN KEY (person) REFERENCES Persons(id)
         ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT fk_partners_positions FOREIGN KEY (position) REFERENCES Positions(id)
+        ON DELETE RESTRICT ON UPDATE CASCADE,
+    CONSTRAINT fk_partners_partner_status FOREIGN KEY (status) REFERENCES Partner_Status(id)
         ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
@@ -99,9 +111,11 @@ CREATE TABLE Events(
     name VARCHAR(30) NOT NULL,
     date DATE NOT NULL,
     time TIME,
+    attendants INT,
     creation TIMESTAMP NOT NULL,
     description TEXT,
-    charge NUMERIC(10,2)
+    charge NUMERIC(10,2),
+    UNIQUE(name, date, time)
 );
 
 CREATE TABLE Share(
@@ -110,6 +124,7 @@ CREATE TABLE Share(
     partner INT NOT NULL,
     attendees INT DEFAULT 1,
     payment NUMERIC(10,2) DEFAULT 0,
+    UNIQUE(partner, event),
     CONSTRAINT fk_share_event FOREIGN KEY (event) REFERENCES Events(id)
         ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT fk_share_partners FOREIGN KEY (partner) REFERENCES Partners(id)
@@ -123,6 +138,16 @@ CREATE TABLE Accounting(
     description TEXT,
     debit NUMERIC(15,2),
     credit NUMERIC(15,2)
+);
+
+CREATE TABLE News(
+    id SERIAL PRIMARY KEY,
+    event INT,
+    creation TIMESTAMP NOT NULL,
+    brief TEXT NOT NULL,
+    description TEXT,
+    CONSTRAINT fk_news_event FOREIGN KEY (event) REFERENCES Events(id)
+        ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 

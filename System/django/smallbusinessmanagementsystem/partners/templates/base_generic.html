@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% load static %}
+    <link rel="icon" type="image/png" href="{% static 'images/rubik16x16.png' %}" sizes="16x16" />
+    {% load static %}
+    <link rel="icon" type="image/png" href="{% static 'images/rubik32x32.png' %}" sizes="32x32" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Croissant+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Coda&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=David+Libre&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+
+
+    {% block title %}
+        <title>Small Business Management System</title>
+    {% endblock %}
+</head>
+
+<body>
+    <div id="container">
+        <header>
+            {% block header %}
+              <h1>Small Business Management System</h1>
+            {% endblock %}
+        </header>
+        <main>
+          <div class="column">
+              {% block sidebar %}
+                <ul>
+                    <li><a href="{% url 'index' %}">Home</a></li>
+                    <li><a href="{% url 'partners' %}">Partners</a></li>
+
+                </ul>
+              {% endblock %}
+          </div>
+          <div class="column">
+              {% block content %}
+              {% endblock %}
+          </div>
+        </main>
+        <aside>
+            {% block aside %}
+            {% endblock %}
+        </aside>
+        <footer>
+            {% block footer %}
+              <hr>
+              <p>Adrián E. Córdoba<br>Dynamic M.C.S. - Kepler S.C.</p>
+            {% endblock %}
+        </footer>
+    </div>
+</body>
+
+</html>

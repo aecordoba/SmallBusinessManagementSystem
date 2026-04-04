@@ -1,8 +1,9 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Country(models.Model):
-    name = models.CharField(max_length=35, help_text='Country')
+    name = models.CharField(unique=True, max_length=35, help_text='Country')
 
     def __str__(self):
         return self.name
@@ -35,6 +36,7 @@ class State(models.Model):
         ordering = ['name']
         verbose_name = 'State'
         verbose_name_plural = 'States'
+        unique_together = (('name', 'country'),)
 
 
 class City(models.Model):
@@ -53,6 +55,7 @@ class City(models.Model):
         ordering = ['name']
         verbose_name = 'City'
         verbose_name_plural = 'Cities'
+        unique_together = (('name', 'state'),)
 
 
 class Address(models.Model):
@@ -75,7 +78,7 @@ class Address(models.Model):
 
 
 class DocType(models.Model):
-    name = models.CharField(max_length=20, help_text='Document type')
+    name = models.CharField(unique=True, max_length=20, help_text='Document type')
 
     def __str__(self):
         return self.name
@@ -92,7 +95,7 @@ class DocType(models.Model):
 
 
 class Sex(models.Model):
-    name = models.CharField(max_length=10, help_text='Sex')
+    name = models.CharField(unique=True, max_length=10, help_text='Sex')
 
     def __str__(self):
         return self.name
@@ -111,6 +114,7 @@ class Sex(models.Model):
 class Person(models.Model):
     doc_type = models.ForeignKey(DocType, models.DO_NOTHING, db_column='doc_type', help_text='Document type')
     doc_number = models.IntegerField(help_text='Document number')
+    social_security = models.CharField(unique=True, max_length=15, blank=True, null=True, help_text='Country')
     last_name = models.CharField(max_length=30, help_text='Last name')
     first_name = models.CharField(max_length=30, help_text='First and middle name')
     birthdate = models.DateField(help_text='Birthdate')
@@ -130,10 +134,11 @@ class Person(models.Model):
         ordering = ['last_name', 'first_name']
         verbose_name = 'Person'
         verbose_name_plural = 'Persons'
+        unique_together = (('doc_type', 'doc_number'),)
 
 
 class Position(models.Model):
-    name = models.CharField(max_length=20, help_text='Position')
+    name = models.CharField(unique=True, max_length=20, help_text='Position')
 
     def __str__(self):
         return self.name
@@ -149,10 +154,26 @@ class Position(models.Model):
         verbose_name_plural = 'Positions'
 
 
+class PartnerStatus(models.Model):
+    name = models.CharField(unique=True, max_length=20)
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('partner-status-detail', args=[str(self.id)])
+
+    class Meta:
+        managed = False
+        db_table = 'partner_status'
+        ordering = ['name']
+        verbose_name = 'Partner Status'
+        verbose_name_plural = 'Partner States'
+
+
 class Partner(models.Model):
     person = models.ForeignKey(Person, models.DO_NOTHING, db_column='person', help_text='Person')
-    partner_number = models.IntegerField(help_text='Partner number')
-    pami_number = models.CharField(max_length=15, blank=True, null=True, help_text='Country')
+    partner_number = models.IntegerField(unique=True, help_text='Partner number')
     incorporation = models.DateField(help_text='Incorporation date')
     position = models.ForeignKey(Position, models.DO_NOTHING, db_column='position', help_text='Position')
 

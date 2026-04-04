@@ -7,6 +7,7 @@ class Event(models.Model):
     name = models.CharField(max_length=30, help_text='Event title')
     date = models.DateField(help_text='Event date')
     time = models.TimeField(blank=True, null=True, help_text='Event time')
+    attendants = models.IntegerField(blank=True, null=True)
     creation = models.DateTimeField(help_text='Creation date')
     description = models.TextField(blank=True, null=True, help_text='Event description')
     charge = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True, help_text='Event charge')
@@ -23,6 +24,7 @@ class Event(models.Model):
         ordering = ['-date', '-time']
         verbose_name = 'Event'
         verbose_name_plural = 'Events'
+        unique_together = (('name', 'date', 'time'),)
 
 
 class Share(models.Model):
@@ -43,6 +45,7 @@ class Share(models.Model):
         ordering = ['-event', 'partner']
         verbose_name = 'Share'
         verbose_name_plural = 'Shares'
+        unique_together = (('partner', 'event'),)
 
 
 class Accounting(models.Model):
@@ -65,3 +68,6 @@ class Accounting(models.Model):
         ordering = ['-date', 'concept']
         verbose_name = 'Accounting'
         verbose_name_plural = 'Accounting'
+
+
+

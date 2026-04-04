@@ -34,7 +34,7 @@ class SexesAdmin(admin.ModelAdmin):
 
 @admin.register(Person)
 class PersonsAdmin(admin.ModelAdmin):
-    list_display = ('doc_type', 'doc_number', 'last_name', 'first_name', 'birthdate', 'sex', 'address', 'cellphone')
+    list_display = ('doc_type', 'doc_number', 'social_security', 'last_name', 'first_name', 'birthdate', 'sex', 'address', 'cellphone')
 
 
 @admin.register(Position)
@@ -44,7 +44,7 @@ class PositionsAdmin(admin.ModelAdmin):
 
 @admin.register(Partner)
 class PartnersAdmin(admin.ModelAdmin):
-    list_display = ('person', 'partner_number', 'pami_number', 'incorporation', 'position')
+    list_display = ('person', 'partner_number', 'incorporation', 'position')
 
 
 

@@ -1,0 +1,21 @@
+{% extends "base_generic.html" %}
+
+{% block title %}
+  <title>Small Business Management System - Partners</title>
+{% endblock %}
+
+{% block content %}
+  <h1>Partners List</h1>
+  {% if partner_list %}
+    <ul>
+      {% for partner in partner_list %}
+      <li>
+        <a href="{{ partner.get_absolute_url }}">{{ partner.partner_number }}</a>
+        ({{partner.person}})
+      </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>There are no partners in the system.</p>
+  {% endif %}
+{% endblock %}

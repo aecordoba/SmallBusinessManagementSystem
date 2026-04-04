@@ -1,0 +1,12 @@
+{% extends "base_generic.html" %}
+
+{% block title %}
+  <title>Small Business Management System - Partner Detail</title>
+{% endblock %}
+
+{% block content %}
+  <h1>Partner {{partner.partner_number}}</h1>
+  <p><strong>Partner:</strong> <a href="">{{ partner.person }}</a></p>
+  <p><strong>Social Security:</strong> {{ partner.person.social_security }}</p>
+
+{% endblock %}

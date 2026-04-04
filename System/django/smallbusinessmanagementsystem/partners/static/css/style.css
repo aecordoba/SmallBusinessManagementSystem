@@ -1,0 +1,117 @@
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    background-image: linear-gradient(to right, rgba(51, 102, 153, 0.2), rgb(77, 151, 86));
+}
+
+#container {
+display: grid;
+grid-template-columns: 90%;
+justify-content: center;
+gap: 1%;
+}
+
+header,
+main,
+aside,
+footer {
+    padding: 1%;
+}
+
+article {
+    box-shadow: 0 4px 8px 0 rgba(77, 114, 151, 0.7);
+    border-radius: 5%;
+    margin: 2% 0;
+}
+
+h1 {
+    font: bold 2rem 'Croissant One', cursive;
+    text-align: center;
+}
+
+a {
+    color: blue;
+}
+
+article h2 {
+    font: bold 1.1rem 'Coda', cursive;
+}
+
+article img {
+    width: 100%;
+    height: auto;
+    border-radius: 5%;
+    border: 1px solid blue;
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 255, 0.2), 0 8px 22px 0 rgba(0, 0, 255, 0.19);
+}
+
+article img:hover {
+    border: 1px solid white;
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.2), 0 8px 22px 0 rgba(0, 0, 0, 0.19);
+    cursor: pointer;
+}
+
+article p {
+    font-family: 'Noto Sans Mono', monospace;
+    font-size: 0.8rem;
+    text-indent: 5%;
+}
+
+article li {
+    font-family: 'Noto Sans Mono', monospace;
+    font-size: 0.8rem;
+}
+
+aside {
+    font: 0.8rem 'Roboto Slab', serif;
+    background-color: rgba(85, 117, 150, 0.2);
+    padding: 5%;
+    color: black;
+}
+
+aside h2 {
+    font: bold 1rem 'Roboto Slab', serif;
+    color: black;
+}
+
+footer p {
+    font: 0.9rem 'David Libre', serif;
+    color: black;
+    text-align: center;
+}
+
+@media screen and (min-width: 600px) {
+    #container {
+    grid-template-columns: 70% 20%;
+    }
+    header,
+    footer {
+        grid-column: 1 / span 2;
+    }
+    main {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .column {
+        flex: 33%;
+    }
+    article {
+        margin: 2%;
+        padding: 2%;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .column {
+        flex: 25%;
+    }
+}

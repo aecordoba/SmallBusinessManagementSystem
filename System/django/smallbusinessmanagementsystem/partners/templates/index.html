@@ -1,0 +1,28 @@
+{% extends "base_generic.html" %}
+
+{% block title %}
+  <title>Small Business Management System - Home</title>
+{% endblock %}
+
+{% block content %}
+  <h1>Small Business Management System - Home</h1>
+  <p>
+    Welcome to the
+    <em>Small Businnes Management System</em>!
+  </p>
+  <h2>Partners</h2>
+  <p>The System has:</p>
+  <h3><center>{{partners_quantity}} partners</center></h3>
+{% endblock %}
+
+{% block aside %}
+  <h2><a href="{% url 'news' %}">News</a></h2>
+  <section>
+    {% for news in news_aside %}
+      <article>
+        <h3>{{ news.brief}}</h3>
+        <p>{{ news.description}}...<a href="{{ news.get_absolute_url }}">more</a> </p>
+      </article>
+    {% endfor %}
+  </section>
+{% endblock %}
