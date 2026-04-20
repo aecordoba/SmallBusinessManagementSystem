@@ -1,0 +1,22 @@
+{% extends "base_generic.html" %}
+{% load i18n %}
+
+{% block title %}
+    <title>{% trans "Small Business Management System" %} - {% trans "News" %}</title>
+{% endblock %}
+
+{% block main %}
+    <h1>{% trans "Small Business Management System" %} - {% trans "News" %}</h1>
+    {% if news_list %}
+        {% for news in news_list %}
+            <article>
+                <a href="{{ news.get_absolute_url }}">{{ news.brief }}</a>
+                <p>{{news.description}}</p>
+            </article>
+        {% endfor %}
+    {% else %}
+        <p>{% trans "There are no news in the system." %}</p>
+    {% endif %}
+{% endblock %}
+
+

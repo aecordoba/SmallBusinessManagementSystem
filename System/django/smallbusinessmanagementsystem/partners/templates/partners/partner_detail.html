@@ -1,0 +1,15 @@
+{% extends "base_generic.html" %}
+{% load i18n %}
+
+{% block title %}
+    <title>{% trans "Small Business Management System" %} - {% trans "Partner Detail" %}</title>
+{% endblock %}
+
+{% block main %}
+    <h1>{% trans "Partner" %} {{partner.partner_number}}</h1>
+    <p><strong>{% trans "Affiliate" %}:</strong> <a href="{{ partner.person.get_absolute_url }}">{{ partner.person }}</a></p>
+    <p><strong>{% trans "Incorporation" %}:</strong> {{ partner.incorporation }}</p>
+    <p><strong>{% trans "Position" %}:</strong> {{ partner.get_position_display }}</p>
+    <p><strong>{% trans "Status" %}:</strong> {{ partner.get_status_display }}</p>
+
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base_generic.html" %}
+{% load i18n %}
+
+{% block title %}
+    <title>{% trans "Small Business Management System" %} - {% trans "User Detail" %}</title>
+{% endblock %}
+
+{% block main %}
+    <h1>{% trans "User" %} {{user.name}}</h1>
+    <p><strong>{% trans "Partner" %}:</strong> <a href="{{ user.partner.get_absolute_url }}">{{ user.partner }}</a></p>
+    <p><strong>{% trans "Joined" %}:</strong> {{ user.date_joined }}</p>
+    <p><strong>{% trans "Last login" %}:</strong> {{ user.last_login }}</p>
+    <p><strong>{% trans "Active" %}:</strong> {{ user.is_active }}</p>
+
+{% endblock %}

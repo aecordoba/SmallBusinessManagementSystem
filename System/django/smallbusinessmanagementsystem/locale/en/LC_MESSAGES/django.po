@@ -1,0 +1,329 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-04-18 20:04-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: accounting/templates/accounting/accounting_list.html:6
+#: events/templates/events/event_detail.html:5
+#: events/templates/events/event_list.html:5
+#: events/templates/events/news_detail.html:5
+#: events/templates/events/news_list.html:5
+#: events/templates/events/news_list.html:9
+#: partners/templates/base_generic.html:17
+#: partners/templates/base_generic.html:25 partners/templates/index.html:5
+#: partners/templates/index.html:9 partners/templates/index.html:12
+#: partners/templates/partners/partner_detail.html:5
+#: partners/templates/partners/partner_list.html:5
+#: partners/templates/partners/person_detail.html:5
+#: users/templates/users/user_detail.html:5
+#: users/templates/users/user_list.html:5
+msgid "Small Business Management System"
+msgstr "Small Business Management System"
+
+#: accounting/templates/accounting/accounting_list.html:6
+#: accounting/templates/accounting/accounting_list.html:10
+#: partners/templates/base_generic.html:31
+msgid "Accounting"
+msgstr "Accounting"
+
+#: accounting/templates/accounting/accounting_list.html:15
+#: events/templates/events/event_detail.html:10
+#: events/templates/events/event_list.html:14
+#: events/templates/events/news_detail.html:15
+msgid "Date"
+msgstr "Date"
+
+#: accounting/templates/accounting/accounting_list.html:16
+msgid "Concept"
+msgstr "Concept"
+
+#: accounting/templates/accounting/accounting_list.html:17
+msgid "Debit"
+msgstr "Debit"
+
+#: accounting/templates/accounting/accounting_list.html:18
+msgid "Credit"
+msgstr "Credit"
+
+#: accounting/templates/accounting/accounting_list.html:36
+msgid "There are no accounting in the system."
+msgstr "There are no accounting in the system."
+
+#: events/templates/events/event_detail.html:5
+msgid "Event Detail"
+msgstr "Event Detail"
+
+#: events/templates/events/event_detail.html:12
+#: events/templates/events/event_list.html:15
+#: events/templates/events/news_detail.html:16
+msgid "Time"
+msgstr "Time"
+
+#: events/templates/events/event_detail.html:15
+#: events/templates/events/event_list.html:16
+#: events/templates/events/news_detail.html:17
+msgid "Attendants"
+msgstr "Attendants"
+
+#: events/templates/events/event_detail.html:17
+#: events/templates/events/news_detail.html:10
+#: events/templates/events/news_detail.html:18
+msgid "Description"
+msgstr "Description"
+
+#: events/templates/events/event_detail.html:18
+#: events/templates/events/news_detail.html:19
+msgid "Charge"
+msgstr "Charge"
+
+#: events/templates/events/event_detail.html:22
+#: events/templates/events/news_detail.html:23
+msgid "Free"
+msgstr "Free"
+
+#: events/templates/events/event_list.html:5
+#: partners/templates/base_generic.html:32
+msgid "Events"
+msgstr "Events"
+
+#: events/templates/events/event_list.html:9
+msgid "Events List"
+msgstr "Events List"
+
+#: events/templates/events/event_list.html:13
+msgid "Name"
+msgstr "Name"
+
+#: events/templates/events/event_list.html:28
+msgid "There are no events in the system."
+msgstr "There are no events in the system."
+
+#: events/templates/events/news_detail.html:5
+msgid "News Detail"
+msgstr "News Detail"
+
+#: events/templates/events/news_detail.html:11
+msgid "Edition"
+msgstr "Edition"
+
+#: events/templates/events/news_detail.html:14
+msgid "Event name"
+msgstr "Event name"
+
+#: events/templates/events/news_list.html:5
+#: events/templates/events/news_list.html:9
+#: partners/templates/base_generic.html:33
+#: partners/templates/base_generic.html:45
+msgid "News"
+msgstr "News"
+
+#: events/templates/events/news_list.html:18
+msgid "There are no news in the system."
+msgstr "There are no news in the system."
+
+#: partners/models.py:83
+msgid "document_1"
+msgstr "Soc. Security"
+
+#: partners/models.py:84
+msgid "document_2"
+msgstr "Drivers License"
+
+#: partners/models.py:85
+msgid "document_3"
+msgstr "Passport"
+
+#: partners/models.py:88
+msgid "male"
+msgstr "male"
+
+#: partners/models.py:89
+msgid "female"
+msgstr "female"
+
+#: partners/models.py:90
+msgid "other"
+msgstr "other"
+
+#: partners/models.py:120
+msgid "position_1"
+msgstr "associate"
+
+#: partners/models.py:121
+msgid "position_2"
+msgstr "president"
+
+#: partners/models.py:122
+msgid "position_3"
+msgstr "secretary"
+
+#: partners/models.py:123
+msgid "position_4"
+msgstr "member"
+
+#: partners/models.py:126
+msgid "status_1"
+msgstr "active"
+
+#: partners/models.py:127
+msgid "status_2"
+msgstr "life"
+
+#: partners/models.py:128
+msgid "status_3"
+msgstr "inactive"
+
+#: partners/templates/base_generic.html:30 partners/templates/index.html:5
+#: partners/templates/index.html:9
+msgid "Home"
+msgstr "Home"
+
+#: partners/templates/base_generic.html:34 partners/templates/index.html:14
+#: partners/templates/partners/partner_list.html:5
+msgid "Partners"
+msgstr "Partners"
+
+#: partners/templates/base_generic.html:35
+#: users/templates/users/user_list.html:5
+msgid "Users"
+msgstr "Users"
+
+#: partners/templates/base_generic.html:50
+msgid "more"
+msgstr "more"
+
+#: partners/templates/index.html:16
+#, python-format
+msgid "The system has %(partners_quantity)s partner."
+msgid_plural "The system has %(partners_quantity)s partners."
+msgstr[0] "The system has %(partners_quantity)s partner."
+msgstr[1] "The system has %(partners_quantity)s partners."
+
+#: partners/templates/partners/partner_detail.html:5
+msgid "Partner Detail"
+msgstr "Partner Detail"
+
+#: partners/templates/partners/partner_detail.html:9
+#: users/templates/users/user_detail.html:10
+#: users/templates/users/user_list.html:14
+msgid "Partner"
+msgstr "Partner"
+
+#: partners/templates/partners/partner_detail.html:10
+msgid "Affiliate"
+msgstr "Affiliate"
+
+#: partners/templates/partners/partner_detail.html:11
+msgid "Incorporation"
+msgstr "Incorporation"
+
+#: partners/templates/partners/partner_detail.html:12
+msgid "Position"
+msgstr "Position"
+
+#: partners/templates/partners/partner_detail.html:13
+#: partners/templates/partners/partner_list.html:16
+msgid "Status"
+msgstr "Status"
+
+#: partners/templates/partners/partner_list.html:9
+msgid "Partners List"
+msgstr "Partners List"
+
+#: partners/templates/partners/partner_list.html:13
+msgid "Number"
+msgstr "Number"
+
+#: partners/templates/partners/partner_list.html:14
+#: partners/templates/partners/person_detail.html:12
+msgid "Last name"
+msgstr "Last name"
+
+#: partners/templates/partners/partner_list.html:15
+#: partners/templates/partners/person_detail.html:13
+msgid "First name"
+msgstr "First name"
+
+#: partners/templates/partners/partner_list.html:28
+msgid "There are no partners in the system."
+msgstr "There are no partners in the system."
+
+#: partners/templates/partners/person_detail.html:5
+msgid "Person Detail"
+msgstr "Person Detail"
+
+#: partners/templates/partners/person_detail.html:10
+msgid "Document"
+msgstr "Ientification"
+
+#: partners/templates/partners/person_detail.html:11
+msgid "Social Security"
+msgstr "Social Security"
+
+#: partners/templates/partners/person_detail.html:14
+msgid "Birthdate"
+msgstr "Birthdate"
+
+#: partners/templates/partners/person_detail.html:15
+msgid "Gender"
+msgstr "Gender"
+
+#: partners/templates/partners/person_detail.html:16
+msgid "Address"
+msgstr "Address"
+
+#: partners/templates/partners/person_detail.html:17
+msgid "Cell phone"
+msgstr "Cell phone"
+
+#: partners/templates/partners/person_detail.html:19
+msgid "Phone"
+msgstr "Phone"
+
+#: users/templates/users/user_detail.html:5
+msgid "User Detail"
+msgstr "User Detail"
+
+#: users/templates/users/user_detail.html:9
+msgid "User"
+msgstr "User"
+
+#: users/templates/users/user_detail.html:11
+msgid "Joined"
+msgstr "Joined"
+
+#: users/templates/users/user_detail.html:12
+msgid "Last login"
+msgstr "Last login"
+
+#: users/templates/users/user_detail.html:13
+#: users/templates/users/user_list.html:15
+msgid "Active"
+msgstr "Active"
+
+#: users/templates/users/user_list.html:9
+msgid "Users List"
+msgstr "Users List"
+
+#: users/templates/users/user_list.html:13
+msgid "Username"
+msgstr "Username"
+
+#: users/templates/users/user_list.html:26
+msgid "There are no users in the system."
+msgstr "There are no users in the system."

@@ -1,0 +1,28 @@
+{% extends "base_generic.html" %}
+{% load i18n %}
+
+{% block title %}
+    <title>{% trans "Small Business Management System" %} - {% trans "Users" %}</title>
+{% endblock %}
+
+{% block main %}
+    <h1>{% trans "Users List" %}</h1>
+    {% if users_no_admin %}
+        <table>
+            <tr>
+                <th width=40%>{% trans "Username" %}</th>
+                <th width=40%>{% trans "Partner" %}</th>
+                <th width=20%>{% trans "Active" %}</th>
+            </tr>
+                {% for user in users_no_admin %}
+                    <tr>
+                        <td><a href="{{ user.get_absolute_url }}">{{ user.name }}</a></td>
+                        <td>{{user.partner}}</td>
+                        <td>{{user.is_active}}</td>
+                     </tr>
+                {% endfor %}
+        </table>
+    {% else %}
+        <p>{% trans "There are no users in the system." %}</p>
+    {% endif %}
+{% endblock %}

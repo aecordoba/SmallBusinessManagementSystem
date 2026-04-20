@@ -1,0 +1,66 @@
+{% load i18n %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="icon" type="image/png" href="{% static 'images/rubik16x16.png' %}" sizes="16x16" />
+    <link rel="icon" type="image/png" href="{% static 'images/rubik32x32.png' %}" sizes="32x32" />
+
+    {% block title %}
+        <title>{% trans "Small Business Management System" %}</title>
+    {% endblock %}
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            {% block header %}
+              <h1>{% trans "Small Business Management System" %}</h1>
+            {% endblock %}
+        </header>
+        <nav>
+            {% block nav %}
+                <a href="{% url 'index' %}">{% trans "Home" %}</a><br>
+                <a href="{% url 'accounting' %}">{% trans "Accounting" %}</a><br>
+                <a href="{% url 'events' %}">{% trans "Events" %}</a><br>
+                <a href="{% url 'news' %}">{% trans "News" %}</a><br>
+                <a href="{% url 'partners' %}">{% trans "Partners" %}</a><br>
+                <a href="{% url 'users' %}">{% trans "Users" %}</a><br>
+            {% endblock %}
+        </nav>
+        <main>
+              {% block main %}
+              {% endblock %}
+        </main>
+        {% if aside_list %}
+            <aside>
+                {% block aside %}
+                    <h2><a href="{% url 'news' %}">{% trans "News" %}</a></h2>
+                    <section>
+                        {% for news in aside_list %}
+                            <article>
+                                <h3>{{ news.brief}}</h3>
+                                <p>{{ news.description}}...<a href="{{ news.get_absolute_url }}">{% trans "more" %}</a> </p>
+                            </article>
+                        {% endfor %}
+                    </section>
+                {% endblock %}
+            </aside>
+        {% endif %}
+        <footer>
+            {% block footer %}
+                <hr>
+                <p>Adrián E. Córdoba<br>Dynamic M.C.S. - Kepler S.C.</p>
+            {% endblock %}
+        </footer>
+    </div>
+</body>
+
+</html>

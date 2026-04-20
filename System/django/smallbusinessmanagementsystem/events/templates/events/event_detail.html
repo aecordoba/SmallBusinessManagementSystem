@@ -1,0 +1,25 @@
+{% extends "base_generic.html" %}
+{% load i18n %}
+
+{% block title %}
+    <title>{% trans "Small Business Management System" %} - {% trans "Event Detail" %}</title>
+{% endblock %}
+
+{% block main %}
+    <h1>{{event.name}}</h1>
+    <p><strong>{% trans "Date" %}:</strong> {{ event.date }}</p>
+    {% if event.time %}
+        <p><strong>{% trans "Time" %}:</strong> {{ event.time }}</p>
+    {% endif %}
+    {% if event.attendants %}
+        <p><strong>{% trans "Attendants" %}:</strong> {{ event.attendants }}</p>
+    {% endif %}
+    <p><strong>{% trans "Description" %}:</strong> {{ event.description }}</p>
+    <p><strong>{% trans "Charge" %}:</strong>
+        {% if event.charge %}
+            {{ event.charge }}
+        {% else %}
+            {% trans "Free" %}
+        {% endif %}
+    </p>
+{% endblock %}

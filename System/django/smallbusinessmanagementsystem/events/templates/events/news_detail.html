@@ -1,0 +1,28 @@
+{% extends "base_generic.html" %}
+{% load i18n %}
+
+{% block title %}
+    <title>{% trans "Small Business Management System" %} - {% trans "News Detail" %}</title>
+{% endblock %}
+
+{% block main %}
+    <h1>{{news.brief}}</h1>
+    <p><strong>{% trans "Description" %}:</strong> {{ news.description }}</p>
+    <p><strong>{% trans "Edition" %}:</strong> {{ news.edition }}</p>
+    {% if news.event %}
+        <article>
+            <p><strong>{% trans "Event name" %}:</strong> <a href="{{ news.event.get_absolute_url }}">{{ news.event }}</a></p>
+            <p><strong>{% trans "Date" %}:</strong> {{ news.event.date }}</p>
+            <p><strong>{% trans "Time" %}:</strong> {{ news.event.time }}</p>
+            <p><strong>{% trans "Attendants" %}:</strong> {{ news.event.attendants }}</p>
+            <p><strong>{% trans "Description" %}:</strong> {{ news.event.description }}</p>
+            <p><strong>{% trans "Charge" %}:</strong>
+                {% if news.event.charge %}
+                    {{ news.event.charge }}
+                {% else %}
+                    {% trans "Free" %}
+                {% endif %}
+            </p>
+        </article>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "base_generic.html" %}
+{% load i18n %}
+
+{% block title %}
+    <title>{% trans "Small Business Management System" %} - {% trans "Partners" %}</title>
+{% endblock %}
+
+{% block main %}
+    <h1>{% trans "Partners List" %}</h1>
+    {% if partner_list %}
+        <table>
+            <tr>
+                <th width=10%>{% trans "Number" %}</th>
+                <th width=40%>{% trans "Last name" %}</th>
+                <th width=40%>{% trans "First name" %}</th>
+                <th width=10%>{% trans "Status" %}</th>
+            </tr>
+                {% for partner in partner_list %}
+                    <tr>
+                        <td><a href="{{ partner.get_absolute_url }}">{{ partner.partner_number }}</a></td>
+                        <td>{{partner.person.last_name}}</td>
+                        <td>{{partner.person.first_name}}</td>
+                        <td>{{partner.get_status_display }}</td>
+                    </tr>
+                {% endfor %}
+        </table>
+    {% else %}
+        <p>{% trans "There are no partners in the system." %}</p>
+    {% endif %}
+{% endblock %}

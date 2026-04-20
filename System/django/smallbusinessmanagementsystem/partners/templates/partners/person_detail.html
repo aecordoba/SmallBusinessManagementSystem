@@ -1,0 +1,21 @@
+{% extends "base_generic.html" %}
+{% load i18n %}
+
+{% block title %}
+    <title>{% trans "Small Business Management System" %} - {% trans "Person Detail" %}</title>
+{% endblock %}
+
+{% block main %}
+    <h1>{{person.last_name}}, {{person.first_name}}</h1>
+    <p><strong>{% trans "Document" %}:</strong> {{ person.get_doc_type_display }} {{ person.doc_number }}</p>
+    <p><strong>{% trans "Social Security" %}:</strong> {{ person.social_security }}</p>
+    <p><strong>{% trans "Last name" %}:</strong> {{ person.last_name }}</p>
+    <p><strong>{% trans "First name" %}:</strong> {{ person.first_name }}</p>
+    <p><strong>{% trans "Birthdate" %}:</strong> {{ person.birthdate }}</p>
+    <p><strong>{% trans "Gender" %}:</strong> {{ person.get_gender_display }}</p>
+    <p><strong>{% trans "Address" %}:</strong> {{ person.address }}</p>
+    <p><strong>{% trans "Cell phone" %}:</strong> {{ person.cellphone }}</p>
+    {% if person.address.phone %}
+        <p><strong>{% trans "Phone" %}:</strong> {{ person.address.phone }}</p>
+    {% endif %}
+{% endblock %}
