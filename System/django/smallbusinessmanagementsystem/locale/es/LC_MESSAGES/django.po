@@ -100,7 +100,7 @@ msgstr "Libre"
 #: events/templates/events/event_list.html:5
 #: partners/templates/base_generic.html:32
 msgid "Events"
-msgstr ""
+msgstr "Eventos"
 
 #: events/templates/events/event_list.html:9
 msgid "Events List"
