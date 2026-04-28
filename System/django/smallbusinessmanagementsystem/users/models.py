@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from partners.models import Partner
 
+
 class UserManager(BaseUserManager):
     def create_user(self, name, password=None, **extra_fields):
         if not name:
@@ -16,6 +17,7 @@ class UserManager(BaseUserManager):
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
         return self.create_user(name, password, **extra_fields)
+
 
 class User(AbstractBaseUser, PermissionsMixin):
     name = models.CharField(max_length=30, unique=True, null=False, blank=False, help_text='Username')
@@ -34,6 +36,10 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def get_absolute_url(self):
         return reverse('user-detail', args=[str(self.id)])
+
+    @property
+    def email(self):
+        return self.partner.person.email
 
     class Meta:
         managed = True

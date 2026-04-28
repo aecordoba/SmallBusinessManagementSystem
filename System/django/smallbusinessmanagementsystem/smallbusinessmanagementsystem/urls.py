@@ -21,10 +21,16 @@ from django.views.generic import RedirectView
 from django.conf import settings
 from django.conf.urls.static import static
 
+from django.contrib.auth import views as auth_views
+from users.forms import CustomPasswordResetForm
+
+
 urlpatterns = [
     path('', include('partners.urls')),
     path('accounting/', include('accounting.urls')),
     path('admin/', admin.site.urls),
     path('events/', include('events.urls')),
     path('users/', include('users.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('password_reset/', auth_views.PasswordResetView.as_view(form_class=CustomPasswordResetForm), name='password_reset'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

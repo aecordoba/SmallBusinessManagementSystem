@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-18 20:04-0300\n"
+"POT-Creation-Date: 2026-04-26 11:28-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,7 +25,7 @@ msgstr ""
 #: events/templates/events/news_list.html:5
 #: events/templates/events/news_list.html:9
 #: partners/templates/base_generic.html:17
-#: partners/templates/base_generic.html:25 partners/templates/index.html:5
+#: partners/templates/base_generic.html:28 partners/templates/index.html:5
 #: partners/templates/index.html:9 partners/templates/index.html:12
 #: partners/templates/partners/partner_detail.html:5
 #: partners/templates/partners/partner_list.html:5
@@ -37,7 +37,7 @@ msgstr "Small Business Management System"
 
 #: accounting/templates/accounting/accounting_list.html:6
 #: accounting/templates/accounting/accounting_list.html:10
-#: partners/templates/base_generic.html:31
+#: partners/templates/base_generic.html:50
 msgid "Accounting"
 msgstr "Accounting"
 
@@ -97,7 +97,7 @@ msgid "Free"
 msgstr "Free"
 
 #: events/templates/events/event_list.html:5
-#: partners/templates/base_generic.html:32
+#: partners/templates/base_generic.html:51
 msgid "Events"
 msgstr "Events"
 
@@ -127,8 +127,8 @@ msgstr "Event name"
 
 #: events/templates/events/news_list.html:5
 #: events/templates/events/news_list.html:9
-#: partners/templates/base_generic.html:33
-#: partners/templates/base_generic.html:45
+#: partners/templates/base_generic.html:52
+#: partners/templates/base_generic.html:64
 msgid "News"
 msgstr "News"
 
@@ -188,22 +188,36 @@ msgstr "life"
 msgid "status_3"
 msgstr "inactive"
 
-#: partners/templates/base_generic.html:30 partners/templates/index.html:5
+#: partners/templates/base_generic.html:34
+#: users/templates/users/user_detail.html:9
+msgid "User"
+msgstr "User"
+
+#: partners/templates/base_generic.html:37
+msgid "Logout"
+msgstr "Logout"
+
+#: partners/templates/base_generic.html:40
+#: users/templates/registration/login.html:28
+msgid "Login"
+msgstr "Login"
+
+#: partners/templates/base_generic.html:49 partners/templates/index.html:5
 #: partners/templates/index.html:9
 msgid "Home"
 msgstr "Home"
 
-#: partners/templates/base_generic.html:34 partners/templates/index.html:14
+#: partners/templates/base_generic.html:53 partners/templates/index.html:14
 #: partners/templates/partners/partner_list.html:5
 msgid "Partners"
 msgstr "Partners"
 
-#: partners/templates/base_generic.html:35
+#: partners/templates/base_generic.html:54
 #: users/templates/users/user_list.html:5
 msgid "Users"
 msgstr "Users"
 
-#: partners/templates/base_generic.html:50
+#: partners/templates/base_generic.html:69
 msgid "more"
 msgstr "more"
 
@@ -295,13 +309,100 @@ msgstr "Cell phone"
 msgid "Phone"
 msgstr "Phone"
 
+#: users/templates/registration/logged_out.html:5
+msgid "Logged out!"
+msgstr "Logged out!"
+
+#: users/templates/registration/logged_out.html:6
+msgid "Click here to login again."
+msgstr "Click here to login again."
+
+#: users/templates/registration/login.html:6
+msgid "Your username and password didn't match. Please try again."
+msgstr "Your username and password didn't match. Please try again."
+
+#: users/templates/registration/login.html:11
+msgid ""
+"Your account doesn't have access to this page. To proceed, please login with "
+"an account that has access."
+msgstr ""
+"Your account doesn't have access to this page. To proceed, please login with "
+"an account that has access."
+
+#: users/templates/registration/login.html:13
+msgid "Please login to see this page."
+msgstr "Please login to see this page."
+
+#: users/templates/registration/login.html:20
+#: users/templates/users/user_list.html:13
+msgid "Username"
+msgstr "Username"
+
+#: users/templates/registration/login.html:24
+msgid "Password"
+msgstr "Password"
+
+#: users/templates/registration/login.html:31
+msgid "Lost password?"
+msgstr "Lost password?"
+
+#: users/templates/registration/password_reset_complete.html:5
+msgid "The password has been changed!"
+msgstr "The password has been changed!"
+
+#: users/templates/registration/password_reset_complete.html:6
+msgid "Log in again?"
+msgstr "Log in again?"
+
+#: users/templates/registration/password_reset_confirm.html:6
+msgid "Please enter (and confirm) your new password."
+msgstr "Please enter (and confirm) your new password."
+
+#: users/templates/registration/password_reset_confirm.html:12
+msgid "New password"
+msgstr "New password"
+
+#: users/templates/registration/password_reset_confirm.html:17
+msgid "Confirm password"
+msgstr "Confirm password"
+
+#: users/templates/registration/password_reset_confirm.html:22
+msgid "Change my password"
+msgstr "Change my password"
+
+#: users/templates/registration/password_reset_confirm.html:27
+msgid "Password reset failed."
+msgstr "Password reset failed."
+
+#: users/templates/registration/password_reset_confirm.html:28
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used. Please request a new password reset."
+msgstr ""
+"The password reset link was invalid, possibly because it has already been "
+"used. Please request a new password reset."
+
+#: users/templates/registration/password_reset_done.html:5
+msgid ""
+"We've emailed you instructions for setting your password. If they haven't "
+"arrived in a few minutes, check your spam folder."
+msgstr ""
+"We've emailed you instructions for setting your password. If they haven't "
+"arrived in a few minutes, check your spam folder."
+
+#: users/templates/registration/password_reset_email.html:3
+msgid ""
+"Someone asked for password reset for email %(email)s. Follow the link below"
+msgstr ""
+"Someone asked for password reset for email %(email)s. Follow the link below"
+
+#: users/templates/registration/password_reset_form.html:11
+msgid "Reset password"
+msgstr "Reset password"
+
 #: users/templates/users/user_detail.html:5
 msgid "User Detail"
 msgstr "User Detail"
-
-#: users/templates/users/user_detail.html:9
-msgid "User"
-msgstr "User"
 
 #: users/templates/users/user_detail.html:11
 msgid "Joined"
@@ -319,10 +420,6 @@ msgstr "Active"
 #: users/templates/users/user_list.html:9
 msgid "Users List"
 msgstr "Users List"
-
-#: users/templates/users/user_list.html:13
-msgid "Username"
-msgstr "Username"
 
 #: users/templates/users/user_list.html:26
 msgid "There are no users in the system."

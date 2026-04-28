@@ -14,10 +14,13 @@ body {
 }
 
 /*  RWD     */
-header, nav, main, aside, footer {
+header {
+    padding: 2px;
+}
+
+nav, main, aside, footer {
     padding: 10px;
     text-align: center;
-/*    border: 1px solid #333;*/
 }
 
 .container {
@@ -65,11 +68,19 @@ th.accounting, td.accounting {
 }
 
 /*  header     */
+header table {
+    width: 95%;
+}
+
 header h1 {
     font: bold 3rem cursive;
     text-align: center;
 }
 
+div.user {
+    color: darkslategray;
+    text-align: right;
+}
 /*  nav     */
 nav {
     font-family: sans-serif;

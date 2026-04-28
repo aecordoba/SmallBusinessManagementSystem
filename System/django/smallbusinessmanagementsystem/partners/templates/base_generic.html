@@ -21,9 +21,28 @@
 <body>
     <div class="container">
         <header>
-            {% block header %}
-              <h1>{% trans "Small Business Management System" %}</h1>
-            {% endblock %}
+            <table>
+                <tr>
+                    <td width="80%">
+                        {% block header %}
+                            <h1>{% trans "Small Business Management System" %}</h1>
+                        {% endblock %}
+                    </td>
+                    <td width="20%">
+                        <div class="user">
+                            {% if user.is_authenticated %}
+                                {% trans "User" %}: {{ user.get_username }}
+                                <form method="post" action="{% url 'logout' %}">
+                                    {% csrf_token %}
+                                    <button type="submit" >{% trans "Logout" %}</button>
+                                </form>
+                            {% else %}
+                                <a href="{% url 'login' %}?next={{ request.path }}">{% trans "Login" %}</a>
+                            {% endif %}
+                        </div>
+                    </td>
+                </tr>
+            </table>
         </header>
         <nav>
             {% block nav %}

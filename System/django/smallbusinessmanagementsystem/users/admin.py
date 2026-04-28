@@ -22,6 +22,6 @@ class CustomUserAdmin(UserAdmin):
 
 @admin.register(User)
 class UsersAdmin(CustomUserAdmin):
-    list_display = ('name', 'partner', 'date_joined', 'is_active', 'is_staff', 'is_superuser')
+    list_display = ('name', 'partner', 'email', 'date_joined', 'is_active', 'is_staff', 'is_superuser')
 
 
