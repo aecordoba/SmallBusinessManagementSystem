@@ -37,7 +37,7 @@
                                     <button type="submit" >{% trans "Logout" %}</button>
                                 </form>
                             {% else %}
-                                <a href="{% url 'login' %}?next={{ request.path }}">{% trans "Login" %}</a>
+                                <a href="{% url 'login' %}">{% trans "Login" %}</a>
                             {% endif %}
                         </div>
                     </td>
@@ -47,11 +47,15 @@
         <nav>
             {% block nav %}
                 <a href="{% url 'index' %}">{% trans "Home" %}</a><br>
-                <a href="{% url 'accounting' %}">{% trans "Accounting" %}</a><br>
+                {% if perms.accounting.can_see_accounting %}
+                    <a href="{% url 'accounting' %}">{% trans "Accounting" %}</a><br>
+                {% endif %}
                 <a href="{% url 'events' %}">{% trans "Events" %}</a><br>
                 <a href="{% url 'news' %}">{% trans "News" %}</a><br>
-                <a href="{% url 'partners' %}">{% trans "Partners" %}</a><br>
-                <a href="{% url 'users' %}">{% trans "Users" %}</a><br>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'partners' %}">{% trans "Partners" %}</a><br>
+                    <a href="{% url 'users' %}">{% trans "Users" %}</a><br>
+                {% endif %}
             {% endblock %}
         </nav>
         <main>

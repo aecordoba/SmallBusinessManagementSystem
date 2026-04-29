@@ -1,6 +1,7 @@
 from django.views import generic
 from django.shortcuts import render
 from .models import News, Event
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class NewsListView(generic.ListView):
@@ -17,5 +18,5 @@ class EventsListView(generic.ListView):
     paginate_by = 10
 
 
-class EventDetailView(generic.DetailView):
+class EventDetailView(LoginRequiredMixin, generic.DetailView):
     model = Event

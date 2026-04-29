@@ -2,6 +2,7 @@ from django.views import generic
 from django.shortcuts import render
 from .models import Partner, Person
 from events.models import News
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 def index(request):
@@ -19,13 +20,13 @@ def index(request):
     return render(request, 'index.html', context=context)
 
 
-class PartnersListView(generic.ListView):
+class PartnersListView(LoginRequiredMixin, generic.ListView):
     model = Partner
     paginate_by = 10
 
 
-class PartnerDetailView(generic.DetailView):
+class PartnerDetailView(LoginRequiredMixin, generic.DetailView):
     model = Partner
 
-class PersonDetailView(generic.DetailView):
+class PersonDetailView(LoginRequiredMixin, generic.DetailView):
     model = Person
