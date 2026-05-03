@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-26 11:28-0300\n"
+"POT-Creation-Date: 2026-04-29 14:50-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -38,7 +38,7 @@ msgstr "Liniers Sur"
 
 #: accounting/templates/accounting/accounting_list.html:6
 #: accounting/templates/accounting/accounting_list.html:10
-#: partners/templates/base_generic.html:50
+#: partners/templates/base_generic.html:51
 msgid "Accounting"
 msgstr "Contabilidad"
 
@@ -98,7 +98,7 @@ msgid "Free"
 msgstr "Libre"
 
 #: events/templates/events/event_list.html:5
-#: partners/templates/base_generic.html:51
+#: partners/templates/base_generic.html:53
 msgid "Events"
 msgstr "Eventos"
 
@@ -128,8 +128,8 @@ msgstr "Nombre del evento"
 
 #: events/templates/events/news_list.html:5
 #: events/templates/events/news_list.html:9
-#: partners/templates/base_generic.html:52
-#: partners/templates/base_generic.html:64
+#: partners/templates/base_generic.html:54
+#: partners/templates/base_generic.html:68
 msgid "News"
 msgstr "Noticias"
 
@@ -208,17 +208,17 @@ msgstr "Iniciar sesión"
 msgid "Home"
 msgstr "Inicio"
 
-#: partners/templates/base_generic.html:53 partners/templates/index.html:14
+#: partners/templates/base_generic.html:56 partners/templates/index.html:14
 #: partners/templates/partners/partner_list.html:5
 msgid "Partners"
 msgstr "Socios"
 
-#: partners/templates/base_generic.html:54
+#: partners/templates/base_generic.html:57
 #: users/templates/users/user_list.html:5
 msgid "Users"
 msgstr "Usuarios"
 
-#: partners/templates/base_generic.html:69
+#: partners/templates/base_generic.html:73
 msgid "more"
 msgstr "more"
 
@@ -292,24 +292,32 @@ msgid "Social Security"
 msgstr "Número PAMI"
 
 #: partners/templates/partners/person_detail.html:14
+msgid "E-mail"
+msgstr "E-mail"
+
+#: partners/templates/partners/person_detail.html:15
 msgid "Birthdate"
 msgstr "Fecha de nacimiento"
 
-#: partners/templates/partners/person_detail.html:15
+#: partners/templates/partners/person_detail.html:16
 msgid "Gender"
 msgstr "Género"
 
-#: partners/templates/partners/person_detail.html:16
+#: partners/templates/partners/person_detail.html:17
 msgid "Address"
 msgstr "Dirección"
 
-#: partners/templates/partners/person_detail.html:17
+#: partners/templates/partners/person_detail.html:18
 msgid "Cell phone"
 msgstr "Teléfono celular"
 
-#: partners/templates/partners/person_detail.html:19
+#: partners/templates/partners/person_detail.html:20
 msgid "Phone"
 msgstr "Teléfono"
+
+#: users/forms.py:17
+msgid "This email is not registered."
+msgstr ""
 
 #: users/templates/registration/logged_out.html:5
 msgid "Logged out!"
@@ -368,19 +376,19 @@ msgstr "Por favor, ingrese (y confirme) su nueva contraseña."
 msgid "New password"
 msgstr "Nueva contraseña"
 
-#: users/templates/registration/password_reset_confirm.html:17
+#: users/templates/registration/password_reset_confirm.html:20
 msgid "Confirm password"
 msgstr "Confirme contraseña"
 
-#: users/templates/registration/password_reset_confirm.html:22
+#: users/templates/registration/password_reset_confirm.html:27
 msgid "Change my password"
 msgstr "Cambiar mi contraseña"
 
-#: users/templates/registration/password_reset_confirm.html:27
+#: users/templates/registration/password_reset_confirm.html:30
 msgid "Password reset failed."
 msgstr "Restablecimiento de contraseña fallado."
 
-#: users/templates/registration/password_reset_confirm.html:28
+#: users/templates/registration/password_reset_confirm.html:31
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
@@ -399,6 +407,7 @@ msgstr ""
 "correo no deseado."
 
 #: users/templates/registration/password_reset_email.html:3
+#, python-format
 msgid ""
 "Someone asked for password reset for email %(email)s. Follow the link below"
 msgstr ""

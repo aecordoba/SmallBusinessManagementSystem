@@ -16,9 +16,9 @@ INSERT INTO Persons(id, doc_type, doc_number, social_security, last_name, first_
 INSERT INTO Partners(id, person, partner_number, incorporation, position)
     VALUES(1, 1, 234, '01-01-2026', 'position_1');
 
-INSERT INTO Events(id, name, date, time, attendants, creation, description, charge)
-    VALUES(1, 'Cuota 2/2026', '02-01-2026', NULL, NULL, NOW(), 'Cuota febrero 2026', 3000),
-    (2, 'Legislatura Porteña', '02-07-2026', '10:30', 30, NOW(), 'Visita a la Legislatura Porteña', NULL);
+INSERT INTO Events(id, name, date, time, attendants, creation, description, charge, automatic)
+    VALUES(1, 'Cuota 2/2026', '02-01-2026', NULL, NULL, NOW(), 'Cuota febrero 2026', 3000, true),
+    (2, 'Legislatura Porteña', '02-07-2026', '10:30', 30, NOW(), 'Visita a la Legislatura Porteña', NULL, false);
 
 INSERT INTO Share(id, event, partner)
     VALUES(1, 1, 1);

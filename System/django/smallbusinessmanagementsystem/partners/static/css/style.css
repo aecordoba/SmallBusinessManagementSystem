@@ -67,6 +67,10 @@ th.accounting, td.accounting {
     padding: 5px;
 }
 
+.error {
+    color: red;
+}
+
 /*  header     */
 header table {
     width: 95%;

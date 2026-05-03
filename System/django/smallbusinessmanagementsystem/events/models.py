@@ -11,6 +11,7 @@ class Event(models.Model):
     creation = models.DateTimeField(help_text='Creation date')
     description = models.TextField(blank=True, null=True, help_text='Event description')
     charge = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True, help_text='Event charge')
+    automatic = models.BooleanField(help_text='Apply to all partners')
 
     def __str__(self):
         return self.name

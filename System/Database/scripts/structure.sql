@@ -96,6 +96,7 @@ CREATE TABLE Events(
     creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     description TEXT,
     charge NUMERIC(10,2),
+    automatic BOOLEAN NOT NULL,
     UNIQUE(name, date, time)
 );
 
