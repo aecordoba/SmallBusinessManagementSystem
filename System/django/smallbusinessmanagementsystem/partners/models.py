@@ -61,11 +61,12 @@ class City(models.Model):
 
 class Address(models.Model):
     address = models.CharField(max_length=30, help_text='Address')
+    zip_code = models.CharField(max_length=8, help_text='ZIP Code')
     city = models.ForeignKey(City, models.DO_NOTHING, db_column='city', help_text='City')
     phone = models.CharField(max_length=10, blank=True, null=True, help_text='Phone number')
 
     def __str__(self):
-        return f'{self.address} - {self.city}'
+        return f'{self.address} - ({self.zip_code}) {self.city}'
 
     def get_absolute_url(self):
         return reverse('address-detail', args=[str(self.id)])
@@ -94,7 +95,7 @@ class Person(models.Model):
     social_security = models.CharField(unique=True, max_length=15, blank=True, null=True, help_text='Social Security')
     last_name = models.CharField(max_length=30, help_text='Last name')
     first_name = models.CharField(max_length=30, help_text='First and middle name')
-    email = models.CharField(max_length=50, blank=True, null=True)
+    email = models.EmailField(blank=True, null=True)
     birthdate = models.DateField(help_text='Birthdate')
     gender = models.CharField(max_length=15, choices=Genders.choices)
     address = models.ForeignKey(Address, models.DO_NOTHING, db_column='address', help_text='Address')
@@ -145,4 +146,5 @@ class Partner(models.Model):
         ordering = ['partner_number']
         verbose_name = 'Partner'
         verbose_name_plural = 'Partners'
+        permissions = (("management", "Can manage the system"),)
 

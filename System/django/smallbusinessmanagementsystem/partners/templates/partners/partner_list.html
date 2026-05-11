@@ -17,7 +17,13 @@
             </tr>
                 {% for partner in partner_list %}
                     <tr>
-                        <td><a href="{{ partner.get_absolute_url }}">{{ partner.partner_number }}</a></td>
+                        <td>
+                            {% if perms.partners.view_partner %}
+                                <a href="{{ partner.get_absolute_url }}">{{partner.partner_number}}</a>
+                            {% else %}
+                                {{partner.partner_number}}
+                            {% endif %}
+                        </td>
                         <td>{{partner.person.last_name}}</td>
                         <td>{{partner.person.first_name}}</td>
                         <td>{{partner.get_status_display }}</td>

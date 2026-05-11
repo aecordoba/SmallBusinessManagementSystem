@@ -4,7 +4,7 @@ from .models import Event, Share, News
 
 @admin.register(Event)
 class EventsAdmin(admin.ModelAdmin):
-    list_display = ('name', 'date', 'time', 'creation', 'description', 'charge', 'automatic')
+    list_display = ('name', 'date', 'time', 'creation', 'description', 'charge', 'automatic', 'validity')
 
 
 @admin.register(Share)

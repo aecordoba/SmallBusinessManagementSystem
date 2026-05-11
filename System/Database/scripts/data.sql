@@ -7,8 +7,8 @@ INSERT INTO States(id, name, country)
 INSERT INTO Cities(id, name, state)
     VALUES(1, 'Ciudad Autónoma de Buenos Aires', 1);
 
-INSERT INTO Addresses(id, address, city, phone)
-    VALUES(1, 'Tuyutí 7126', 1, '1146414581');
+INSERT INTO Addresses(id, address, zip_code, city, phone)
+    VALUES(1, 'Tuyutí 7126', '1408', 1, '1146414581');
 
 INSERT INTO Persons(id, doc_type, doc_number, social_security, last_name, first_name, email, birthdate, gender, address, cellphone)
     VALUES(1, 'document_1', 14009938, '140307131409/00', 'Córdoba', 'Adrián Esteban', 'aecordoba@gmail.com', '08-29-1960', 'male', 1, '1157385359');
@@ -16,9 +16,9 @@ INSERT INTO Persons(id, doc_type, doc_number, social_security, last_name, first_
 INSERT INTO Partners(id, person, partner_number, incorporation, position)
     VALUES(1, 1, 234, '01-01-2026', 'position_1');
 
-INSERT INTO Events(id, name, date, time, attendants, creation, description, charge, automatic)
-    VALUES(1, 'Cuota 2/2026', '02-01-2026', NULL, NULL, NOW(), 'Cuota febrero 2026', 3000, true),
-    (2, 'Legislatura Porteña', '02-07-2026', '10:30', 30, NOW(), 'Visita a la Legislatura Porteña', NULL, false);
+INSERT INTO Events(id, name, date, time, attendants, creation, description, charge, automatic, validity)
+    VALUES(1, 'Cuota 2/2026', '02-01-2026', NULL, NULL, NOW(), 'Cuota febrero 2026', 3000, true, 'monthly'),
+    (2, 'Legislatura Porteña', '02-07-2026', '10:30', 30, NOW(), 'Visita a la Legislatura Porteña', NULL, false, null);
 
 INSERT INTO Share(id, event, partner)
     VALUES(1, 1, 1);

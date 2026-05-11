@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from django.views import generic
 from .models import User
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import PermissionRequiredMixin
 
 
-class UsersListView(LoginRequiredMixin, generic.ListView):
+class UsersListView(PermissionRequiredMixin, generic.ListView):
+    permission_required = 'users.view_user'
     model = User
     paginate_by = 10
 
@@ -12,5 +13,6 @@ class UsersListView(LoginRequiredMixin, generic.ListView):
     queryset = User.objects.exclude(is_superuser=True)
 
 
-class UserDetailView(LoginRequiredMixin, generic.DetailView):
+class UserDetailView(PermissionRequiredMixin, generic.DetailView):
+    permission_required = 'users.view_user'
     model = User

@@ -47,14 +47,23 @@
         <nav>
             {% block nav %}
                 <a href="{% url 'index' %}">{% trans "Home" %}</a><br>
-                {% if perms.accounting.can_see_accounting %}
-                    <a href="{% url 'accounting' %}">{% trans "Accounting" %}</a><br>
-                {% endif %}
                 <a href="{% url 'events' %}">{% trans "Events" %}</a><br>
                 <a href="{% url 'news' %}">{% trans "News" %}</a><br>
                 {% if user.is_authenticated %}
                     <a href="{% url 'partners' %}">{% trans "Partners" %}</a><br>
-                    <a href="{% url 'users' %}">{% trans "Users" %}</a><br>
+                    {% if perms.partners.management %}
+                        <hr>
+                        {% trans "Management" %}
+                    {% endif %}
+                    {% if perms.partners.add_partner %}
+                        <a href="{% url 'create-partner' %}">{% trans "Create Partner" %}</a><br>
+                    {% endif %}
+                    {% if perms.users.view_user %}
+                        <a href="{% url 'users' %}">{% trans "Users" %}</a><br>
+                    {% endif %}
+                    {% if perms.accounting.view_accounting %}
+                        <a href="{% url 'accounting' %}">{% trans "Accounting" %}</a><br>
+                    {% endif %}
                 {% endif %}
             {% endblock %}
         </nav>

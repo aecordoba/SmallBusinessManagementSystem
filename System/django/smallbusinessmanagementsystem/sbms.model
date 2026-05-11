@@ -22,6 +22,7 @@ class Accounting(models.Model):
 
 class Addresses(models.Model):
     address = models.CharField(max_length=30)
+    zip_code = models.CharField(max_length=8)
     city = models.ForeignKey('Cities', models.DO_NOTHING, db_column='city')
     phone = models.CharField(max_length=10, blank=True, null=True)
 
@@ -57,6 +58,7 @@ class Events(models.Model):
     description = models.TextField(blank=True, null=True)
     charge = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
     automatic = models.BooleanField()
+    validity = models.CharField(max_length=15, blank=True, null=True)
 
     class Meta:
         managed = False

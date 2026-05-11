@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-29 14:50-0300\n"
+"POT-Creation-Date: 2026-05-10 20:08-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,7 +37,7 @@ msgstr "Small Business Management System"
 
 #: accounting/templates/accounting/accounting_list.html:6
 #: accounting/templates/accounting/accounting_list.html:10
-#: partners/templates/base_generic.html:51
+#: partners/templates/base_generic.html:65
 msgid "Accounting"
 msgstr "Accounting"
 
@@ -63,6 +63,18 @@ msgstr "Credit"
 #: accounting/templates/accounting/accounting_list.html:36
 msgid "There are no accounting in the system."
 msgstr "There are no accounting in the system."
+
+#: events/models.py:9
+msgid "monthly"
+msgstr "monthly"
+
+#: events/models.py:10
+msgid "weekly"
+msgstr "weekly"
+
+#: events/models.py:11
+msgid "yearly"
+msgstr "yearly"
 
 #: events/templates/events/event_detail.html:5
 msgid "Event Detail"
@@ -97,7 +109,7 @@ msgid "Free"
 msgstr "Free"
 
 #: events/templates/events/event_list.html:5
-#: partners/templates/base_generic.html:53
+#: partners/templates/base_generic.html:50
 msgid "Events"
 msgstr "Events"
 
@@ -127,8 +139,8 @@ msgstr "Event name"
 
 #: events/templates/events/news_list.html:5
 #: events/templates/events/news_list.html:9
-#: partners/templates/base_generic.html:54
-#: partners/templates/base_generic.html:68
+#: partners/templates/base_generic.html:51
+#: partners/templates/base_generic.html:77
 msgid "News"
 msgstr "News"
 
@@ -136,55 +148,158 @@ msgstr "News"
 msgid "There are no news in the system."
 msgstr "There are no news in the system."
 
-#: partners/models.py:83
+#: partners/forms.py:9
+msgid "Partner number"
+msgstr "Partner number"
+
+#: partners/forms.py:10 partners/templates/partners/partner_list.html:15
+#: partners/templates/partners/person_detail.html:13
+msgid "First name"
+msgstr "First name"
+
+#: partners/forms.py:11 partners/templates/partners/partner_list.html:14
+#: partners/templates/partners/person_detail.html:12
+msgid "Last name"
+msgstr "Last name"
+
+#: partners/forms.py:12 partners/templates/partners/person_detail.html:10
+msgid "Document"
+msgstr "Identification"
+
+#: partners/forms.py:13 partners/templates/partners/partner_list.html:13
+msgid "Number"
+msgstr "Number"
+
+#: partners/forms.py:14 partners/templates/partners/person_detail.html:11
+msgid "Social Security"
+msgstr "Social Security"
+
+#: partners/forms.py:15 partners/templates/partners/person_detail.html:14
+msgid "E-mail"
+msgstr "E-mail"
+
+#: partners/forms.py:16 partners/templates/partners/person_detail.html:15
+msgid "Birthdate"
+msgstr "Birthdate"
+
+#: partners/forms.py:17 partners/templates/partners/person_detail.html:16
+msgid "Gender"
+msgstr "Gender"
+
+#: partners/forms.py:18 partners/templates/partners/person_detail.html:17
+msgid "Address"
+msgstr "Address"
+
+#: partners/forms.py:19
+msgid "ZIP Code"
+msgstr "ZIP Code"
+
+#: partners/forms.py:21
+msgid "Phone number"
+msgstr "Phone number"
+
+#: partners/forms.py:22
+msgid "Cell phone number"
+msgstr "Cell phone number"
+
+#: partners/forms.py:23 partners/templates/partners/partner_detail.html:11
+msgid "Incorporation"
+msgstr "Incorporation"
+
+#: partners/forms.py:24 partners/templates/partners/partner_detail.html:12
+msgid "Position"
+msgstr "Position"
+
+#: partners/forms.py:25 partners/templates/partners/partner_detail.html:13
+#: partners/templates/partners/partner_list.html:16
+msgid "Status"
+msgstr "Status"
+
+#: partners/forms.py:30
+msgid "The first name must be between 2 and 30 characters long."
+msgstr "The first name must be between 2 and 30 characters long."
+
+#: partners/forms.py:36
+msgid "The last name must be between 2 and 30 characters long."
+msgstr "The last name must be between 2 and 30 characters long."
+
+#: partners/forms.py:42
+msgid "Incorrect ID number."
+msgstr "Incorrect ID number."
+
+#: partners/forms.py:48
+msgid "The social security number must be up to 15 characters long."
+msgstr "The social security number must be up to 15 characters long."
+
+#: partners/forms.py:54
+msgid "Incorrect birthdate."
+msgstr "Incorrect birthdate."
+
+#: partners/forms.py:60
+msgid "The address must be between 5 and 30 characters long."
+msgstr "The address must be between 5 and 30 characters long."
+
+#: partners/forms.py:66
+msgid ""
+"The phone number must be between 8 and 10 digits long (without hyphens)."
+msgstr ""
+"The phone number must be between 8 and 10 digits long (without hyphens)."
+
+#: partners/forms.py:72
+msgid ""
+"The cell phone number must be between 8 and 10 digits long (without hyphens)."
+msgstr ""
+"The cell phone number must be between 8 and 10 digits long (without hyphens)."
+
+#: partners/models.py:84
 msgid "document_1"
 msgstr "Soc. Security"
 
-#: partners/models.py:84
+#: partners/models.py:85
 msgid "document_2"
 msgstr "Drivers License"
 
-#: partners/models.py:85
+#: partners/models.py:86
 msgid "document_3"
 msgstr "Passport"
 
-#: partners/models.py:88
+#: partners/models.py:89
 msgid "male"
 msgstr "male"
 
-#: partners/models.py:89
+#: partners/models.py:90
 msgid "female"
 msgstr "female"
 
-#: partners/models.py:90
+#: partners/models.py:91
 msgid "other"
 msgstr "other"
 
-#: partners/models.py:120
+#: partners/models.py:121
 msgid "position_1"
 msgstr "associate"
 
-#: partners/models.py:121
+#: partners/models.py:122
 msgid "position_2"
 msgstr "president"
 
-#: partners/models.py:122
+#: partners/models.py:123
 msgid "position_3"
 msgstr "secretary"
 
-#: partners/models.py:123
+#: partners/models.py:124
 msgid "position_4"
 msgstr "member"
 
-#: partners/models.py:126
+#: partners/models.py:127
 msgid "status_1"
 msgstr "active"
 
-#: partners/models.py:127
+#: partners/models.py:128
 msgid "status_2"
 msgstr "life"
 
-#: partners/models.py:128
+#: partners/models.py:129
 msgid "status_3"
 msgstr "inactive"
 
@@ -207,17 +322,25 @@ msgstr "Login"
 msgid "Home"
 msgstr "Home"
 
-#: partners/templates/base_generic.html:56 partners/templates/index.html:14
+#: partners/templates/base_generic.html:53 partners/templates/index.html:14
 #: partners/templates/partners/partner_list.html:5
 msgid "Partners"
 msgstr "Partners"
 
-#: partners/templates/base_generic.html:57
+#: partners/templates/base_generic.html:56
+msgid "Management"
+msgstr "Management"
+
+#: partners/templates/base_generic.html:59
+msgid "Create Partner"
+msgstr "Create Partner"
+
+#: partners/templates/base_generic.html:62
 #: users/templates/users/user_list.html:5
 msgid "Users"
 msgstr "Users"
 
-#: partners/templates/base_generic.html:73
+#: partners/templates/base_generic.html:82
 msgid "more"
 msgstr "more"
 
@@ -227,6 +350,15 @@ msgid "The system has %(partners_quantity)s partner."
 msgid_plural "The system has %(partners_quantity)s partners."
 msgstr[0] "The system has %(partners_quantity)s partner."
 msgstr[1] "The system has %(partners_quantity)s partners."
+
+#: partners/templates/partners/create_partner.html:5
+#: partners/templates/partners/create_partner.html:9
+msgid "Partner Creation"
+msgstr "Partner Creation"
+
+#: partners/templates/partners/create_partner.html:15
+msgid "Create"
+msgstr "Create"
 
 #: partners/templates/partners/partner_detail.html:5
 msgid "Partner Detail"
@@ -242,68 +374,17 @@ msgstr "Partner"
 msgid "Affiliate"
 msgstr "Affiliate"
 
-#: partners/templates/partners/partner_detail.html:11
-msgid "Incorporation"
-msgstr "Incorporation"
-
-#: partners/templates/partners/partner_detail.html:12
-msgid "Position"
-msgstr "Position"
-
-#: partners/templates/partners/partner_detail.html:13
-#: partners/templates/partners/partner_list.html:16
-msgid "Status"
-msgstr "Status"
-
 #: partners/templates/partners/partner_list.html:9
 msgid "Partners List"
 msgstr "Partners List"
 
-#: partners/templates/partners/partner_list.html:13
-msgid "Number"
-msgstr "Number"
-
-#: partners/templates/partners/partner_list.html:14
-#: partners/templates/partners/person_detail.html:12
-msgid "Last name"
-msgstr "Last name"
-
-#: partners/templates/partners/partner_list.html:15
-#: partners/templates/partners/person_detail.html:13
-msgid "First name"
-msgstr "First name"
-
-#: partners/templates/partners/partner_list.html:28
+#: partners/templates/partners/partner_list.html:34
 msgid "There are no partners in the system."
 msgstr "There are no partners in the system."
 
 #: partners/templates/partners/person_detail.html:5
 msgid "Person Detail"
 msgstr "Person Detail"
-
-#: partners/templates/partners/person_detail.html:10
-msgid "Document"
-msgstr "Ientification"
-
-#: partners/templates/partners/person_detail.html:11
-msgid "Social Security"
-msgstr "Social Security"
-
-#: partners/templates/partners/person_detail.html:14
-msgid "E-mail"
-msgstr "E-mail"
-
-#: partners/templates/partners/person_detail.html:15
-msgid "Birthdate"
-msgstr "Birthdate"
-
-#: partners/templates/partners/person_detail.html:16
-msgid "Gender"
-msgstr "Gender"
-
-#: partners/templates/partners/person_detail.html:17
-msgid "Address"
-msgstr "Address"
 
 #: partners/templates/partners/person_detail.html:18
 msgid "Cell phone"
@@ -315,7 +396,7 @@ msgstr "Phone"
 
 #: users/forms.py:17
 msgid "This email is not registered."
-msgstr ""
+msgstr "This email is not registered."
 
 #: users/templates/registration/logged_out.html:5
 msgid "Logged out!"
@@ -433,3 +514,4 @@ msgstr "Users List"
 #: users/templates/users/user_list.html:26
 msgid "There are no users in the system."
 msgstr "There are no users in the system."
+

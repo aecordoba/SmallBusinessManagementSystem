@@ -22,4 +22,3 @@ class Accounting(models.Model):
         ordering = ['-date', 'concept']
         verbose_name = 'Accounting'
         verbose_name_plural = 'Accounting'
-        permissions = (('can_see_accounting', 'Can see the accounting list.'),)

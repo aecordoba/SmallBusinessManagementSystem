@@ -19,7 +19,7 @@ class CitiesAdmin(admin.ModelAdmin):
 
 @admin.register(Address)
 class AddressesAdmin(admin.ModelAdmin):
-    list_display = ('address', 'city', 'phone')
+    list_display = ('address', 'zip_code', 'city', 'phone')
 
 
 @admin.register(Person)

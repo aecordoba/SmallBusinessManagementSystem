@@ -45,6 +45,7 @@ CREATE TABLE Cities(
 CREATE TABLE Addresses(
     id SERIAL PRIMARY KEY,
     address VARCHAR(30) NOT NULL,
+    zip_code VARCHAR(8) NOT NULL,
     city INT NOT NULL,
     phone VARCHAR(10),
     CONSTRAINT fk_addresses_cities FOREIGN KEY (city) REFERENCES Cities(id)
@@ -97,6 +98,7 @@ CREATE TABLE Events(
     description TEXT,
     charge NUMERIC(10,2),
     automatic BOOLEAN NOT NULL,
+    validity VARCHAR(15),
     UNIQUE(name, date, time)
 );
 

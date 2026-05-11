@@ -14,7 +14,7 @@
     <p><strong>{% trans "E-mail" %}:</strong> {{ person.email }}</p>
     <p><strong>{% trans "Birthdate" %}:</strong> {{ person.birthdate }}</p>
     <p><strong>{% trans "Gender" %}:</strong> {{ person.get_gender_display }}</p>
-    <p><strong>{% trans "Address" %}:</strong> {{ person.address }}</p>
+    <p><strong>{% trans "Address" %}:</strong> {{ person.address.address }} - ({{ person.address.zip_code }}) {{ person.address.city.name }}<br>{{ person.address.city.state }}</p>
     <p><strong>{% trans "Cell phone" %}:</strong> {{ person.cellphone }}</p>
     {% if person.address.phone %}
         <p><strong>{% trans "Phone" %}:</strong> {{ person.address.phone }}</p>

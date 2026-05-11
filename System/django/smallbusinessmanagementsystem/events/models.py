@@ -1,9 +1,15 @@
 from django.db import models
 from django.urls import reverse
 from partners.models import Partner
+from django.utils.translation import gettext_lazy as _
 
 
 class Event(models.Model):
+    class Validities(models.TextChoices):
+        MONTHLY = 'monthly', _('monthly')
+        WEEKLY = 'weekly', _('weekly')
+        YEARLY = 'yearly', _('yearly')
+
     name = models.CharField(max_length=30, help_text='Event title')
     date = models.DateField(help_text='Event date')
     time = models.TimeField(blank=True, null=True, help_text='Event time')
@@ -12,6 +18,7 @@ class Event(models.Model):
     description = models.TextField(blank=True, null=True, help_text='Event description')
     charge = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True, help_text='Event charge')
     automatic = models.BooleanField(help_text='Apply to all partners')
+    validity = models.CharField(max_length=15, choices=Validities.choices, blank=True, null=True, help_text='Validity')
 
     def __str__(self):
         return self.name
@@ -31,8 +38,8 @@ class Event(models.Model):
 class Share(models.Model):
     event = models.ForeignKey(Event, models.DO_NOTHING, db_column='event', help_text='Event')
     partner = models.ForeignKey(Partner, models.DO_NOTHING, db_column='partner', help_text='Partner')
-    attendees = models.IntegerField(blank=True, null=True, help_text='Attendees')
-    payment = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True, help_text='Payment')
+    attendees = models.IntegerField(default=1, help_text='Attendees')
+    payment = models.DecimalField(max_digits=10, decimal_places=2, default=0, help_text='Payment')
 
     def __str__(self):
         return f'{self.event}'

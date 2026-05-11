@@ -5,7 +5,7 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 
 
 class AccountingListView(PermissionRequiredMixin, generic.ListView):
-    permission_required = 'accounting.can_see_accounting'
+    permission_required = 'accounting.view_accounting'
     model = Accounting
     paginate_by = 10
 
