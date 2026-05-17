@@ -10,10 +10,10 @@
     {% if event_list %}
         <table>
             <tr>
-                <th width=50%>{% trans "Name" %}</th>
+                <th width=40%>{% trans "Name" %}</th>
                 <th width=20%>{% trans "Date" %}</th>
                 <th width=20%>{% trans "Time" %}</th>
-                <th width=10%>{% trans "Attendants" %}</th>
+                <th width=20%>{% trans "Attendants" %}</th>
             </tr>
                 {% for event in event_list %}
                     <tr>
@@ -26,5 +26,11 @@
         </table>
     {% else %}
         <p>{% trans "There are no events in the system." %}</p>
+    {% endif %}
+    {% if perms.events.add_event %}
+        <form method="get" action="{% url 'create-event' %}">
+            {% csrf_token %}
+            <button type="submit" >{% trans "Add Event" %}</button>
+        </form>
     {% endif %}
 {% endblock %}

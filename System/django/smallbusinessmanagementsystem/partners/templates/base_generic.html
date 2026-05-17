@@ -13,6 +13,8 @@
     <link rel="icon" type="image/png" href="{% static 'images/rubik16x16.png' %}" sizes="16x16" />
     <link rel="icon" type="image/png" href="{% static 'images/rubik32x32.png' %}" sizes="32x32" />
 
+    {% block script %}
+    {% endblock %}
     {% block title %}
         <title>{% trans "Small Business Management System" %}</title>
     {% endblock %}
@@ -55,9 +57,6 @@
                         <hr>
                         {% trans "Management" %}
                     {% endif %}
-                    {% if perms.partners.add_partner %}
-                        <a href="{% url 'create-partner' %}">{% trans "Create Partner" %}</a><br>
-                    {% endif %}
                     {% if perms.users.view_user %}
                         <a href="{% url 'users' %}">{% trans "Users" %}</a><br>
                     {% endif %}
@@ -68,8 +67,25 @@
             {% endblock %}
         </nav>
         <main>
-              {% block main %}
-              {% endblock %}
+            {% block main %}
+            {% endblock %}
+            {% block pagination %}
+                {% if is_paginated %}
+                    <div class="pagination">
+                        <span class="page-links">
+                            {% if page_obj.has_previous %}
+                                <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">{% trans "previous" %}</a>
+                            {% endif %}
+                            <span class="page-current">
+                                {% blocktrans with current=page_obj.number total=page_obj.paginator.num_pages %}Page {{ current }} of {{ total }}.{% endblocktrans %}
+                            </span>
+                            {% if page_obj.has_next %}
+                                <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">{% trans "next" %}</a>
+                            {% endif %}
+                        </span>
+                    </div>
+                {% endif %}
+            {% endblock %}
         </main>
         {% if aside_list %}
             <aside>

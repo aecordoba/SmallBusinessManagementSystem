@@ -1,0 +1,18 @@
+{% extends "base_generic.html" %}
+{% load i18n %}
+
+
+{% block title %}
+    <title>{% trans "News Creation" %}</title>
+{% endblock %}
+
+{% block main %}
+    <h1>{% trans "News Creation" %}</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+    <input type="submit" value={% trans "Create" %}>
+  </form>
+{% endblock %}

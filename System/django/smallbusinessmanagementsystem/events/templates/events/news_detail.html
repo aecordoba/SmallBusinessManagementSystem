@@ -1,5 +1,6 @@
 {% extends "base_generic.html" %}
 {% load i18n %}
+{% load tz %}
 
 {% block title %}
     <title>{% trans "Small Business Management System" %} - {% trans "News Detail" %}</title>
@@ -7,7 +8,9 @@
 
 {% block main %}
     <h1>{{news.brief}}</h1>
-    <p><strong>{% trans "Description" %}:</strong> {{ news.description }}</p>
+    {% if news.description %}
+        <p><strong>{% trans "Description" %}:</strong> {{ news.description }}</p>
+    {% endif %}
     <p><strong>{% trans "Edition" %}:</strong> {{ news.edition }}</p>
     {% if news.event %}
         <article>

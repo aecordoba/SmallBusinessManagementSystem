@@ -1,6 +1,7 @@
 {% extends "base_generic.html" %}
 {% load i18n %}
 
+
 {% block title %}
     <title>{% trans "Small Business Management System" %} - {% trans "News" %}</title>
 {% endblock %}
@@ -11,11 +12,19 @@
         {% for news in news_list %}
             <article>
                 <a href="{{ news.get_absolute_url }}">{{ news.brief }}</a>
-                <p>{{news.description}}</p>
+                {% if news.description %}
+                    <p>{{news.description}}</p>
+                {% endif %}
             </article>
         {% endfor %}
     {% else %}
         <p>{% trans "There are no news in the system." %}</p>
+    {% endif %}
+    {% if perms.events.add_news %}
+        <form method="get" action="{% url 'create-news' %}">
+            {% csrf_token %}
+            <button type="submit" >{% trans "Add News" %}</button>
+        </form>
     {% endif %}
 {% endblock %}
 

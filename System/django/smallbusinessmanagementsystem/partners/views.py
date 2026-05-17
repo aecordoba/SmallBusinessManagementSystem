@@ -88,6 +88,16 @@ class PartnersListView(LoginRequiredMixin, generic.ListView):
     model = Partner
     paginate_by = 10
 
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        if query:
+            if query.isdigit():
+                return Partner.objects.filter(partner_number__exact=query)
+            else:
+                return Partner.objects.filter(person__last_name__icontains=query)
+        else:
+            return Partner.objects.all()
+
 
 class PartnerDetailView(PermissionRequiredMixin, generic.DetailView):
     permission_required = 'partners.view_partner'

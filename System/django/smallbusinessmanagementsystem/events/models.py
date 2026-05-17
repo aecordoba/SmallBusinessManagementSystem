@@ -14,7 +14,7 @@ class Event(models.Model):
     date = models.DateField(help_text='Event date')
     time = models.TimeField(blank=True, null=True, help_text='Event time')
     attendants = models.IntegerField(blank=True, null=True)
-    creation = models.DateTimeField(help_text='Creation date')
+    creation = models.DateTimeField(help_text='Creation date', auto_now_add=True)
     description = models.TextField(blank=True, null=True, help_text='Event description')
     charge = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True, help_text='Event charge')
     automatic = models.BooleanField(help_text='Apply to all partners')
@@ -29,7 +29,7 @@ class Event(models.Model):
     class Meta:
         managed = False
         db_table = 'events'
-        ordering = ['-date', '-time']
+        ordering = ['date', 'time']
         verbose_name = 'Event'
         verbose_name_plural = 'Events'
         unique_together = (('name', 'date', 'time'),)
@@ -58,9 +58,9 @@ class Share(models.Model):
 
 class News(models.Model):
     event = models.ForeignKey(Event, models.DO_NOTHING, db_column='event', blank=True, null=True)
-    edition = models.DateTimeField()
+    edition = models.DateTimeField(auto_now_add=True)
     brief = models.TextField()
-    description = models.TextField(blank=True, null=True)
+    description = models.TextField()
 
     def __str__(self):
         return str(self.edition) + ' - ' + self.brief

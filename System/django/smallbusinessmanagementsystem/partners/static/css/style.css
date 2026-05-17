@@ -51,8 +51,16 @@ table.accounting {
     width: 100%;
 }
 
+table.search {
+    table-layout: fixed;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 table {
-    width: 80%;
+    table-layout: fixed;
+    width: 90%;
     margin-left: auto;
     margin-right: auto;
 }

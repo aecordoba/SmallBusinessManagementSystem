@@ -3,7 +3,7 @@
 
 {% block main %}
     {% if form.errors %}
-        <p>{% trans "Your username and password didn't match. Please try again." %}</p>
+        <div class="error" >{% trans "Your username and password didn't match. Please try again." %}</div>
     {% endif %}
 
     {% if next %}

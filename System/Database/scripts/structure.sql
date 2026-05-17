@@ -94,7 +94,7 @@ CREATE TABLE Events(
     date DATE NOT NULL,
     time TIME,
     attendants INT,
-    creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    creation TIMESTAMPTZ NOT NULL,
     description TEXT,
     charge NUMERIC(10,2),
     automatic BOOLEAN NOT NULL,
@@ -127,9 +127,9 @@ CREATE TABLE Accounting(
 CREATE TABLE News(
     id SERIAL PRIMARY KEY,
     event INT,
-    edition TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    edition TIMESTAMPTZ NOT NULL,
     brief TEXT NOT NULL,
-    description TEXT,
+    description TEXT NOT NULL,
     CONSTRAINT fk_news_event FOREIGN KEY (event) REFERENCES Events(id)
         ON DELETE RESTRICT ON UPDATE CASCADE
 );
