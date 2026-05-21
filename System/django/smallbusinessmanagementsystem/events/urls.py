@@ -9,4 +9,6 @@ urlpatterns = [
     path('<int:pk>', views.EventDetailView.as_view(), name='event-detail'),
     path('create/', views.event_creation, name='create-event'),
     path('news/create/', views.news_creation, name='create-news'),
+    path('attend/', views.event_attend, name='event_attend'),
+    path('share/', views.EventsAttendListView.as_view(), name='events_attend_list'),
 ]

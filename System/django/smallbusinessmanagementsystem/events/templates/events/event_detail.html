@@ -22,4 +22,22 @@
             {% trans "Free" %}
         {% endif %}
     </p>
+    {% if not automatic %}
+        {% if registered %}
+            <div class="error">{% blocktrans with username=user.get_username %}The user {{username}} is already registered to attend this event.{% endblocktrans %}</div>
+        {% else %}
+            <form method="post" action="{% url 'event_attend' %}">
+                {% csrf_token %}
+                <table class="search">
+                    <tr>
+                        <td>{% trans "Attendees" %}:</td>
+                        <input type="hidden" name="event_pk" value="{{ event.pk }}" >
+                        <td><input type="number" name="attendees" value="1" min= "1" max="{{ vacancies }}" {% if vacancies <= 0 %} disabled {% endif %} ></td>
+                        <td><button type="submit" {% if vacancies <= 0 %} disabled {% endif %}>{% trans "Event attend" %}</button></td>
+                    </tr>
+                </table>
+            </form>
+        {% endif %}
+        <p>{% trans "Vacancies" %}: {{ vacancies }}</p>
+    {% endif %}
 {% endblock %}

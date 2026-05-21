@@ -29,7 +29,6 @@
     {% endif %}
     {% if perms.events.add_event %}
         <form method="get" action="{% url 'create-event' %}">
-            {% csrf_token %}
             <button type="submit" >{% trans "Add Event" %}</button>
         </form>
     {% endif %}

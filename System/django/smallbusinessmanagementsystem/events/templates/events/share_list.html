@@ -1,0 +1,32 @@
+{% extends "base_generic.html" %}
+{% load i18n %}
+
+{% block title %}
+    <title>{% trans "Small Business Management System" %} - {% trans "Events attend" %}</title>
+{% endblock %}
+
+{% block main %}
+    <h1>{% trans "Events Attend" %}</h1>
+    {% if share_list %}
+        <table>
+            <tr>
+                <th width=40%>{% trans "Name" %}</th>
+                <th width=15%>{% trans "Date" %}</th>
+                <th width=15%>{% trans "Time" %}</th>
+                <th width=10%>{% trans "Attendeess" %}</th>
+                <th width=20%>{% trans "Debt" %}</th>
+            </tr>
+                {% for share in share_list %}
+                    <tr>
+                        <td><a href="{{ share.event.get_absolute_url }}">{{ share.event.name }}</a></td>
+                        <td>{{ share.event.date | date:"SHORT_DATE_FORMAT" }}</td>
+                        <td>{{ share.event.time}}</td>
+                        <td>{{ share.attendees }}</td>
+                        <td>{{ share.debt }}</td>
+                    </tr>
+                {% endfor %}
+        </table>
+    {% else %}
+        <p>{% blocktrans with username=user.get_username %}There are no events registered yet for the user {{username}}.{% endblocktrans %}</p>
+    {% endif %}
+{% endblock %}

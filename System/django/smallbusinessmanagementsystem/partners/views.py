@@ -89,7 +89,7 @@ class PartnersListView(LoginRequiredMixin, generic.ListView):
     paginate_by = 10
 
     def get_queryset(self):
-        query = self.request.GET.get('q')
+        query = self.request.GET.get('search_data')
         if query:
             if query.isdigit():
                 return Partner.objects.filter(partner_number__exact=query)

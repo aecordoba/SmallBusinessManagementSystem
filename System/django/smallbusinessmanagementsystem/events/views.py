@@ -9,7 +9,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.db import transaction
 from django.utils import timezone
-from django.db.models import Q
+from django.db.models import Q, F, Sum
 
 
 @login_required
@@ -71,13 +71,24 @@ def save_news(form):
         news.description = form.cleaned_data['description']
     news.save()
 
+@login_required
+def event_attend(request):
+    if request.method == 'POST':
+        event_pk = request.POST.get('event_pk')
+        share = Share()
+        share.event = Event.objects.get(pk=event_pk)
+        share.partner = request.user.partner
+        share.attendees = request.POST.get('attendees')
+        share.save()
+        return HttpResponseRedirect(reverse('events_attend_list'))
+
 
 class NewsListView(generic.ListView):
     model = News
     paginate_by = 5
 
     def get_queryset(self):
-        return News.objects.filter(Q(event=None) | Q(event__date__gt=timezone.now()))
+        return News.objects.filter(Q(event=None) | Q(event__date__gte=timezone.now()))
 
 
 class NewsDetailView(generic.DetailView):
@@ -89,8 +100,31 @@ class EventsListView(generic.ListView):
     paginate_by = 10
 
     def get_queryset(self):
-        return Event.objects.filter(date__gt=timezone.now())
+        return Event.objects.filter(date__gte=timezone.now())
+
+
+class EventsAttendListView(LoginRequiredMixin,generic.ListView):
+    paginate_by = 10
+    context_object_name = 'share_list'
+    template_name = 'events/share_list.html'
+
+    def get_queryset(self):
+        return Share.objects.select_related('event').filter(event__automatic=False, event__date__gte=timezone.now(), partner=self.request.user.partner).annotate(debt=F('attendees')*F('event__charge')-F('payment'))
 
 
 class EventDetailView(LoginRequiredMixin, generic.DetailView):
     model = Event
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.object.automatic:
+            context['automatic'] = True
+        else:
+            partner = self.request.user.partner
+            registered = Share.objects.filter(event=self.object, partner=partner).exists()
+            attendees = Share.objects.filter(event=self.object).aggregate(Sum('attendees'))['attendees__sum']
+            attendees = 0 if attendees is None else attendees
+            vacancies = self.object.attendants - attendees
+            context['vacancies'] = vacancies
+            context['registered'] = registered
+        return context
