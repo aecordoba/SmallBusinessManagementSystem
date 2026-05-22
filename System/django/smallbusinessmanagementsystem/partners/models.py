@@ -135,7 +135,7 @@ class Partner(models.Model):
     status = models.CharField(max_length=15, choices=Status.choices, default=Status.STATUS_1)
 
     def __str__(self):
-        return f'{self.partner_number} - {self.person}'
+        return f'{self.partner_number} - {self.person.last_name}, {self.person.first_name}'
 
     def get_absolute_url(self):
         return reverse('partner-detail', args=[str(self.id)])

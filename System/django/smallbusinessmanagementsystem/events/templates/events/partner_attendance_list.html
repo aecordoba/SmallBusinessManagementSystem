@@ -1,0 +1,47 @@
+{% extends "base_generic.html" %}
+{% load i18n %}
+
+{% block title %}
+    <title>{% trans "Small Business Management System" %} - {% trans "Events attend" %}</title>
+{% endblock %}
+
+{% block main %}
+    <h1>{% trans "Events Attendance" %}</h1>
+    <h3>{% blocktrans with partner=partner %}for partner {{partner}}{% endblocktrans %}</h3>
+    {% if share_list %}
+        <table>
+            <tr>
+                <th width=40%>{% trans "Name" %}</th>
+                <th width=10%>{% trans "Attendees" %}</th>
+                <th width=20%>{% trans "Debt" %}</th>
+                <th width=20%></th>
+                <th width=10%></th>
+            </tr>
+            {% for share in share_list %}
+                <tr>
+                    <td><a href="{{ share.event.get_absolute_url }}">{{ share.event.name }}</a></td>
+                    <td>{{ share.attendees }}</td>
+                    <td>{{ share.debt }}</td>
+                    <td>
+                        <form method="post" action="{% url 'allocate_payment' %}">
+                            {% csrf_token %}
+                            <table>
+                                <tr>
+                                    <input type="hidden" name="event_pk" value="{{ share.event.pk }}" >
+                                    <input type="hidden" name="partner_pk" value="{{ share.partner.pk }}" >
+                                    <td><input type="number" name="pay" min= "1" max="{{ share.debt }}" ></td>
+                                    <td><button type="submit">{% trans "Pay" %}</button></td>
+                                </tr>
+                            </table>
+                        </form>
+                    </td>
+                    <td>
+
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>{% blocktrans with partner=partner %}There are no events registered yet for the partner {{partner}}.{% endblocktrans %}</p>
+    {% endif %}
+{% endblock %}

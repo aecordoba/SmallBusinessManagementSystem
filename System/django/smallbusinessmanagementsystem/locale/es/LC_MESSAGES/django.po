@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-20 13:09-0300\n"
+"POT-Creation-Date: 2026-05-22 20:27-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,6 +25,8 @@ msgstr ""
 #: events/templates/events/news_detail.html:6
 #: events/templates/events/news_list.html:6
 #: events/templates/events/news_list.html:10
+#: events/templates/events/partner_attendance_list.html:5
+#: events/templates/events/share_list.html:5
 #: partners/templates/base_generic.html:19
 #: partners/templates/base_generic.html:30 partners/templates/index.html:5
 #: partners/templates/index.html:9 partners/templates/index.html:12
@@ -38,7 +40,7 @@ msgstr "Liniers Sur"
 
 #: accounting/templates/accounting/accounting_list.html:6
 #: accounting/templates/accounting/accounting_list.html:10
-#: partners/templates/base_generic.html:64
+#: partners/templates/base_generic.html:65
 msgid "Accounting"
 msgstr "Contabilidad"
 
@@ -46,6 +48,7 @@ msgstr "Contabilidad"
 #: events/templates/events/event_detail.html:10
 #: events/templates/events/event_list.html:14
 #: events/templates/events/news_detail.html:18
+#: events/templates/events/share_list.html:14
 msgid "Date"
 msgstr "Fecha"
 
@@ -66,6 +69,8 @@ msgid "There are no accounting in the system."
 msgstr "No hay contabilidad en el sistema."
 
 #: events/forms.py:7 events/templates/events/event_list.html:13
+#: events/templates/events/partner_attendance_list.html:14
+#: events/templates/events/share_list.html:13
 msgid "Name"
 msgstr "Nombre"
 
@@ -76,6 +81,7 @@ msgstr "Automático"
 #: events/forms.py:10 events/templates/events/event_detail.html:12
 #: events/templates/events/event_list.html:15
 #: events/templates/events/news_detail.html:19
+#: events/templates/events/share_list.html:15
 msgid "Time"
 msgstr "Hora"
 
@@ -160,6 +166,8 @@ msgid "The user %(username)s is already registered to attend this event."
 msgstr "El usuario %(username)s ya está registrado para asistir a este evento."
 
 #: events/templates/events/event_detail.html:33
+#: events/templates/events/partner_attendance_list.html:15
+#: events/templates/events/share_list.html:16
 msgid "Attendees"
 msgstr "Asistentes"
 
@@ -184,7 +192,7 @@ msgstr "Lista de Eventos"
 msgid "There are no events in the system."
 msgstr "No hay eventos en el sistema."
 
-#: events/templates/events/event_list.html:33
+#: events/templates/events/event_list.html:32
 msgid "Add Event"
 msgstr "Crear Evento"
 
@@ -203,7 +211,7 @@ msgstr "Nombre del evento"
 #: events/templates/events/news_list.html:6
 #: events/templates/events/news_list.html:10
 #: partners/templates/base_generic.html:53
-#: partners/templates/base_generic.html:93
+#: partners/templates/base_generic.html:94
 msgid "News"
 msgstr "Noticias"
 
@@ -215,16 +223,52 @@ msgstr "No hay noticias en el sistema."
 msgid "Add News"
 msgstr "Crear Noticia"
 
+#: events/templates/events/partner_attendance_list.html:5
+#: events/templates/events/share_list.html:5
+msgid "Events attend"
+msgstr "Participación de eventos"
+
+#: events/templates/events/partner_attendance_list.html:9
+msgid "Events Attendance"
+msgstr "Participación en Eventos"
+
+#: events/templates/events/partner_attendance_list.html:10
+#, python-format
+msgid "for partner %(partner)s"
+msgstr "para el socio %(partner)s"
+
+#: events/templates/events/partner_attendance_list.html:16
+#: events/templates/events/share_list.html:17
+msgid "Debt"
+msgstr "Debe"
+
+#: events/templates/events/partner_attendance_list.html:33
+msgid "Pay"
+msgstr "Pagar"
+
+#: events/templates/events/partner_attendance_list.html:45
+msgid "There are no events registered yet for the partner %(partner)s."
+msgstr "No hay eventos registrados para el socio %(partner)s."
+
+#: events/templates/events/share_list.html:9
+msgid "Events Attend"
+msgstr "Participación de Eventos"
+
+#: events/templates/events/share_list.html:30
+#, python-format
+msgid "There are no events registered yet for the user %(username)s."
+msgstr "Aun no hay eventos registrados para el usuario %(username)s."
+
 #: partners/forms.py:9
 msgid "Partner number"
 msgstr "Número de socio"
 
-#: partners/forms.py:10 partners/templates/partners/partner_list.html:25
+#: partners/forms.py:10 partners/templates/partners/partner_list.html:24
 #: partners/templates/partners/person_detail.html:13
 msgid "First name"
 msgstr "Nombre"
 
-#: partners/forms.py:11 partners/templates/partners/partner_list.html:24
+#: partners/forms.py:11 partners/templates/partners/partner_list.html:23
 #: partners/templates/partners/person_detail.html:12
 msgid "Last name"
 msgstr "Apellido"
@@ -233,7 +277,7 @@ msgstr "Apellido"
 msgid "Document"
 msgstr "Documento"
 
-#: partners/forms.py:13 partners/templates/partners/partner_list.html:23
+#: partners/forms.py:13 partners/templates/partners/partner_list.html:22
 msgid "Number"
 msgstr "Número"
 
@@ -278,7 +322,7 @@ msgid "Position"
 msgstr "Posición"
 
 #: partners/forms.py:25 partners/templates/partners/partner_detail.html:13
-#: partners/templates/partners/partner_list.html:26
+#: partners/templates/partners/partner_list.html:25
 msgid "Status"
 msgstr "Estado"
 
@@ -393,29 +437,33 @@ msgstr "Inicio"
 msgid "Partners"
 msgstr "Socios"
 
-#: partners/templates/base_generic.html:58
+#: partners/templates/base_generic.html:56
+msgid "Attendance"
+msgstr "Participación"
+
+#: partners/templates/base_generic.html:59
 msgid "Management"
 msgstr "Administración"
 
-#: partners/templates/base_generic.html:61
+#: partners/templates/base_generic.html:62
 #: users/templates/users/user_list.html:5
 msgid "Users"
 msgstr "Usuarios"
 
-#: partners/templates/base_generic.html:77
+#: partners/templates/base_generic.html:78
 msgid "previous"
 msgstr "anterior"
 
-#: partners/templates/base_generic.html:80
+#: partners/templates/base_generic.html:81
 #, python-format
 msgid "Page %(current)s of %(total)s."
 msgstr "Página %(current)s de %(total)s."
 
-#: partners/templates/base_generic.html:83
+#: partners/templates/base_generic.html:84
 msgid "next"
 msgstr "posterior"
 
-#: partners/templates/base_generic.html:98
+#: partners/templates/base_generic.html:99
 msgid "more"
 msgstr "more"
 
@@ -446,6 +494,10 @@ msgstr "Socio"
 msgid "Affiliate"
 msgstr "Asociado"
 
+#: partners/templates/partners/partner_detail.html:15
+msgid "Allocate payments"
+msgstr "Imputar pagos"
+
 #: partners/templates/partners/partner_list.html:9
 msgid "Partners List"
 msgstr "Lista de Socios"
@@ -458,11 +510,11 @@ msgstr "Número o apellido"
 msgid "Search"
 msgstr "Buscar"
 
-#: partners/templates/partners/partner_list.html:50
+#: partners/templates/partners/partner_list.html:49
 msgid "Add Partner"
 msgstr "Crear Socio"
 
-#: partners/templates/partners/partner_list.html:57
+#: partners/templates/partners/partner_list.html:56
 msgid "There are no partners in the system."
 msgstr "No hay socios en el sistema."
 

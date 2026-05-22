@@ -1,8 +1,8 @@
 from django.views import generic
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import News, Event, Share
 from partners.models import Partner
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from .forms import CreateEventForm, CreateNewsForm
 from django.contrib.auth.decorators import login_required, permission_required
 from django.http import HttpResponseRedirect
@@ -82,6 +82,15 @@ def event_attend(request):
         share.save()
         return HttpResponseRedirect(reverse('events_attend_list'))
 
+@login_required
+@permission_required('events.change_share', raise_exception=True)
+def allocate_payment(request):
+    if request.method == 'POST':
+        partner_pk = request.POST.get('partner_pk')
+        partner = Partner.objects.get(pk=partner_pk)
+        event = Event.objects.get(pk=request.POST.get('event_pk'))
+        Share.objects.filter(partner=partner).filter(event=event).update(payment=F('payment')+request.POST.get('pay'))
+        return redirect(reverse('partner_attendance_list', kwargs={'pk': partner_pk}))
 
 class NewsListView(generic.ListView):
     model = News
@@ -109,7 +118,7 @@ class EventsAttendListView(LoginRequiredMixin,generic.ListView):
     template_name = 'events/share_list.html'
 
     def get_queryset(self):
-        return Share.objects.select_related('event').filter(event__automatic=False, event__date__gte=timezone.now(), partner=self.request.user.partner).annotate(debt=F('attendees')*F('event__charge')-F('payment'))
+        return Share.objects.select_related('event').filter(event__automatic=False, event__date__gte=timezone.now(), partner=self.request.user.partner).annotate(debt=F('attendees')*F('event__charge')-F('payment')).order_by('event__date').order_by('event__time')
 
 
 class EventDetailView(LoginRequiredMixin, generic.DetailView):
@@ -127,4 +136,19 @@ class EventDetailView(LoginRequiredMixin, generic.DetailView):
             vacancies = self.object.attendants - attendees
             context['vacancies'] = vacancies
             context['registered'] = registered
+        return context
+
+class PartnerAttendanceListView(PermissionRequiredMixin, generic.ListView):
+    permission_required = ('events.add_share', 'events.change_share', 'events.delete_share')
+    paginate_by = 10
+    context_object_name = 'share_list'
+    template_name = 'events/partner_attendance_list.html'
+
+    def get_queryset(self, **kwargs):
+        partner_pk = self.kwargs.get('pk')
+        return Share.objects.select_related('event').filter(partner=Partner.objects.get(pk=partner_pk)).filter(payment__lt=F('attendees')*F('event__charge')).annotate(debt=F('attendees')*F('event__charge')-F('payment')).order_by('event__date').order_by('event__time')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['partner'] = Partner.objects.get(pk=self.kwargs.get('pk'))
         return context

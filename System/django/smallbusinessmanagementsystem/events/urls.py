@@ -11,4 +11,6 @@ urlpatterns = [
     path('news/create/', views.news_creation, name='create-news'),
     path('attend/', views.event_attend, name='event_attend'),
     path('share/', views.EventsAttendListView.as_view(), name='events_attend_list'),
+    path('share/<int:pk>', views.PartnerAttendanceListView.as_view(), name='partner_attendance_list'),
+    path('payment/', views.allocate_payment, name='allocate_payment'),
 ]
