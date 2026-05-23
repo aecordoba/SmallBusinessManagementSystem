@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-22 20:27-0300\n"
+"POT-Creation-Date: 2026-05-23 16:31-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -242,11 +242,16 @@ msgstr "para el socio %(partner)s"
 msgid "Debt"
 msgstr "Debe"
 
-#: events/templates/events/partner_attendance_list.html:33
+#: events/templates/events/partner_attendance_list.html:31
 msgid "Pay"
 msgstr "Pagar"
 
-#: events/templates/events/partner_attendance_list.html:45
+#: events/templates/events/partner_attendance_list.html:39
+msgid "Remove"
+msgstr "Quitar"
+
+#: events/templates/events/partner_attendance_list.html:46
+#, python-format
 msgid "There are no events registered yet for the partner %(partner)s."
 msgstr "No hay eventos registrados para el socio %(partner)s."
 

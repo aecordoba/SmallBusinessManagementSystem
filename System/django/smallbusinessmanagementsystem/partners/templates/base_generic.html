@@ -53,7 +53,7 @@
                 <a href="{% url 'news' %}">{% trans "News" %}</a><br>
                 {% if user.is_authenticated %}
                     <a href="{% url 'partners' %}">{% trans "Partners" %}</a><br>
-                    <a href="{% url 'events_attend_list' %}">{% trans "Attendance" %}</a><br>
+                    <a href="{% url 'events-attendance-list' %}">{% trans "Attendance" %}</a><br>
                     {% if perms.partners.management %}
                         <hr>
                         {% trans "Management" %}

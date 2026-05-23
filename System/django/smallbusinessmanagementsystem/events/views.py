@@ -80,7 +80,7 @@ def event_attend(request):
         share.partner = request.user.partner
         share.attendees = request.POST.get('attendees')
         share.save()
-        return HttpResponseRedirect(reverse('events_attend_list'))
+        return HttpResponseRedirect(reverse('events-attendance-list'))
 
 @login_required
 @permission_required('events.change_share', raise_exception=True)
@@ -90,7 +90,18 @@ def allocate_payment(request):
         partner = Partner.objects.get(pk=partner_pk)
         event = Event.objects.get(pk=request.POST.get('event_pk'))
         Share.objects.filter(partner=partner).filter(event=event).update(payment=F('payment')+request.POST.get('pay'))
-        return redirect(reverse('partner_attendance_list', kwargs={'pk': partner_pk}))
+        return redirect(reverse('partner-attendance-list', kwargs={'pk': partner_pk}))
+
+@login_required
+@permission_required('events.delete_share', raise_exception=True)
+def remove_attendance(request):
+    if request.method == 'POST':
+        partner_pk = request.POST.get('partner_pk')
+        partner = Partner.objects.get(pk=partner_pk)
+        event = Event.objects.get(pk=request.POST.get('event_pk'))
+        Share.objects.filter(partner=partner).filter(event=event).delete()
+        return redirect(reverse('partner-attendance-list', kwargs={'pk': partner_pk}))
+
 
 class NewsListView(generic.ListView):
     model = News
@@ -112,7 +123,7 @@ class EventsListView(generic.ListView):
         return Event.objects.filter(date__gte=timezone.now())
 
 
-class EventsAttendListView(LoginRequiredMixin,generic.ListView):
+class EventsAttendanceListView(LoginRequiredMixin,generic.ListView):
     paginate_by = 10
     context_object_name = 'share_list'
     template_name = 'events/share_list.html'

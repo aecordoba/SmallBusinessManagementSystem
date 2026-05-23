@@ -23,20 +23,21 @@
                     <td>{{ share.attendees }}</td>
                     <td>{{ share.debt }}</td>
                     <td>
-                        <form method="post" action="{% url 'allocate_payment' %}">
+                        <form method="post" action="{% url 'allocate-payment' %}">
                             {% csrf_token %}
-                            <table>
-                                <tr>
-                                    <input type="hidden" name="event_pk" value="{{ share.event.pk }}" >
-                                    <input type="hidden" name="partner_pk" value="{{ share.partner.pk }}" >
-                                    <td><input type="number" name="pay" min= "1" max="{{ share.debt }}" ></td>
-                                    <td><button type="submit">{% trans "Pay" %}</button></td>
-                                </tr>
-                            </table>
+                            <input type="hidden" name="event_pk" value="{{ share.event.pk }}" >
+                            <input type="hidden" name="partner_pk" value="{{ share.partner.pk }}" >
+                            <input type="number" name="pay" min= "1" max="{{ share.debt }}" >
+                            <button type="submit">{% trans "Pay" %}</button>
                         </form>
                     </td>
                     <td>
-
+                        <form method="post" action="{% url 'remove-attendance' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="event_pk" value="{{ share.event.pk }}" >
+                            <input type="hidden" name="partner_pk" value="{{ share.partner.pk }}" >
+                            <button type="submit" {% if share.payment > 0 or share.event.automatic %}disabled{% endif %}>{% trans "Remove" %}</button>
+                        </form>
                     </td>
                 </tr>
             {% endfor %}

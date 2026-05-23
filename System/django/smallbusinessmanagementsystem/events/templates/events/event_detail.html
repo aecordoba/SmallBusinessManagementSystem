@@ -26,7 +26,7 @@
         {% if registered %}
             <div class="error">{% blocktrans with username=user.get_username %}The user {{username}} is already registered to attend this event.{% endblocktrans %}</div>
         {% else %}
-            <form method="post" action="{% url 'event_attend' %}">
+            <form method="post" action="{% url 'event-attend' %}">
                 {% csrf_token %}
                 <table class="search">
                     <tr>

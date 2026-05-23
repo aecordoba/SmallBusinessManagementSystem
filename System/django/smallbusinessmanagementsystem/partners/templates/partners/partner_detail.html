@@ -11,7 +11,7 @@
     <p><strong>{% trans "Incorporation" %}:</strong> {{ partner.incorporation }}</p>
     <p><strong>{% trans "Position" %}:</strong> {{ partner.get_position_display }}</p>
     <p><strong>{% trans "Status" %}:</strong> {{ partner.get_status_display }}</p>
-    <form action="{% url 'partner_attendance_list' partner.pk  %}" method="GET">
+    <form action="{% url 'partner-attendance-list' partner.pk  %}" method="GET">
         <button type="submit">{% trans "Allocate payments" %}</button>
     </form>
 
