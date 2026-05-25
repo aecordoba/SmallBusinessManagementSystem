@@ -38,21 +38,13 @@
                         <td>{{partner.get_status_display }}</td>
                     </tr>
                 {% endfor %}
-                {% if perms.partners.add_partner %}
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <form method="get" action="{% url 'create-partner' %}">
-                                {% csrf_token %}
-                                <button type="submit" >{% trans "Add Partner" %}</button>
-                            </form>
-                        </td>
-                    </tr>
-                {% endif %}
         </table>
     {% else %}
         <p>{% trans "There are no partners in the system." %}</p>
+    {% endif %}
+    {% if perms.partners.add_partner %}
+        <form method="get" action="{% url 'create-partner' %}">
+            <button type="submit" >{% trans "Add Partner" %}</button>
+        </form>
     {% endif %}
 {% endblock %}

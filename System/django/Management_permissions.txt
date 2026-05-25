@@ -1,0 +1,16 @@
+name                   codename
+---------------------  ---------------
+Can view Accounting    view_accounting
+Can add Event          add_event
+Can add News           add_news
+Can add Share          add_share
+Can change Share       change_share
+Can delete Share       delete_share
+Can add Partner        add_partner
+Can view Partner       view_partner
+Can view Person        view_person
+Can add user           add_user
+Can change user        change_user
+Can delete user        delete_user
+Can view user          view_user
+Can manage the system  management

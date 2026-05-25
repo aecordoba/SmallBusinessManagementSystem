@@ -6,10 +6,23 @@
 {% endblock %}
 
 {% block main %}
-    <h1>{% trans "User" %} {{user.name}}</h1>
-    <p><strong>{% trans "Partner" %}:</strong> <a href="{{ user.partner.get_absolute_url }}">{{ user.partner }}</a></p>
-    <p><strong>{% trans "Joined" %}:</strong> {{ user.date_joined }}</p>
-    <p><strong>{% trans "Last login" %}:</strong> {{ user.last_login }}</p>
-    <p><strong>{% trans "Active" %}:</strong> {{ user.is_active }}</p>
-
+    <h1>{% trans "User" %} {{user_to_show.name}}</h1>
+    <p><strong>{% trans "Partner" %}:</strong> <a href="{{ user_to_show.partner.get_absolute_url }}">{{ user_to_show.partner }}</a></p>
+    <p><strong>{% trans "Joined" %}:</strong> {{ user_to_show.date_joined }}</p>
+    <p><strong>{% trans "Last login" %}:</strong> {{ user_to_show.last_login }}</p>
+    <p><strong>{% trans "Active" %}:</strong> {{ user_to_show.is_active }}</p>
+    <table>
+        <tr>
+            <td>
+                <form action="{% url 'update-user' user_to_show.pk  %}" method="GET">
+                    <button type="submit">{% trans "Modify" %}</button>
+                </form>
+            </td>
+            <td>
+                <form action="{% url 'delete-user' user_to_show.pk  %}" method="GET">
+                    <button type="submit">{% trans "Delete" %}</button>
+                </form>
+            </td>
+        </tr>
+    </table>
 {% endblock %}

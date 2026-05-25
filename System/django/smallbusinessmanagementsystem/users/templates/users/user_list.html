@@ -25,4 +25,9 @@
     {% else %}
         <p>{% trans "There are no users in the system." %}</p>
     {% endif %}
+    {% if perms.users.add_user %}
+        <form method="get" action="{% url 'create-user' %}">
+            <button type="submit" >{% trans "Add User" %}</button>
+        </form>
+    {% endif %}
 {% endblock %}

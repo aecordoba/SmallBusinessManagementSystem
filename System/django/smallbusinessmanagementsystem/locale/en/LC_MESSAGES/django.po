@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-23 16:31-0300\n"
+"POT-Creation-Date: 2026-05-25 17:16-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -69,7 +69,7 @@ msgstr "There are no accounting in the system."
 
 #: events/forms.py:7 events/templates/events/event_list.html:13
 #: events/templates/events/partner_attendance_list.html:14
-#: events/templates/events/share_list.html:13
+#: events/templates/events/share_list.html:13 users/forms.py:23
 msgid "Name"
 msgstr "Name"
 
@@ -106,7 +106,7 @@ msgstr "Charge"
 msgid "Validity"
 msgstr "Validity"
 
-#: events/forms.py:19
+#: events/forms.py:19 users/forms.py:45
 msgid "The name must be between 5 and 30 characters long."
 msgstr "The name must be between 5 and 30 characters long."
 
@@ -142,6 +142,7 @@ msgstr "Event Creation"
 #: events/templates/events/create_event.html:45
 #: events/templates/events/create_news.html:16
 #: partners/templates/partners/create_partner.html:15
+#: users/templates/users/user_form.html:15
 msgid "Create"
 msgstr "Create"
 
@@ -514,13 +515,13 @@ msgstr "Number or last name"
 msgid "Search"
 msgstr "Search"
 
-#: partners/templates/partners/partner_list.html:49
-msgid "Add Partner"
-msgstr "Add Partner"
-
-#: partners/templates/partners/partner_list.html:56
+#: partners/templates/partners/partner_list.html:43
 msgid "There are no partners in the system."
 msgstr "There are no partners in the system."
+
+#: partners/templates/partners/partner_list.html:47
+msgid "Add Partner"
+msgstr "Add Partner"
 
 #: partners/templates/partners/person_detail.html:5
 msgid "Person Detail"
@@ -534,9 +535,18 @@ msgstr "Cell phone"
 msgid "Phone"
 msgstr "Phone"
 
-#: users/forms.py:17
+#: users/forms.py:18
 msgid "This email is not registered."
 msgstr "This email is not registered."
+
+#: users/forms.py:25 users/templates/users/user_detail.html:13
+#: users/templates/users/user_list.html:15
+msgid "Active"
+msgstr "Active"
+
+#: users/forms.py:26
+msgid "Staff"
+msgstr "Staff"
 
 #: users/templates/registration/logged_out.html:5
 msgid "Logged out!"
@@ -630,9 +640,21 @@ msgstr ""
 msgid "Reset password"
 msgstr "Reset password"
 
+#: users/templates/users/user_confirm_delete.html:5
+msgid "User Deletion"
+msgstr "User Detail"
+
+#: users/templates/users/user_confirm_delete.html:10
+msgid "Are you sure you want to delete the user?"
+msgstr "Are you sure you want to delete the user?"
+
+#: users/templates/users/user_confirm_delete.html:13
+msgid "Yes, delete"
+msgstr "Yes, delete"
+
 #: users/templates/users/user_detail.html:5
 msgid "User Detail"
-msgstr "User Detail"
+msgstr "User Deletion"
 
 #: users/templates/users/user_detail.html:11
 msgid "Joined"
@@ -642,10 +664,24 @@ msgstr "Joined"
 msgid "Last login"
 msgstr "Last login"
 
-#: users/templates/users/user_detail.html:13
-#: users/templates/users/user_list.html:15
-msgid "Active"
-msgstr "Active"
+#: users/templates/users/user_detail.html:18
+#: users/templates/users/user_form.html:15
+msgid "Modify"
+msgstr "Modify"
+
+#: users/templates/users/user_detail.html:23
+msgid "Delete"
+msgstr "Delete"
+
+#: users/templates/users/user_form.html:5
+#: users/templates/users/user_form.html:9
+msgid "User Creation"
+msgstr "User Creation"
+
+#: users/templates/users/user_form.html:5
+#: users/templates/users/user_form.html:9
+msgid "User Modification"
+msgstr "User Modification"
 
 #: users/templates/users/user_list.html:9
 msgid "Users List"
@@ -654,3 +690,7 @@ msgstr "Users List"
 #: users/templates/users/user_list.html:26
 msgid "There are no users in the system."
 msgstr "There are no users in the system."
+
+#: users/templates/users/user_list.html:30
+msgid "Add User"
+msgstr "Add User"
