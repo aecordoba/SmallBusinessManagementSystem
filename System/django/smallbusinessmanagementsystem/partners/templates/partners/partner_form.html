@@ -12,6 +12,6 @@
         <table>
             {{ form.as_table }}
         </table>
-    <input type="submit" value={% trans "Create" %}>
-  </form>
+        <input type="submit" value={% if create %}{% trans "Create" %}{% else %}{% trans "Modify" %}{% endif %}>
+    </form>
 {% endblock %}

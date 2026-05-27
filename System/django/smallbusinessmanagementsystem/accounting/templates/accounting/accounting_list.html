@@ -35,4 +35,11 @@
     {% else %}
         <p>{% trans "There are no accounting in the system." %}</p>
     {% endif %}
+    <br>
+    {% if perms.accounting.add_accounting %}
+        <form method="get" action="{% url 'add-accounting' %}">
+            <button type="submit" >{% trans "Add Accounting" %}</button>
+        </form>
+    {% endif %}
+
 {% endblock %}

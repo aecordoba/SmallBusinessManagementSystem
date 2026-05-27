@@ -4,7 +4,7 @@ from .models import Partner, Person, Address
 from events.models import News, Event, Share
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.decorators import login_required, permission_required
-from .forms import CreatePartnerForm
+from .forms import PartnerForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.db import transaction
@@ -12,12 +12,12 @@ from datetime import timedelta
 from django.db.models import Q, F
 from dateutil.relativedelta import relativedelta
 from django.db.models import Max
+from django.utils import timezone
 
 
 def index(request):
     partners_quantity = Partner.objects.count()
-    aside_list = News.objects.all()[:3]
-
+    aside_list = News.objects.filter(Q(event=None) | Q(event__date__gte=timezone.now()))[:3]
     for news in aside_list:
         news.description = news.description[:60]
 
@@ -32,28 +32,41 @@ def index(request):
 @permission_required('partners.add_partner', raise_exception=True)
 def partner_creation(request):
     if request.method == 'POST':
-        form = CreatePartnerForm(request.POST)
+        form = PartnerForm(request.POST)
         if form.is_valid():
-            save_partner(form)
-            return HttpResponseRedirect(reverse('index'))
+            save_partner(form, Partner(), Person(), Address())
+            return HttpResponseRedirect(reverse('partners'))
     else:
         data = {'partner_number': Partner.objects.aggregate(Max('partner_number'))['partner_number__max']+1}
-        form = CreatePartnerForm(initial=data)
-    context = {'form': form,}
-    return render(request, 'partners/create_partner.html', context)
+        form = PartnerForm(initial=data)
+        context = {'form': form, 'create': True}
+        return render(request, 'partners/partner_form.html', context)
+
+@login_required
+@permission_required('partners.change_partner', raise_exception=True)
+def partner_update(request, pk):
+    partner = Partner.objects.get(pk=pk)
+    if request.method == 'POST':
+        form = PartnerForm(request.POST, instance=partner)
+        if form.is_valid():
+            save_partner(form, partner, partner.person, partner.person.address)
+            return HttpResponseRedirect(reverse('partners'))
+    else:
+        form = PartnerForm(instance=partner)
+        context = {'form': form, 'create': False}
+        return render(request, 'partners/partner_form.html', context)
+
 
 @transaction.atomic
-def save_partner(form):
+def save_partner(form, partner, person, address):
     """ Save a complete Partner data."""
     # Save address.
-    address = Address()
     address.address = form.cleaned_data['address']
     address.zip_code = form.cleaned_data['zip_code']
     address.city = form.cleaned_data['city']
     address.phone = form.cleaned_data['phone']
     address.save()
     # Save person.
-    person = Person()
     person.first_name = form.cleaned_data['first_name']
     person.last_name = form.cleaned_data['last_name']
     person.doc_type = form.cleaned_data['doc_type']
@@ -66,7 +79,6 @@ def save_partner(form):
     person.address = address
     person.save()
     # Save partner.
-    partner = Partner()
     partner.partner_number = form.cleaned_data['partner_number']
     partner.incorporation = form.cleaned_data['incorporation']
     partner.position = form.cleaned_data['position']
@@ -77,6 +89,13 @@ def save_partner(form):
     if partner.status == 'status_1':
         incorporation = partner.incorporation
         auto_events = Event.objects.filter(automatic=True).filter((Q(validity='weekly') & Q(date__gt=incorporation - timedelta(weeks=1))) | (Q(validity='monthly') & Q(date__gt=incorporation - relativedelta(months=1))) | (Q(validity='yearly') & Q(date__gt=incorporation - relativedelta(years=1))))
+        # If partner has paid events, exclude them from automatic events.
+        if Share.objects.filter(partner=partner, payment__gt=0).exists():
+            paid_events = Share.objects.filter(partner=partner, payment__gt=0).values('event')
+            auto_events = auto_events.exclude(id__in=paid_events)
+        # Delete partner share he didn't pay.
+        Share.objects.filter(partner=partner, payment=0).delete()
+        # Save share to automatic events.
         for event in auto_events:
             share = Share()
             share.event = event

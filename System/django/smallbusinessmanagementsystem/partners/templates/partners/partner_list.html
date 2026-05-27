@@ -42,9 +42,11 @@
     {% else %}
         <p>{% trans "There are no partners in the system." %}</p>
     {% endif %}
+    <br>
     {% if perms.partners.add_partner %}
         <form method="get" action="{% url 'create-partner' %}">
             <button type="submit" >{% trans "Add Partner" %}</button>
         </form>
     {% endif %}
+    <br>
 {% endblock %}

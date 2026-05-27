@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import PasswordResetForm
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _
 from .models import User
 from partners.models import Partner
 from django import forms
@@ -21,7 +21,7 @@ class CustomPasswordResetForm(PasswordResetForm):
 
 class UserForm(forms.Form):
     name = forms.CharField(label=_('Name'))
-    partner = forms.ModelChoiceField(queryset=Partner.objects.exclude(status='status_3'))
+    partner = forms.ModelChoiceField(label=_('Partner'), queryset=Partner.objects.exclude(status='status_3'))
     is_active = forms.BooleanField(label=_('Active'), initial=True, required=False)
     is_staff = forms.BooleanField(label=_('Staff'), required=False)
 

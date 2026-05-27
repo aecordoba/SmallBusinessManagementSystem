@@ -5,7 +5,7 @@ from .models import Person, City, Partner
 from datetime import date
 
 
-class CreatePartnerForm(forms.Form):
+class PartnerForm(forms.Form):
     partner_number = forms.IntegerField(label=_('Partner number'))
     first_name = forms.CharField(label=_('First name'))
     last_name = forms.CharField(label=_('Last name'))
@@ -17,12 +17,34 @@ class CreatePartnerForm(forms.Form):
     gender = forms.ChoiceField(label=_('Gender'), choices=Person.Genders.choices)
     address = forms.CharField(label=_('Address'))
     zip_code = forms.CharField(label=_('ZIP Code'))
-    city = forms.ModelChoiceField(queryset=City.objects.all())
+    city = forms.ModelChoiceField(queryset=City.objects.all(), widget=forms.Select(attrs={'style': 'width: 300px;'}))
     phone = forms.CharField(label=_('Phone number'), required=False)
     cellphone = forms.CharField(label=_('Cell phone number'), required=False)
     incorporation = forms.DateField(label=_('Incorporation'), widget=forms.DateInput(attrs={'type': 'date'}), localize=True)
     position = forms.ChoiceField(label=_('Position'), choices=Partner.Positions.choices)
     status = forms.ChoiceField(label=_('Status'), choices=Partner.Status.choices)
+
+    def __init__(self, *args, **kwargs):
+        instance = kwargs.pop('instance', None)
+        super().__init__(*args, **kwargs)
+        if instance:
+            self.fields['partner_number'].initial = instance.partner_number
+            self.fields['first_name'].initial = instance.person.first_name
+            self.fields['last_name'].initial = instance.person.last_name
+            self.fields['doc_type'].initial = instance.person.doc_type
+            self.fields['doc_number'].initial = instance.person.doc_number
+            self.fields['social_security'].initial = instance.person.social_security
+            self.fields['email'].initial = instance.person.email
+            self.fields['birthdate'].initial = instance.person.birthdate
+            self.fields['gender'].initial = instance.person.gender
+            self.fields['address'].initial = instance.person.address.address
+            self.fields['zip_code'].initial = instance.person.address.zip_code
+            self.fields['city'].initial = instance.person.address.city
+            self.fields['phone'].initial = instance.person.address.phone
+            self.fields['cellphone'].initial = instance.person.cellphone
+            self.fields['incorporation'].initial = instance.incorporation
+            self.fields['position'].initial = instance.position
+            self.fields['status'].initial = instance.status
 
     def clean_first_name(self):
         data = self.cleaned_data['first_name']

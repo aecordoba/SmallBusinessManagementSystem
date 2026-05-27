@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-25 17:16-0300\n"
+"POT-Creation-Date: 2026-05-26 19:13-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,49 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: accounting/forms.py:5
+#: accounting/templates/accounting/accounting_list.html:15 events/forms.py:9
+#: events/templates/events/event_detail.html:10
+#: events/templates/events/event_list.html:14
+#: events/templates/events/news_detail.html:18
+#: events/templates/events/share_list.html:14
+msgid "Date"
+msgstr "Date"
+
+#: accounting/forms.py:6
+#: accounting/templates/accounting/accounting_list.html:16
+msgid "Concept"
+msgstr "Concept"
+
+#: accounting/forms.py:7 events/forms.py:12 events/forms.py:32
+#: events/templates/events/event_detail.html:17
+#: events/templates/events/news_detail.html:12
+#: events/templates/events/news_detail.html:21
+msgid "Description"
+msgstr "Description"
+
+#: accounting/forms.py:8
+#: accounting/templates/accounting/accounting_list.html:17
+msgid "Debit"
+msgstr "Debit"
+
+#: accounting/forms.py:9
+#: accounting/templates/accounting/accounting_list.html:18
+msgid "Credit"
+msgstr "Credit"
+
+#: accounting/forms.py:14 events/forms.py:25
+msgid "Set a date."
+msgstr "Set a date."
+
+#: accounting/forms.py:20
+msgid "The concept must be between 5 and 30 characters long."
+msgstr "The concept must be between 5 and 30 characters long."
+
+#: accounting/forms.py:26
+msgid "The description must be between 10 and 100 characters long."
+msgstr "The description must be between 5 and 30 characters long."
 
 #: accounting/templates/accounting/accounting_list.html:6
 #: events/templates/events/event_detail.html:5
@@ -43,29 +86,22 @@ msgstr "Small Business Management System"
 msgid "Accounting"
 msgstr "Accounting"
 
-#: accounting/templates/accounting/accounting_list.html:15 events/forms.py:9
-#: events/templates/events/event_detail.html:10
-#: events/templates/events/event_list.html:14
-#: events/templates/events/news_detail.html:18
-#: events/templates/events/share_list.html:14
-msgid "Date"
-msgstr "Date"
-
-#: accounting/templates/accounting/accounting_list.html:16
-msgid "Concept"
-msgstr "Concept"
-
-#: accounting/templates/accounting/accounting_list.html:17
-msgid "Debit"
-msgstr "Debit"
-
-#: accounting/templates/accounting/accounting_list.html:18
-msgid "Credit"
-msgstr "Credit"
-
 #: accounting/templates/accounting/accounting_list.html:36
 msgid "There are no accounting in the system."
 msgstr "There are no accounting in the system."
+
+#: accounting/templates/accounting/accounting_list.html:41
+msgid "Add Accounting"
+msgstr "Add Accounting"
+
+#: accounting/templates/accounting/add_accounting.html:5
+#: accounting/templates/accounting/add_accounting.html:9
+msgid "Accounting Addition"
+msgstr "Accounting Addition"
+
+#: accounting/templates/accounting/add_accounting.html:15
+msgid "Add"
+msgstr "Add"
 
 #: events/forms.py:7 events/templates/events/event_list.html:13
 #: events/templates/events/partner_attendance_list.html:14
@@ -90,13 +126,6 @@ msgstr "Time"
 msgid "Attendants"
 msgstr "Attendants"
 
-#: events/forms.py:12 events/forms.py:32
-#: events/templates/events/event_detail.html:17
-#: events/templates/events/news_detail.html:12
-#: events/templates/events/news_detail.html:21
-msgid "Description"
-msgstr "Description"
-
 #: events/forms.py:13 events/templates/events/event_detail.html:18
 #: events/templates/events/news_detail.html:22
 msgid "Charge"
@@ -109,10 +138,6 @@ msgstr "Validity"
 #: events/forms.py:19 users/forms.py:45
 msgid "The name must be between 5 and 30 characters long."
 msgstr "The name must be between 5 and 30 characters long."
-
-#: events/forms.py:25
-msgid "Set a date."
-msgstr "Set a date."
 
 #: events/forms.py:31
 msgid "Header"
@@ -489,7 +514,7 @@ msgstr "Partner Creation"
 msgid "Partner Detail"
 msgstr "Partner Detail"
 
-#: partners/templates/partners/partner_detail.html:9
+#: partners/templates/partners/partner_detail.html:9 users/forms.py:24
 #: users/templates/users/user_detail.html:10
 #: users/templates/users/user_list.html:14
 msgid "Partner"
