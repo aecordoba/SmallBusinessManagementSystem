@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-26 19:13-0300\n"
+"POT-Creation-Date: 2026-05-27 16:20-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -166,7 +166,7 @@ msgstr "Event Creation"
 
 #: events/templates/events/create_event.html:45
 #: events/templates/events/create_news.html:16
-#: partners/templates/partners/create_partner.html:15
+#: partners/templates/partners/partner_form.html:15
 #: users/templates/users/user_form.html:15
 msgid "Create"
 msgstr "Create"
@@ -356,37 +356,37 @@ msgstr "Position"
 msgid "Status"
 msgstr "Status"
 
-#: partners/forms.py:30
+#: partners/forms.py:52
 msgid "The first name must be between 2 and 30 characters long."
 msgstr "The first name must be between 2 and 30 characters long."
 
-#: partners/forms.py:36
+#: partners/forms.py:58
 msgid "The last name must be between 2 and 30 characters long."
 msgstr "The last name must be between 2 and 30 characters long."
 
-#: partners/forms.py:42
+#: partners/forms.py:64
 msgid "Incorrect ID number."
 msgstr "Incorrect ID number."
 
-#: partners/forms.py:48
+#: partners/forms.py:70
 msgid "The social security number must be up to 15 characters long."
 msgstr "The social security number must be up to 15 characters long."
 
-#: partners/forms.py:54
+#: partners/forms.py:76
 msgid "Incorrect birthdate."
 msgstr "Incorrect birthdate."
 
-#: partners/forms.py:60
+#: partners/forms.py:82
 msgid "The address must be between 5 and 30 characters long."
 msgstr "The address must be between 5 and 30 characters long."
 
-#: partners/forms.py:66
+#: partners/forms.py:88
 msgid ""
 "The phone number must be between 8 and 10 digits long (without hyphens)."
 msgstr ""
 "The phone number must be between 8 and 10 digits long (without hyphens)."
 
-#: partners/forms.py:72
+#: partners/forms.py:94
 msgid ""
 "The cell phone number must be between 8 and 10 digits long (without hyphens)."
 msgstr ""
@@ -505,11 +505,6 @@ msgid_plural "The system has %(partners_quantity)s partners."
 msgstr[0] "The system has %(partners_quantity)s partner."
 msgstr[1] "The system has %(partners_quantity)s partners."
 
-#: partners/templates/partners/create_partner.html:5
-#: partners/templates/partners/create_partner.html:9
-msgid "Partner Creation"
-msgstr "Partner Creation"
-
 #: partners/templates/partners/partner_detail.html:5
 msgid "Partner Detail"
 msgstr "Partner Detail"
@@ -524,9 +519,21 @@ msgstr "Partner"
 msgid "Affiliate"
 msgstr "Affiliate"
 
-#: partners/templates/partners/partner_detail.html:15
+#: partners/templates/partners/partner_detail.html:18
+#: partners/templates/partners/partner_form.html:15
+#: users/templates/users/user_detail.html:18
+#: users/templates/users/user_form.html:15
+msgid "Modify"
+msgstr "Modify"
+
+#: partners/templates/partners/partner_detail.html:23
 msgid "Allocate payments"
 msgstr "Allocate payments"
+
+#: partners/templates/partners/partner_form.html:5
+#: partners/templates/partners/partner_form.html:9
+msgid "Partner Creation"
+msgstr "Partner Creation"
 
 #: partners/templates/partners/partner_list.html:9
 msgid "Partners List"
@@ -544,7 +551,7 @@ msgstr "Search"
 msgid "There are no partners in the system."
 msgstr "There are no partners in the system."
 
-#: partners/templates/partners/partner_list.html:47
+#: partners/templates/partners/partner_list.html:48
 msgid "Add Partner"
 msgstr "Add Partner"
 
@@ -688,11 +695,6 @@ msgstr "Joined"
 #: users/templates/users/user_detail.html:12
 msgid "Last login"
 msgstr "Last login"
-
-#: users/templates/users/user_detail.html:18
-#: users/templates/users/user_form.html:15
-msgid "Modify"
-msgstr "Modify"
 
 #: users/templates/users/user_detail.html:23
 msgid "Delete"
