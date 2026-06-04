@@ -7,16 +7,16 @@
 
 {% block main %}
     <h1>{% trans "Partners List" %}</h1>
+    <form method="get" action="{% url 'partners' %}">
+        <table class="search">
+            <tr>
+                <td>{% trans "Number or last name" %}:</td>
+                <td><input type="text" name="search_data" placeholder="..."></td>
+                <td><button type="submit">{% trans "Search" %}</button></td>
+            </tr>
+        </table>
+    </form>
     {% if partner_list %}
-        <form method="get" action="{% url 'partners' %}">
-            <table class="search">
-                <tr>
-                    <td>{% trans "Number or last name" %}:</td>
-                    <td><input type="text" name="search_data" placeholder="..."></td>
-                    <td><button type="submit">{% trans "Search" %}</button></td>
-                </tr>
-            </table>
-        </form>
         <table>
             <tr>
                 <th width=10%>{% trans "Number" %}</th>

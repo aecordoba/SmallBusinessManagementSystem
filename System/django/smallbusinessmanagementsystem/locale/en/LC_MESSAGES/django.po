@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-27 16:20-0300\n"
+"POT-Creation-Date: 2026-06-04 15:29-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -535,15 +535,20 @@ msgstr "Allocate payments"
 msgid "Partner Creation"
 msgstr "Partner Creation"
 
+#: partners/templates/partners/partner_form.html:5
+#: partners/templates/partners/partner_form.html:9
+msgid "Partner Modification"
+msgstr "Partner Modification"
+
 #: partners/templates/partners/partner_list.html:9
 msgid "Partners List"
 msgstr "Partners List"
 
-#: partners/templates/partners/partner_list.html:14
+#: partners/templates/partners/partner_list.html:13
 msgid "Number or last name"
 msgstr "Number or last name"
 
-#: partners/templates/partners/partner_list.html:16
+#: partners/templates/partners/partner_list.html:15
 msgid "Search"
 msgstr "Search"
 

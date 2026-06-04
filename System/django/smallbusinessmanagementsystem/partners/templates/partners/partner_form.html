@@ -2,11 +2,11 @@
 {% load i18n %}
 
 {% block title %}
-    <title>{% trans "Partner Creation" %}</title>
+    <title>{% if create %}{% trans "Partner Creation" %}{% else %}{% trans "Partner Modification" %}{% endif %}</title>
 {% endblock %}
 
 {% block main %}
-    <h1>{% trans "Partner Creation" %}</h1>
+    <h1>{% if create %}{% trans "Partner Creation" %}{% else %}{% trans "Partner Modification" %}{% endif %}</h1>
     <form action="" method="post">
         {% csrf_token %}
         <table>

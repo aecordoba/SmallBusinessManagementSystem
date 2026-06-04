@@ -35,6 +35,7 @@ class PartnerForm(forms.Form):
             self.fields['doc_number'].initial = instance.person.doc_number
             self.fields['social_security'].initial = instance.person.social_security
             self.fields['email'].initial = instance.person.email
+            self.fields['birthdate'].localize = True
             self.fields['birthdate'].initial = instance.person.birthdate
             self.fields['gender'].initial = instance.person.gender
             self.fields['address'].initial = instance.person.address.address
@@ -42,6 +43,7 @@ class PartnerForm(forms.Form):
             self.fields['city'].initial = instance.person.address.city
             self.fields['phone'].initial = instance.person.address.phone
             self.fields['cellphone'].initial = instance.person.cellphone
+            self.fields['incorporation'].localize = True
             self.fields['incorporation'].initial = instance.incorporation
             self.fields['position'].initial = instance.position
             self.fields['status'].initial = instance.status

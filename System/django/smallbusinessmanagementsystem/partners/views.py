@@ -37,7 +37,11 @@ def partner_creation(request):
             save_partner(form, Partner(), Person(), Address())
             return HttpResponseRedirect(reverse('partners'))
     else:
-        data = {'partner_number': Partner.objects.aggregate(Max('partner_number'))['partner_number__max']+1}
+        max_partner_number = Partner.objects.aggregate(Max('partner_number'))['partner_number__max']
+        if max_partner_number:
+            data = {'partner_number': max_partner_number + 1}
+        else:
+            data = {'partner_number': 1}
         form = PartnerForm(initial=data)
         context = {'form': form, 'create': True}
         return render(request, 'partners/partner_form.html', context)
