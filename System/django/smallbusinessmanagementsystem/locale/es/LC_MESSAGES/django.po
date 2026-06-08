@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-04 15:29-0300\n"
+"POT-Creation-Date: 2026-06-08 17:38-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "1 : 2;\n"
 
 #: accounting/forms.py:5
-#: accounting/templates/accounting/accounting_list.html:15 events/forms.py:9
+#: accounting/templates/accounting/accounting_list.html:15 events/forms.py:11
 #: events/templates/events/event_detail.html:10
 #: events/templates/events/event_list.html:14
 #: events/templates/events/news_detail.html:18
@@ -33,7 +33,7 @@ msgstr "Fecha"
 msgid "Concept"
 msgstr "Concepto"
 
-#: accounting/forms.py:7 events/forms.py:12 events/forms.py:32
+#: accounting/forms.py:7 events/forms.py:14 events/forms.py:34
 #: events/templates/events/event_detail.html:17
 #: events/templates/events/news_detail.html:12
 #: events/templates/events/news_detail.html:21
@@ -50,7 +50,7 @@ msgstr "Débito"
 msgid "Credit"
 msgstr "Crédito"
 
-#: accounting/forms.py:14 events/forms.py:25
+#: accounting/forms.py:14 events/forms.py:27
 msgid "Set a date."
 msgstr "Ingrese una fecha."
 
@@ -63,20 +63,27 @@ msgid "The description must be between 10 and 100 characters long."
 msgstr "La descripción debe tener entre 10 y 100 caracteres."
 
 #: accounting/templates/accounting/accounting_list.html:6
+#: accounting/templates/accounting/add_accounting.html:5
+#: events/templates/events/attendees_list.html:5
+#: events/templates/events/create_event.html:35
+#: events/templates/events/create_news.html:6
 #: events/templates/events/event_detail.html:5
 #: events/templates/events/event_list.html:5
 #: events/templates/events/news_detail.html:6
 #: events/templates/events/news_list.html:6
-#: events/templates/events/news_list.html:10
 #: events/templates/events/partner_attendance_list.html:5
+#: events/templates/events/partner_sharing_list.html:5
 #: events/templates/events/share_list.html:5
 #: partners/templates/base_generic.html:19
 #: partners/templates/base_generic.html:30 partners/templates/index.html:5
-#: partners/templates/index.html:9 partners/templates/index.html:12
+#: partners/templates/index.html:12
 #: partners/templates/partners/partner_detail.html:5
+#: partners/templates/partners/partner_form.html:5
 #: partners/templates/partners/partner_list.html:5
 #: partners/templates/partners/person_detail.html:5
+#: users/templates/users/user_confirm_delete.html:5
 #: users/templates/users/user_detail.html:5
+#: users/templates/users/user_form.html:5
 #: users/templates/users/user_list.html:5
 msgid "Small Business Management System"
 msgstr "Liniers Sur"
@@ -104,47 +111,49 @@ msgstr "Agregado de Contabilidad"
 msgid "Add"
 msgstr "Agregar"
 
-#: events/forms.py:7 events/templates/events/event_list.html:13
+#: events/forms.py:9 events/templates/events/event_list.html:13
 #: events/templates/events/partner_attendance_list.html:14
+#: events/templates/events/partner_sharing_list.html:49
 #: events/templates/events/share_list.html:13 users/forms.py:23
 msgid "Name"
 msgstr "Nombre"
 
-#: events/forms.py:8
+#: events/forms.py:10
 msgid "Automatic"
 msgstr "Automático"
 
-#: events/forms.py:10 events/templates/events/event_detail.html:12
+#: events/forms.py:12 events/templates/events/event_detail.html:12
 #: events/templates/events/event_list.html:15
 #: events/templates/events/news_detail.html:19
 #: events/templates/events/share_list.html:15
 msgid "Time"
 msgstr "Hora"
 
-#: events/forms.py:11 events/templates/events/event_detail.html:15
+#: events/forms.py:13 events/templates/events/attendees_list.html:15
+#: events/templates/events/event_detail.html:15
 #: events/templates/events/event_list.html:16
 #: events/templates/events/news_detail.html:20
 msgid "Attendants"
 msgstr "Asistentes"
 
-#: events/forms.py:13 events/templates/events/event_detail.html:18
+#: events/forms.py:15 events/templates/events/event_detail.html:18
 #: events/templates/events/news_detail.html:22
 msgid "Charge"
 msgstr "Costo"
 
-#: events/forms.py:14
+#: events/forms.py:16
 msgid "Validity"
 msgstr "Validez"
 
-#: events/forms.py:19 users/forms.py:45
+#: events/forms.py:21 users/forms.py:45
 msgid "The name must be between 5 and 30 characters long."
 msgstr "El nombre debe tener entre 5 y 30 caracteres."
 
-#: events/forms.py:31
+#: events/forms.py:33
 msgid "Header"
 msgstr "Encabezado"
 
-#: events/forms.py:37
+#: events/forms.py:39
 msgid "You must enter a header."
 msgstr "Debe ingresar un encabezado."
 
@@ -159,6 +168,38 @@ msgstr "semanal"
 #: events/models.py:11
 msgid "yearly"
 msgstr "anual"
+
+#: events/templates/events/attendees_list.html:5
+#: events/templates/events/event_list.html:5
+#: partners/templates/base_generic.html:52
+msgid "Events"
+msgstr "Eventos"
+
+#: events/templates/events/attendees_list.html:9
+msgid "Attendees List"
+msgstr "Lista de Asistentes"
+
+#: events/templates/events/attendees_list.html:10
+#, python-format
+msgid "for event %(event)s"
+msgstr "para el evento %(event)s"
+
+#: events/templates/events/attendees_list.html:14
+#: partners/templates/partners/partner_detail.html:9 users/forms.py:24
+#: users/templates/users/user_detail.html:10
+#: users/templates/users/user_list.html:14
+msgid "Partner"
+msgstr "Socio"
+
+#: events/templates/events/attendees_list.html:16
+#: events/templates/events/partner_attendance_list.html:16
+#: events/templates/events/share_list.html:17
+msgid "Debt"
+msgstr "Debe"
+
+#: events/templates/events/attendees_list.html:27
+msgid "There are no attendees for the event."
+msgstr "No hay asistentes para el evento."
 
 #: events/templates/events/create_event.html:35
 #: events/templates/events/create_event.html:39
@@ -193,6 +234,7 @@ msgstr "El usuario %(username)s ya está registrado para asistir a este evento."
 
 #: events/templates/events/event_detail.html:33
 #: events/templates/events/partner_attendance_list.html:15
+#: events/templates/events/partner_sharing_list.html:51
 #: events/templates/events/share_list.html:16
 msgid "Attendees"
 msgstr "Asistentes"
@@ -202,13 +244,13 @@ msgid "Event attend"
 msgstr "Asistir al evento"
 
 #: events/templates/events/event_detail.html:41
+#: events/templates/events/partner_sharing_list.html:50
 msgid "Vacancies"
 msgstr "Vacantes"
 
-#: events/templates/events/event_list.html:5
-#: partners/templates/base_generic.html:52
-msgid "Events"
-msgstr "Eventos"
+#: events/templates/events/event_detail.html:45
+msgid "List Attendees"
+msgstr "Listar Asistentes"
 
 #: events/templates/events/event_list.html:9
 msgid "Events List"
@@ -259,14 +301,10 @@ msgid "Events Attendance"
 msgstr "Participación en Eventos"
 
 #: events/templates/events/partner_attendance_list.html:10
+#: events/templates/events/partner_sharing_list.html:45
 #, python-format
 msgid "for partner %(partner)s"
 msgstr "para el socio %(partner)s"
-
-#: events/templates/events/partner_attendance_list.html:16
-#: events/templates/events/share_list.html:17
-msgid "Debt"
-msgstr "Debe"
 
 #: events/templates/events/partner_attendance_list.html:31
 msgid "Pay"
@@ -278,8 +316,32 @@ msgstr "Quitar"
 
 #: events/templates/events/partner_attendance_list.html:46
 #, python-format
-msgid "There are no events registered yet for the partner %(partner)s."
-msgstr "No hay eventos registrados para el socio %(partner)s."
+msgid ""
+"There are no registered events pending payment for the partner %(partner)s."
+msgstr ""
+"No hay eventos registrados pendientes de pago para el socio %(partner)s."
+
+#: events/templates/events/partner_sharing_list.html:5
+#: events/templates/events/partner_sharing_list.html:44
+msgid "Partner Sharing"
+msgstr "Participación del Socio"
+
+#: events/templates/events/partner_sharing_list.html:52
+msgid "Payment"
+msgstr "Pago"
+
+#: events/templates/events/partner_sharing_list.html:73
+msgid "Sharing"
+msgstr "Participar"
+
+#: events/templates/events/partner_sharing_list.html:73
+msgid "Full"
+msgstr "Completo"
+
+#: events/templates/events/partner_sharing_list.html:80
+#, python-format
+msgid "Partner %(partner)s already participates in all events."
+msgstr "El socio %(partner)s ya participa en todos los eventos."
 
 #: events/templates/events/share_list.html:9
 msgid "Events Attend"
@@ -357,36 +419,36 @@ msgstr "Posición"
 msgid "Status"
 msgstr "Estado"
 
-#: partners/forms.py:52
+#: partners/forms.py:54
 msgid "The first name must be between 2 and 30 characters long."
 msgstr "El nombre debe tener entre 2 y 30 caracteres."
 
-#: partners/forms.py:58
+#: partners/forms.py:60
 msgid "The last name must be between 2 and 30 characters long."
 msgstr "El apellido debe tener entre 2 y 30 caracteres."
 
-#: partners/forms.py:64
+#: partners/forms.py:66
 msgid "Incorrect ID number."
 msgstr "Número de documento incorrecto"
 
-#: partners/forms.py:70
+#: partners/forms.py:72
 msgid "The social security number must be up to 15 characters long."
 msgstr "El número PAMI debe tener hasta 15 caracteres."
 
-#: partners/forms.py:76
+#: partners/forms.py:78
 msgid "Incorrect birthdate."
 msgstr "Fecha de nacimiento incorrecta."
 
-#: partners/forms.py:82
+#: partners/forms.py:84
 msgid "The address must be between 5 and 30 characters long."
 msgstr "La dirección debe tener entre 5 y 30 caracteres."
 
-#: partners/forms.py:88
+#: partners/forms.py:90
 msgid ""
 "The phone number must be between 8 and 10 digits long (without hyphens)."
 msgstr "El número de teléfono debe tener entre 8 y 10 dígitos (sin guiones)."
 
-#: partners/forms.py:94
+#: partners/forms.py:96
 msgid ""
 "The cell phone number must be between 8 and 10 digits long (without hyphens)."
 msgstr ""
@@ -510,24 +572,22 @@ msgstr[2] "El sistema tiene %(partners_quantity)s socios."
 msgid "Partner Detail"
 msgstr "Detalle del Socio"
 
-#: partners/templates/partners/partner_detail.html:9 users/forms.py:24
-#: users/templates/users/user_detail.html:10
-#: users/templates/users/user_list.html:14
-msgid "Partner"
-msgstr "Socio"
-
 #: partners/templates/partners/partner_detail.html:10
 msgid "Affiliate"
 msgstr "Asociado"
 
-#: partners/templates/partners/partner_detail.html:18
+#: partners/templates/partners/partner_detail.html:20
 #: partners/templates/partners/partner_form.html:15
 #: users/templates/users/user_detail.html:18
 #: users/templates/users/user_form.html:15
 msgid "Modify"
 msgstr "Modificar"
 
-#: partners/templates/partners/partner_detail.html:23
+#: partners/templates/partners/partner_detail.html:27
+msgid "Add sharing"
+msgstr "Agregar participación"
+
+#: partners/templates/partners/partner_detail.html:34
 msgid "Allocate payments"
 msgstr "Imputar pagos"
 

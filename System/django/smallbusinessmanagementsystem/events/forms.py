@@ -1,7 +1,9 @@
 from django import forms
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
-from .models import Event
+from .models import Event, Share
+from django.db.models import Subquery
+
 
 class CreateEventForm(forms.Form):
     name = forms.CharField(label=_('Name'))
@@ -36,3 +38,4 @@ class CreateNewsForm(forms.Form):
         if len(data) < 5:
             raise ValidationError(_('You must enter a header.'))
         return data
+

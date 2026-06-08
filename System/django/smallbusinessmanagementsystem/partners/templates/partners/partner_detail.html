@@ -11,18 +11,31 @@
     <p><strong>{% trans "Incorporation" %}:</strong> {{ partner.incorporation }}</p>
     <p><strong>{% trans "Position" %}:</strong> {{ partner.get_position_display }}</p>
     <p><strong>{% trans "Status" %}:</strong> {{ partner.get_status_display }}</p>
-    <table>
-        <tr>
-            <td>
-                <form action="{% url 'update-partner' partner.pk  %}" method="GET">
-                    <button type="submit">{% trans "Modify" %}</button>
-                </form>
-            </td>
-            <td>
-                <form action="{% url 'partner-attendance-list' partner.pk  %}" method="GET">
-                    <button type="submit">{% trans "Allocate payments" %}</button>
-                </form>
-            </td>
-        </tr>
-    </table>
+    {% if perms.partners.management %}
+        <table>
+            <tr>
+                {% if perms.partners.change_partner %}
+                    <td>
+                        <form action="{% url 'update-partner' partner.pk  %}" method="GET">
+                            <button type="submit">{% trans "Modify" %}</button>
+                        </form>
+                    </td>
+                {% endif %}
+                {% if perms.events.add_share %}
+                    <td>
+                        <form action="{% url 'partner-sharing' partner.pk  %}" method="GET">
+                            <button type="submit">{% trans "Add sharing" %}</button>
+                        </form>
+                    </td>
+                {% endif %}
+                {% if perms.events.change_share %}
+                    <td>
+                        <form action="{% url 'partner-attendance-list' partner.pk  %}" method="GET">
+                            <button type="submit">{% trans "Allocate payments" %}</button>
+                        </form>
+                    </td>
+                {% endif %}
+            </tr>
+        </table>
+    {% endif %}
 {% endblock %}

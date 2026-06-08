@@ -1,0 +1,29 @@
+{% extends "base_generic.html" %}
+{% load i18n %}
+
+{% block title %}
+    <title>{% trans "Small Business Management System" %} - {% trans "Events" %}</title>
+{% endblock %}
+
+{% block main %}
+    <h1>{% trans "Attendees List" %}</h1>
+    <h3>{% blocktrans with event=event %}for event {{event}}{% endblocktrans %}</h3>
+    {% if attendees_list %}
+        <table>
+            <tr>
+                <th width=40%>{% trans "Partner" %}</th>
+                <th width=20%>{% trans "Attendants" %}</th>
+                <th width=20%>{% trans "Debt" %}</th>
+            </tr>
+                {% for attendee in attendees_list %}
+                    <tr>
+                        <td><a href="{{ attendee.partner.get_absolute_url }}">{{ attendee.partner }}</a></td>
+                        <td>{{ attendee.attendees }}</td>
+                        <td>{{ attendee.debt }}</td>
+                    </tr>
+                {% endfor %}
+        </table>
+    {% else %}
+        <p>{% trans "There are no attendees for the event." %}</p>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,82 @@
+{% extends "base_generic.html" %}
+{% load i18n %}
+
+{% block title %}
+    <title>{% trans "Small Business Management System" %} - {% trans "Partner Sharing" %}</title>
+{% endblock %}
+{% block script %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            function updateMaxPay(row) {
+                const attendeesInput = row.querySelector('.attendees-input');
+                const chargeInput = row.querySelector('.charge-input');
+                const payInput = row.querySelector('.pay-input');
+
+                if (attendeesInput && chargeInput && payInput) {
+                    const attendees = parseFloat(attendeesInput.value) || 0;
+                    const charge = parseFloat(chargeInput.value) || 0;
+                    const maxPay = attendees * charge;
+
+                    payInput.max = maxPay.toFixed(2);
+
+                    if (parseFloat(payInput.value) > maxPay) {
+                        payInput.value = maxPay.toFixed(2);
+                    }
+                }
+            }
+
+            document.addEventListener('input', function(event) {
+                if (event.target.classList.contains('attendees-input')) {
+                    const row = event.target.closest('tr');
+                    updateMaxPay(row);
+                }
+            });
+
+            document.querySelectorAll('.charge-input').forEach(function(chargeInput) {
+                const row = chargeInput.closest('tr');
+                updateMaxPay(row);
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block main %}
+    <h1>{% trans "Partner Sharing" %}</h1>
+    <h3>{% blocktrans with partner=partner %}for partner {{partner}}{% endblocktrans %}</h3>
+    {% if events_list %}
+        <table>
+            <tr>
+                <th width=35%>{% trans "Name" %}</th>
+                <th width=10%>{% trans "Vacancies" %}</th>
+                <th width=20%>{% trans "Attendees" %}</th>
+                <th width=20%>{% trans "Payment" %}</th>
+                <th width=15%></th>
+            </tr>
+            {% for event in events_list %}
+                <tr>
+                    <form method="post" action="{% url 'add-sharing' %}">
+                        {% csrf_token %}
+                        <td>
+                            <a href="{{ event.get_absolute_url }}">{{ event.name }}</a>
+                            <input type="hidden" name="charge" class="charge-input" value="{{ event.charge}}"  >
+                            <input type="hidden" name="event_pk" value="{{ event.pk}}" >
+                            <input type="hidden" name="partner_pk" value="{{ partner.pk}}" >
+                        </td>
+                        <td>{{ event.vacancies }}</td>
+                        <td>
+                            <input type="number" name="attendees" class="attendees-input" min="1" max="{{ event.vacancies }}" value="{% if event.vacancies > 0 %}1{% else %}0{% endif %}" style="width: 100px;" {% if event.vacancies < 1 %}disabled{% endif %} >
+                        </td>
+                        <td>
+                            <input type="number" name="pay" min= "0" class="pay-input" value="0.00" style="width: 100px;" {% if event.vacancies < 1 %}disabled{% endif %} >
+                        </td>
+                        <td>
+                            {% if event.vacancies > 0 %}<button type="submit">{% trans "Sharing" %}</button>{% else %}{% trans "Full" %}{% endif %}
+                        </td>
+                    </form>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>{% blocktrans with partner=partner %}Partner {{partner}} already participates in all events.{% endblocktrans %}</p>
+    {% endif %}
+{% endblock %}

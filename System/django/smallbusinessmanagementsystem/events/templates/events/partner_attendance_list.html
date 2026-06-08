@@ -43,6 +43,6 @@
             {% endfor %}
         </table>
     {% else %}
-        <p>{% blocktrans with partner=partner %}There are no events registered yet for the partner {{partner}}.{% endblocktrans %}</p>
+        <p>{% blocktrans with partner=partner %}There are no registered events pending payment for the partner {{partner}}.{% endblocktrans %}</p>
     {% endif %}
 {% endblock %}

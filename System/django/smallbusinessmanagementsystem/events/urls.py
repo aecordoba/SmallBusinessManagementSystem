@@ -14,4 +14,7 @@ urlpatterns = [
     path('share/<int:pk>', views.PartnerAttendanceListView.as_view(), name='partner-attendance-list'),
     path('payment/', views.allocate_payment, name='allocate-payment'),
     path('remove_attendance/', views.remove_attendance, name='remove-attendance'),
+    path('attendees/<int:event>', views.AttendeesListView.as_view(), name='list-attendees'),
+    path('share/partner/<int:pk>', views.PartnerSharingListView.as_view(), name='partner-sharing'),
+    path('sharing/', views.add_sharing, name='add-sharing'),
 ]

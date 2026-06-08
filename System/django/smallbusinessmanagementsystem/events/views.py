@@ -103,6 +103,20 @@ def remove_attendance(request):
         return redirect(reverse('partner-attendance-list', kwargs={'pk': partner_pk}))
 
 
+@login_required
+@permission_required('events.add_share', raise_exception=True)
+def add_sharing(request):
+    if request.method == 'POST':
+        partner_pk = request.POST.get('partner_pk')
+        share = Share()
+        share.event = Event.objects.get(pk=request.POST.get('event_pk'))
+        share.partner = Partner.objects.get(pk=partner_pk)
+        share.attendees = request.POST.get('attendees')
+        share.payment = request.POST.get('pay')
+        share.save()
+    return redirect(reverse('partner-attendance-list', kwargs={'pk': partner_pk}))
+
+
 class NewsListView(generic.ListView):
     model = News
     paginate_by = 5
@@ -129,7 +143,8 @@ class EventsAttendanceListView(LoginRequiredMixin,generic.ListView):
     template_name = 'events/share_list.html'
 
     def get_queryset(self):
-        return Share.objects.select_related('event').filter(event__automatic=False, event__date__gte=timezone.now(), partner=self.request.user.partner).annotate(debt=F('attendees')*F('event__charge')-F('payment')).order_by('event__date').order_by('event__time')
+        return Share.objects.select_related('event').filter(partner=self.request.user.partner).filter(Q(event__automatic=False, event__date__gte=timezone.now()) | Q(payment__lt=F('attendees')*F('event__charge'))).annotate(debt=F('attendees')*F('event__charge')-F('payment')).order_by('event__date')
+
 
 
 class EventDetailView(LoginRequiredMixin, generic.DetailView):
@@ -149,6 +164,7 @@ class EventDetailView(LoginRequiredMixin, generic.DetailView):
             context['registered'] = registered
         return context
 
+
 class PartnerAttendanceListView(PermissionRequiredMixin, generic.ListView):
     permission_required = ('events.add_share', 'events.change_share', 'events.delete_share')
     paginate_by = 10
@@ -158,6 +174,41 @@ class PartnerAttendanceListView(PermissionRequiredMixin, generic.ListView):
     def get_queryset(self, **kwargs):
         partner_pk = self.kwargs.get('pk')
         return Share.objects.select_related('event').filter(partner=Partner.objects.get(pk=partner_pk)).filter(payment__lt=F('attendees')*F('event__charge')).annotate(debt=F('attendees')*F('event__charge')-F('payment')).order_by('event__date').order_by('event__time')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['partner'] = Partner.objects.get(pk=self.kwargs.get('pk'))
+        return context
+
+
+class AttendeesListView(PermissionRequiredMixin, generic.ListView):
+    permission_required = ('partners.management')
+    paginate_by = 10
+    context_object_name = 'attendees_list'
+    template_name = 'events/attendees_list.html'
+
+    def get_queryset(self, **kwargs):
+        event = self.kwargs.get('event')
+        print(Share.objects.filter(event=event))
+        return Share.objects.select_related('event').filter(event=event).annotate(debt=F('attendees')*F('event__charge')-F('payment')).order_by('partner__partner_number')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['event'] = Event.objects.get(pk=self.kwargs.get('event'))
+        return context
+
+
+class PartnerSharingListView(PermissionRequiredMixin, generic.ListView):
+    permission_required = ('events.add_share')
+    paginate_by = 10
+    context_object_name = 'events_list'
+    template_name = 'events/partner_sharing_list.html'
+
+    def get_queryset(self, **kwargs):
+        partner_pk = self.kwargs.get('pk')
+        partner = Partner.objects.get(pk=partner_pk)
+        excluded_events = Share.objects.filter(partner=partner).values_list('event_id', flat=True)
+        return Event.objects.filter(automatic=False, date__gt=timezone.now()).exclude(id__in=excluded_events).annotate(vacancies=F('attendants') - Sum('share__attendees'))
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

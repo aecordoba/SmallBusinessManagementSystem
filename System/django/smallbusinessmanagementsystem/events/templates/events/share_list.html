@@ -20,7 +20,7 @@
                     <tr>
                         <td><a href="{{ share.event.get_absolute_url }}">{{ share.event.name }}</a></td>
                         <td>{{ share.event.date | date:"SHORT_DATE_FORMAT" }}</td>
-                        <td>{{ share.event.time}}</td>
+                        <td>{% if share.event.time %}{{ share.event.time}}{% endif %}</td>
                         <td>{{ share.attendees }}</td>
                         <td>{{ share.debt }}</td>
                     </tr>

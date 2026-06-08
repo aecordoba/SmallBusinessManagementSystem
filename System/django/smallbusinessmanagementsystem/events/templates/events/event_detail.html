@@ -40,4 +40,9 @@
         {% endif %}
         <p>{% trans "Vacancies" %}: {{ vacancies }}</p>
     {% endif %}
+    {% if perms.partners.management %}
+        <form method="get" action="{% url 'list-attendees' event.pk %}">
+            <button type="submit" >{% trans "List Attendees" %}</button>
+        </form>
+    {% endif %}
 {% endblock %}
