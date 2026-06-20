@@ -1,0 +1,52 @@
+{% extends "base_generic.html" %}
+{% load i18n %}
+
+{% block title %}
+    <title>{% trans "Small Business Management System" %} - {% trans "Partners" %}</title>
+{% endblock %}
+
+{% block main %}
+    <h1>{% trans "Partners List" %}</h1>
+    <form method="get" action="{% url 'partners' %}">
+        <table class="search">
+            <tr>
+                <td>{% trans "Number or last name" %}:</td>
+                <td><input type="text" name="search_data" placeholder="..."></td>
+                <td><button type="submit">{% trans "Search" %}</button></td>
+            </tr>
+        </table>
+    </form>
+    {% if partner_list %}
+        <table>
+            <tr>
+                <th width=10%>{% trans "Number" %}</th>
+                <th width=30%>{% trans "Last name" %}</th>
+                <th width=40%>{% trans "First name" %}</th>
+                <th width=20%>{% trans "Status" %}</th>
+            </tr>
+                {% for partner in partner_list %}
+                    <tr>
+                        <td>
+                            {% if perms.partners.view_partner %}
+                                <a href="{{ partner.get_absolute_url }}">{{partner.partner_number}}</a>
+                            {% else %}
+                                {{partner.partner_number}}
+                            {% endif %}
+                        </td>
+                        <td>{{partner.person.last_name}}</td>
+                        <td>{{partner.person.first_name}}</td>
+                        <td>{{partner.get_status_display }}</td>
+                    </tr>
+                {% endfor %}
+        </table>
+    {% else %}
+        <p>{% trans "There are no partners in the system." %}</p>
+    {% endif %}
+    <br>
+    {% if perms.partners.add_partner %}
+        <form method="get" action="{% url 'create-partner' %}">
+            <button type="submit" >{% trans "Add Partner" %}</button>
+        </form>
+    {% endif %}
+    <br>
+{% endblock %}

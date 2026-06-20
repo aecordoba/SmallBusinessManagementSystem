@@ -1,0 +1,15 @@
+{% extends "base_generic.html" %}
+{% load i18n %}
+
+{% block title %}
+    <title>{% trans "Small Business Management System" %} - {% trans "User Deletion" %}</title>
+{% endblock %}
+
+{% block main %}
+    <h1>Delete User: {{ user }}</h1>
+    <p>{% trans "Are you sure you want to delete the user?" %}</p>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <button type="submit">{% trans "Yes, delete" %}</button>
+    </form>
+{% endblock %}
