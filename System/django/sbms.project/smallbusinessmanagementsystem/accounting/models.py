@@ -31,8 +31,8 @@ class Accounting(models.Model):
     def __str__(self):
         return str(self.date) + ' ' + self.concept
 
-    def get_absolute_url(self):
-        return reverse('accounting-detail', args=[str(self.id)])
+    # def get_absolute_url(self):
+    #     return reverse('accounting-detail', args=[str(self.id)])
 
     class Meta:
         db_table = 'accounting'

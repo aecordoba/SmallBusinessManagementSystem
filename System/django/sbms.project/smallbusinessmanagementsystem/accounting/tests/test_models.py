@@ -15,3 +15,33 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+from django.test import TestCase
+from accounting.models import Accounting
+
+
+class AccountingModelTest(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        Accounting.objects.create(date='2026-01-01', concept='Accounting_1', description='Accounting_1 description',
+                                  credit=100000.01)
+
+    def test_concept_max_length(self):
+        accounting = Accounting.objects.get(id=1)
+        max_length = accounting._meta.get_field('concept').max_length
+        self.assertEqual(max_length, 30)
+
+    def test_debit_max_digits(self):
+        accounting = Accounting.objects.get(id=1)
+        max_digits = accounting._meta.get_field('debit').max_digits
+        self.assertEqual(max_digits, 15)
+
+    def test_credit_max_digits(self):
+        accounting = Accounting.objects.get(id=1)
+        max_digits = accounting._meta.get_field('credit').max_digits
+        self.assertEqual(max_digits, 15)
+
+    def test_accounting_str(self):
+        accounting = Accounting.objects.get(id=1)
+        expected_str = str(accounting.date) + ' ' + accounting.concept
+        self.assertEqual(str(accounting), expected_str)

@@ -39,7 +39,7 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
     id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=30, unique=True, null=False, blank=False, help_text='Username')
+    name = models.CharField('Username', max_length=30, unique=True, null=False, blank=False, help_text='Username')
     partner = models.OneToOneField(Partner, on_delete=models.RESTRICT, null=True, blank=True, related_name='partner')
     date_joined = models. DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)

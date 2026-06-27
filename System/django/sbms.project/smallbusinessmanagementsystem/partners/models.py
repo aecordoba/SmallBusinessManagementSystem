@@ -111,9 +111,9 @@ class Person(models.Model):
     )
 
     id = models.AutoField(primary_key=True)
-    doc_type = models.CharField(max_length=20, choices=DOCUMENTS, default='document_1')
-    doc_number = models.IntegerField(help_text='Document number')
-    social_security = models.CharField(unique=True, max_length=15, blank=True, null=True, help_text='Social Security')
+    doc_type = models.CharField('Document type', max_length=20, choices=DOCUMENTS, default='document_1')
+    doc_number = models.IntegerField('Document number', help_text='Document number')
+    social_security = models.CharField('Social Security', unique=True, max_length=15, blank=True, null=True, help_text='Social Security')
     last_name = models.CharField(max_length=30, help_text='Last name')
     first_name = models.CharField(max_length=30, help_text='First and middle name')
     email = models.EmailField(blank=True, null=True)
