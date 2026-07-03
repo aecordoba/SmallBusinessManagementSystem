@@ -28,8 +28,8 @@ class PartnerModelTest(TestCase):
         state = State.objects.create(name='State_1', country=country)
         city = City.objects.create(name='City_1', state=state)
         address = Address.objects.create(address='Address_1', zip_code='000001', city=city, phone='55550001')
-        person = Person.objects.create(doc_type='document_1', doc_number=10000001, social_security='100000/01',
-                                       last_name='Last_name_1', first_name='First_Name_1 Middle_Name_1',
+        person = Person.objects.create(identification='identification_1', id_number=10000001, social_security='100000/01',
+                                       last_name='Last_name_1', first_name='First_name_1 Middle_name_1',
                                        email='last_name_1@mail.com', birthdate='1960-01-01', gender='male',
                                        address=address, cellphone='0015550001')
         Partner.objects.create(person=person, partner_number=10001, incorporation='2026-01-01', position='psition_1',
@@ -37,13 +37,13 @@ class PartnerModelTest(TestCase):
 
     def test_doc_type_label(self):
         person = Person.objects.get(id=1)
-        field_label = person._meta.get_field('doc_type').verbose_name
-        self.assertEqual(field_label, 'Document type')
+        field_label = person._meta.get_field('identification').verbose_name
+        self.assertEqual(field_label, 'Identification')
 
     def test_doc_number_label(self):
         person = Person.objects.get(id=1)
-        field_label = person._meta.get_field('doc_number').verbose_name
-        self.assertEqual(field_label, 'Document number')
+        field_label = person._meta.get_field('id_number').verbose_name
+        self.assertEqual(field_label, 'Identification number')
 
     def test_social_security_label(self):
         person = Person.objects.get(id=1)
@@ -67,7 +67,7 @@ class PartnerModelTest(TestCase):
 
     def test_person_str(self):
         person = Person.objects.get(id=1)
-        expected_str = f'{person.last_name}, {person.first_name} - {_(person.doc_type)} {person.doc_number}'
+        expected_str = f'{person.last_name}, {person.first_name} - {_(person.identification)} {person.id_number}'
         self.assertEqual(str(person), expected_str)
 
     def test_partner_str(self):

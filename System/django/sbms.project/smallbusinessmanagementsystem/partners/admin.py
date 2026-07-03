@@ -42,7 +42,8 @@ class AddressesAdmin(admin.ModelAdmin):
 
 @admin.register(Person)
 class PersonsAdmin(admin.ModelAdmin):
-    list_display = ('doc_type', 'doc_number', 'social_security', 'last_name', 'first_name', 'email', 'birthdate', 'gender', 'address', 'cellphone')
+    list_display = ('identification', 'id_number', 'social_security', 'last_name', 'first_name', 'email', 'birthdate',
+                    'gender', 'address', 'cellphone')
 
 
 @admin.register(Partner)

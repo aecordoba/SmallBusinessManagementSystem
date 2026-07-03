@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-20 15:11-0300\n"
+"POT-Creation-Date: 2026-07-03 16:50-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: accounting/forms.py:25
-#: accounting/templates/accounting/accounting_list.html:15 events/forms.py:29
+#: accounting/templates/accounting/accounting_list.html:15 events/forms.py:30
 #: events/templates/events/event_detail.html:10
 #: events/templates/events/event_list.html:14
 #: events/templates/events/news_detail.html:18
@@ -32,7 +32,7 @@ msgstr "Date"
 msgid "Concept"
 msgstr "Concept"
 
-#: accounting/forms.py:27 events/forms.py:32 events/forms.py:52
+#: accounting/forms.py:27 events/forms.py:35 events/forms.py:65
 #: events/templates/events/event_detail.html:17
 #: events/templates/events/news_detail.html:12
 #: events/templates/events/news_detail.html:21
@@ -49,7 +49,7 @@ msgstr "Debit"
 msgid "Credit"
 msgstr "Credit"
 
-#: accounting/forms.py:34 events/forms.py:45
+#: accounting/forms.py:34 events/forms.py:50
 msgid "Set a date."
 msgstr "Set a date."
 
@@ -59,7 +59,15 @@ msgstr "The concept must be between 5 and 30 characters long."
 
 #: accounting/forms.py:46
 msgid "The description must be between 10 and 100 characters long."
-msgstr "The description must be between 5 and 30 characters long."
+msgstr "The description must be between 10 and 100 characters long."
+
+#: accounting/forms.py:54
+msgid "Debit and credit cannot be specified simultaneously."
+msgstr "Debit and credit cannot be specified simultaneously."
+
+#: accounting/forms.py:56
+msgid "Debit and credit cannot be empty simultaneously."
+msgstr "Debit and credit cannot be empty simultaneously."
 
 #: accounting/templates/accounting/accounting_list.html:6
 #: accounting/templates/accounting/add_accounting.html:5
@@ -121,38 +129,46 @@ msgstr "Name"
 msgid "Automatic"
 msgstr "Automatic"
 
-#: events/forms.py:30 events/templates/events/event_detail.html:12
+#: events/forms.py:31 events/templates/events/event_detail.html:12
 #: events/templates/events/event_list.html:15
 #: events/templates/events/news_detail.html:19
 #: events/templates/events/share_list.html:15
 msgid "Time"
 msgstr "Time"
 
-#: events/forms.py:31 events/templates/events/attendees_list.html:15
+#: events/forms.py:33 events/templates/events/attendees_list.html:15
 #: events/templates/events/event_detail.html:15
 #: events/templates/events/event_list.html:16
 #: events/templates/events/news_detail.html:20
 msgid "Attendants"
 msgstr "Attendants"
 
-#: events/forms.py:33 events/templates/events/event_detail.html:18
+#: events/forms.py:37 events/templates/events/event_detail.html:18
 #: events/templates/events/news_detail.html:22
 msgid "Charge"
 msgstr "Charge"
 
-#: events/forms.py:34
+#: events/forms.py:38
 msgid "Validity"
 msgstr "Validity"
 
-#: events/forms.py:39 users/forms.py:62
+#: events/forms.py:44 users/forms.py:65
 msgid "The name must be between 5 and 30 characters long."
 msgstr "The name must be between 5 and 30 characters long."
 
-#: events/forms.py:51
+#: events/forms.py:58
+msgid "Automated events must have a charge."
+msgstr "Automated events must have a charge."
+
+#: events/forms.py:62
+msgid "Event"
+msgstr "Event"
+
+#: events/forms.py:64
 msgid "Header"
 msgstr "Header"
 
-#: events/forms.py:57
+#: events/forms.py:70
 msgid "You must enter a header."
 msgstr "You must enter a header."
 
@@ -355,21 +371,21 @@ msgstr "There are no events registered yet for the user %(username)s."
 msgid "Partner number"
 msgstr "Partner number"
 
-#: partners/forms.py:28 partners/templates/partners/partner_list.html:24
+#: partners/forms.py:28 partners/templates/partners/partner_list.html:25
 #: partners/templates/partners/person_detail.html:13
 msgid "First name"
 msgstr "First name"
 
-#: partners/forms.py:29 partners/templates/partners/partner_list.html:23
+#: partners/forms.py:29 partners/templates/partners/partner_list.html:24
 #: partners/templates/partners/person_detail.html:12
 msgid "Last name"
 msgstr "Last name"
 
 #: partners/forms.py:30 partners/templates/partners/person_detail.html:10
-msgid "Document"
+msgid "Identification"
 msgstr "Identification"
 
-#: partners/forms.py:31 partners/templates/partners/partner_list.html:22
+#: partners/forms.py:31 partners/templates/partners/partner_list.html:23
 msgid "Number"
 msgstr "Number"
 
@@ -385,85 +401,89 @@ msgstr "E-mail"
 msgid "Birthdate"
 msgstr "Birthdate"
 
-#: partners/forms.py:35 partners/templates/partners/person_detail.html:16
+#: partners/forms.py:36 partners/templates/partners/person_detail.html:16
 msgid "Gender"
 msgstr "Gender"
 
-#: partners/forms.py:36 partners/templates/partners/person_detail.html:17
+#: partners/forms.py:37 partners/templates/partners/person_detail.html:17
 msgid "Address"
 msgstr "Address"
 
-#: partners/forms.py:37
+#: partners/forms.py:38
 msgid "ZIP Code"
 msgstr "ZIP Code"
 
 #: partners/forms.py:39
+msgid "City"
+msgstr "City"
+
+#: partners/forms.py:41
 msgid "Phone number"
 msgstr "Phone number"
 
-#: partners/forms.py:40
+#: partners/forms.py:42
 msgid "Cell phone number"
 msgstr "Cell phone number"
 
-#: partners/forms.py:41 partners/templates/partners/partner_detail.html:11
+#: partners/forms.py:43 partners/templates/partners/partner_detail.html:11
 msgid "Incorporation"
 msgstr "Incorporation"
 
-#: partners/forms.py:42 partners/templates/partners/partner_detail.html:12
+#: partners/forms.py:45 partners/templates/partners/partner_detail.html:12
 msgid "Position"
 msgstr "Position"
 
-#: partners/forms.py:43 partners/templates/partners/partner_detail.html:13
-#: partners/templates/partners/partner_list.html:25
+#: partners/forms.py:46 partners/templates/partners/partner_detail.html:13
+#: partners/templates/partners/partner_list.html:26
 msgid "Status"
 msgstr "Status"
 
-#: partners/forms.py:72
+#: partners/forms.py:75
 msgid "The first name must be between 2 and 30 characters long."
 msgstr "The first name must be between 2 and 30 characters long."
 
-#: partners/forms.py:78
+#: partners/forms.py:81
 msgid "The last name must be between 2 and 30 characters long."
 msgstr "The last name must be between 2 and 30 characters long."
 
-#: partners/forms.py:84
+#: partners/forms.py:87
 msgid "Incorrect ID number."
 msgstr "Incorrect ID number."
 
-#: partners/forms.py:90
+#: partners/forms.py:93
 msgid "The social security number must be up to 15 characters long."
 msgstr "The social security number must be up to 15 characters long."
 
-#: partners/forms.py:96
+#: partners/forms.py:99
 msgid "Incorrect birthdate."
 msgstr "Incorrect birthdate."
 
-#: partners/forms.py:102
+#: partners/forms.py:105
 msgid "The address must be between 5 and 30 characters long."
 msgstr "The address must be between 5 and 30 characters long."
 
-#: partners/forms.py:108
+#: partners/forms.py:111
 msgid ""
 "The phone number must be between 8 and 10 digits long (without hyphens)."
 msgstr ""
 "The phone number must be between 8 and 10 digits long (without hyphens)."
 
-#: partners/forms.py:114
+#: partners/forms.py:117
 msgid ""
 "The cell phone number must be between 8 and 10 digits long (without hyphens)."
 msgstr ""
 "The cell phone number must be between 8 and 10 digits long (without hyphens)."
 
 #: partners/models.py:102
-msgid "document_1"
+msgid "identification_1"
 msgstr "Soc. Security"
 
 #: partners/models.py:103
-msgid "document_2"
+msgid "identification_2"
 msgstr "Drivers License"
 
 #: partners/models.py:104
-msgid "document_3"
+msgid "identification_3"
 msgstr "Passport"
 
 #: partners/models.py:108
@@ -478,31 +498,31 @@ msgstr "female"
 msgid "other"
 msgstr "other"
 
-#: partners/models.py:141
+#: partners/models.py:143
 msgid "position_1"
 msgstr "associate"
 
-#: partners/models.py:142
+#: partners/models.py:144
 msgid "position_2"
 msgstr "president"
 
-#: partners/models.py:143
+#: partners/models.py:145
 msgid "position_3"
 msgstr "secretary"
 
-#: partners/models.py:144
+#: partners/models.py:146
 msgid "position_4"
 msgstr "member"
 
-#: partners/models.py:148
+#: partners/models.py:150
 msgid "status_1"
 msgstr "active"
 
-#: partners/models.py:149
+#: partners/models.py:151
 msgid "status_2"
 msgstr "life"
 
-#: partners/models.py:150
+#: partners/models.py:152
 msgid "status_3"
 msgstr "inactive"
 
@@ -560,6 +580,10 @@ msgstr "next"
 msgid "more"
 msgstr "more"
 
+#: partners/templates/index.html:11
+msgid "Welcome to "
+msgstr "Welcome to "
+
 #: partners/templates/index.html:16
 #, python-format
 msgid "The system has %(partners_quantity)s partner."
@@ -604,19 +628,19 @@ msgstr "Partner Modification"
 msgid "Partners List"
 msgstr "Partners List"
 
-#: partners/templates/partners/partner_list.html:13
+#: partners/templates/partners/partner_list.html:14
 msgid "Number or last name"
 msgstr "Number or last name"
 
-#: partners/templates/partners/partner_list.html:15
+#: partners/templates/partners/partner_list.html:16
 msgid "Search"
 msgstr "Search"
 
-#: partners/templates/partners/partner_list.html:43
+#: partners/templates/partners/partner_list.html:44
 msgid "There are no partners in the system."
 msgstr "There are no partners in the system."
 
-#: partners/templates/partners/partner_list.html:48
+#: partners/templates/partners/partner_list.html:49
 msgid "Add Partner"
 msgstr "Add Partner"
 

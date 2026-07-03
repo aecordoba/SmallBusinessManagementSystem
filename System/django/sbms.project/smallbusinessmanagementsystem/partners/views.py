@@ -38,12 +38,10 @@ def index(request):
     aside_list = News.objects.filter(Q(event=None) | Q(event__date__gte=timezone.now()))[:3]
     for news in aside_list:
         news.description = news.description[:60]
-
     context = {
         'partners_quantity': partners_quantity,
         'aside_list': aside_list
     }
-
     return render(request, 'index.html', context=context)
 
 
@@ -55,7 +53,6 @@ def partner_creation(request):
         if form.is_valid():
             save_partner(form, Partner(), Person(), Address())
             return HttpResponseRedirect(reverse('partners'))
-        return None
     else:
         max_partner_number = Partner.objects.aggregate(Max('partner_number'))['partner_number__max']
         if max_partner_number:
@@ -63,8 +60,8 @@ def partner_creation(request):
         else:
             data = {'partner_number': 1}
         form = PartnerForm(initial=data)
-        context = {'form': form, 'create': True}
-        return render(request, 'partners/partner_form.html', context)
+    context = {'form': form, 'create': True}
+    return render(request, 'partners/partner_form.html', context)
 
 
 @login_required
@@ -76,11 +73,10 @@ def partner_update(request, pk):
         if form.is_valid():
             save_partner(form, partner, partner.person, partner.person.address)
             return HttpResponseRedirect(reverse('partners'))
-        return None
     else:
         form = PartnerForm(instance=partner)
-        context = {'form': form, 'create': False}
-        return render(request, 'partners/partner_form.html', context)
+    context = {'form': form, 'create': False}
+    return render(request, 'partners/partner_form.html', context)
 
 
 @transaction.atomic
@@ -95,8 +91,8 @@ def save_partner(form, partner, person, address):
     # Save person.
     person.first_name = form.cleaned_data['first_name']
     person.last_name = form.cleaned_data['last_name']
-    person.doc_type = form.cleaned_data['doc_type']
-    person.doc_number = form.cleaned_data['doc_number']
+    person.identification = form.cleaned_data['identification']
+    person.id_number = form.cleaned_data['id_number']
     person.social_security = form.cleaned_data['social_security']
     person.email = form.cleaned_data['email']
     person.birthdate = form.cleaned_data['birthdate']
@@ -114,10 +110,10 @@ def save_partner(form, partner, person, address):
     # Save the appropiate shares.
     if partner.status == 'status_1':
         incorporation = partner.incorporation
-        auto_events = Event.objects.filter(automatic=True).filter((
-                                                                              Q(validity='weekly') & Q(date__gt=incorporation - timedelta(weeks=1))) | (
-                                                                              Q(validity='monthly') & Q(date__gt=incorporation - relativedelta(months=1))) | (
-                                                                              Q(validity='yearly') & Q(date__gt=incorporation - relativedelta(years=1))))
+        auto_events = (Event.objects.filter(automatic=True).
+                       filter((Q(validity='weekly') & Q(date__gt=incorporation - timedelta(weeks=1))) |
+                              (Q(validity='monthly') & Q(date__gt=incorporation - relativedelta(months=1))) |
+                              (Q(validity='yearly') & Q(date__gt=incorporation - relativedelta(years=1)))))
         # If partner has paid events, exclude them from automatic events.
         if Share.objects.filter(partner=partner, payment__gt=0).exists():
             paid_events = Share.objects.filter(partner=partner, payment__gt=0).values('event')

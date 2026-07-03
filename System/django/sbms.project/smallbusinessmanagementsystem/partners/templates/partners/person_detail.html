@@ -7,7 +7,7 @@
 
 {% block main %}
     <h1>{{person.last_name}}, {{person.first_name}}</h1>
-    <p><strong>{% trans "Document" %}:</strong> {{ person.get_doc_type_display }} {{ person.doc_number }}</p>
+    <p><strong>{% trans "Identification" %}:</strong> {{ person.get_identification_display }} {{ person.id_number }}</p>
     <p><strong>{% trans "Social Security" %}:</strong> {{ person.social_security }}</p>
     <p><strong>{% trans "Last name" %}:</strong> {{ person.last_name }}</p>
     <p><strong>{% trans "First name" %}:</strong> {{ person.first_name }}</p>

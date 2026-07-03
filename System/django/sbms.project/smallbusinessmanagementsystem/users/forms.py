@@ -47,14 +47,17 @@ class UserForm(forms.Form):
         super().__init__(*args, **kwargs)
         if instance:
             self.fields['name'].initial = instance.name
-            partners_to_exclude = User.objects.exclude(partner_id=None).exclude(partner_id=instance.partner.id).values_list('partner_id', flat=True)
-            self.fields['partner'].queryset = Partner.objects.exclude(status='status_3').exclude(id__in=partners_to_exclude)
+            partners_to_exclude = (User.objects.exclude(partner_id=None).exclude(partner_id=instance.partner.id).
+                                   values_list('partner_id', flat=True))
+            self.fields['partner'].queryset = (Partner.objects.exclude(status='status_3').
+                                               exclude(id__in=partners_to_exclude))
             self.fields['partner'].initial = instance.partner
             self.fields['is_active'].initial = instance.is_active
             self.fields['is_staff'].initial = instance.is_staff
         else:
             partners_to_exclude = User.objects.exclude(partner_id=None).values_list('partner_id', flat=True)
-            self.fields['partner'].queryset = Partner.objects.exclude(status='status_3').exclude(id__in=partners_to_exclude)
+            self.fields['partner'].queryset = (Partner.objects.exclude(status='status_3').
+                                               exclude(id__in=partners_to_exclude))
 
     def clean_name(self):
         data = self.cleaned_data['name']

@@ -35,11 +35,10 @@ def accounting_addition(request):
         if form.is_valid():
             save_accounting(form)
             return HttpResponseRedirect(reverse('accounting'))
-        return None
     else:
         form = AddAccountingForm()
-        context = {'form': form, }
-        return render(request, 'accounting/add_accounting.html', context)
+    context = {'form': form, }
+    return render(request, 'accounting/add_accounting.html', context)
 
 
 @transaction.atomic

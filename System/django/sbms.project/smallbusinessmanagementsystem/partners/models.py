@@ -98,10 +98,10 @@ class Address(models.Model):
 
 class Person(models.Model):
 
-    DOCUMENTS = (
-        ('document_1', _('document_1')),
-        ('document_2', _('document_2')),
-        ('document_3', _('document_3'))
+    IDENTIFICATIONS = (
+        ('identification_1', _('identification_1')),
+        ('identification_2', _('identification_2')),
+        ('identification_3', _('identification_3'))
     )
 
     GENDERS = (
@@ -111,9 +111,11 @@ class Person(models.Model):
     )
 
     id = models.AutoField(primary_key=True)
-    doc_type = models.CharField('Document type', max_length=20, choices=DOCUMENTS, default='document_1')
-    doc_number = models.IntegerField('Document number', help_text='Document number')
-    social_security = models.CharField('Social Security', unique=True, max_length=15, blank=True, null=True, help_text='Social Security')
+    identification = models.CharField('Identification', max_length=20, choices=IDENTIFICATIONS,
+                                      default='identification_1')
+    id_number = models.IntegerField('Identification number', help_text='Identification number')
+    social_security = models.CharField('Social Security', unique=True, max_length=15, blank=True, null=True,
+                                       help_text='Social Security')
     last_name = models.CharField(max_length=30, help_text='Last name')
     first_name = models.CharField(max_length=30, help_text='First and middle name')
     email = models.EmailField(blank=True, null=True)
@@ -123,7 +125,7 @@ class Person(models.Model):
     cellphone = models.CharField(max_length=10, blank=True, null=True, help_text='Cell phone number')
 
     def __str__(self):
-        return f'{self.last_name}, {self.first_name} - {_(self.doc_type)} {self.doc_number}'
+        return f'{self.last_name}, {self.first_name} - {_(self.identification)} {self.id_number}'
 
     def get_absolute_url(self):
         return reverse('person-detail', args=[str(self.id)])
@@ -133,7 +135,7 @@ class Person(models.Model):
         ordering = ['last_name', 'first_name']
         verbose_name = 'Person'
         verbose_name_plural = 'Persons'
-        unique_together = (('doc_type', 'doc_number'),)
+        unique_together = (('identification', 'id_number'),)
 
 
 class Partner(models.Model):

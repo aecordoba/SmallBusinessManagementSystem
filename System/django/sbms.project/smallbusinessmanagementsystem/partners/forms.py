@@ -27,18 +27,21 @@ class PartnerForm(forms.Form):
     partner_number = forms.IntegerField(label=_('Partner number'))
     first_name = forms.CharField(label=_('First name'))
     last_name = forms.CharField(label=_('Last name'))
-    doc_type = forms.ChoiceField(label=_('Document'), choices=Person.DOCUMENTS)
-    doc_number = forms.IntegerField(label=_('Number'))
+    identification = forms.ChoiceField(label=_('Identification'), choices=Person.IDENTIFICATIONS)
+    id_number = forms.IntegerField(label=_('Number'))
     social_security = forms.CharField(label=_('Social Security'))
     email = forms.EmailField(label=_('E-mail'))
-    birthdate = forms.DateField(label=_('Birthdate'), widget=forms.DateInput(format='%Y-%m-%d', attrs={'type': 'date'}), localize=True)
+    birthdate = forms.DateField(label=_('Birthdate'), widget=forms.DateInput(format='%Y-%m-%d', attrs={'type': 'date'}),
+                                localize=True)
     gender = forms.ChoiceField(label=_('Gender'), choices=Person.GENDERS)
     address = forms.CharField(label=_('Address'))
     zip_code = forms.CharField(label=_('ZIP Code'))
-    city = forms.ModelChoiceField(queryset=City.objects.all(), widget=forms.Select(attrs={'style': 'width: 300px;'}))
+    city = forms.ModelChoiceField(label=_('City'), queryset=City.objects.all(), widget=forms.
+                                  Select(attrs={'style': 'width: 300px;'}))
     phone = forms.CharField(label=_('Phone number'), required=False)
     cellphone = forms.CharField(label=_('Cell phone number'), required=False)
-    incorporation = forms.DateField(label=_('Incorporation'), widget=forms.DateInput(format='%Y-%m-%d', attrs={'type': 'date'}), localize=True)
+    incorporation = forms.DateField(label=_('Incorporation'), widget=forms.
+                                    DateInput(format='%Y-%m-%d', attrs={'type': 'date'}), localize=True)
     position = forms.ChoiceField(label=_('Position'), choices=Partner.POSITIONS)
     status = forms.ChoiceField(label=_('Status'), choices=Partner.STATUS)
 
@@ -49,8 +52,8 @@ class PartnerForm(forms.Form):
             self.fields['partner_number'].initial = instance.partner_number
             self.fields['first_name'].initial = instance.person.first_name
             self.fields['last_name'].initial = instance.person.last_name
-            self.fields['doc_type'].initial = instance.person.doc_type
-            self.fields['doc_number'].initial = instance.person.doc_number
+            self.fields['identification'].initial = instance.person.identification
+            self.fields['id_number'].initial = instance.person.id_number
             self.fields['social_security'].initial = instance.person.social_security
             self.fields['email'].initial = instance.person.email
             self.fields['birthdate'].localize = True
@@ -78,8 +81,8 @@ class PartnerForm(forms.Form):
             raise ValidationError(_('The last name must be between 2 and 30 characters long.'))
         return data
 
-    def clean_doc_number(self):
-        data = self.cleaned_data['doc_number']
+    def clean_id_number(self):
+        data = self.cleaned_data['id_number']
         if data < 1000000:
             raise ValidationError(_('Incorrect ID number.'))
         return data
@@ -92,7 +95,7 @@ class PartnerForm(forms.Form):
 
     def clean_birthdate(self):
         data = self.cleaned_data['birthdate']
-        if data > date.today():
+        if data >= date.today():
             raise ValidationError(_('Incorrect birthdate.'))
         return data
 
@@ -104,13 +107,12 @@ class PartnerForm(forms.Form):
 
     def clean_phone(self):
         data = self.cleaned_data['phone']
-        if len(data) > 0 and len(data) < 8 or len(data) > 10:
+        if len(data) > 0 and (len(data) < 8 or len(data) > 10):
             raise ValidationError(_('The phone number must be between 8 and 10 digits long (without hyphens).'))
         return data
 
     def clean_cellphone(self):
         data = self.cleaned_data['cellphone']
-        if len(data) > 0 and len(data) < 8 or len(data) > 10:
+        if len(data) > 0 and (len(data) < 8 or len(data) > 10):
             raise ValidationError(_('The cell phone number must be between 8 and 10 digits long (without hyphens).'))
         return data
-

@@ -30,7 +30,7 @@ class AddAccountingForm(forms.Form):
 
     def clean_date(self):
         data = self.cleaned_data['date']
-        if data == "":
+        if data is None:
             raise ValidationError(_('Set a date.'))
         return data
 
@@ -45,3 +45,13 @@ class AddAccountingForm(forms.Form):
         if len(data) < 10 or len(data) > 100:
             raise ValidationError(_('The description must be between 10 and 100 characters long.'))
         return data
+
+    def clean(self):
+        cleaned_data = super().clean()
+        debit = cleaned_data.get('debit')
+        credut = cleaned_data.get('credit')
+        if debit and credut:
+            raise ValidationError({'debit': _('Debit and credit cannot be specified simultaneously.')})
+        elif not debit and not credut:
+            raise ValidationError({'debit': _('Debit and credit cannot be empty simultaneously.')})
+        return cleaned_data

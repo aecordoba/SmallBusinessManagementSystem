@@ -130,6 +130,7 @@ def remove_attendance(request):
 @login_required
 @permission_required('events.add_share', raise_exception=True)
 def add_sharing(request):
+    partner_pk = None
     if request.method == 'POST':
         partner_pk = request.POST.get('partner_pk')
         share = Share()
@@ -158,7 +159,7 @@ class EventsListView(generic.ListView):
     paginate_by = 10
 
     def get_queryset(self):
-        return Event.objects.filter(date__gte=timezone.now())
+        return Event.objects.filter(date__gte=timezone.now()).exclude(automatic=True).order_by('date')
 
 
 class EventsAttendanceListView(LoginRequiredMixin, generic.ListView):
@@ -167,7 +168,10 @@ class EventsAttendanceListView(LoginRequiredMixin, generic.ListView):
     template_name = 'events/share_list.html'
 
     def get_queryset(self):
-        return Share.objects.select_related('event').filter(partner=self.request.user.partner).filter(Q(event__automatic=False, event__date__gte=timezone.now()) | Q(payment__lt=F('attendees') * F('event__charge'))).annotate(debt=F('attendees') * F('event__charge') - F('payment')).order_by('event__date')
+        return (Share.objects.select_related('event').filter(partner=self.request.user.partner).
+                filter(Q(event__automatic=False, event__date__gte=timezone.now()) |
+                       Q(payment__lt=F('attendees') * F('event__charge'))).
+                annotate(debt=F('attendees') * F('event__charge') - F('payment')).order_by('event__date'))
 
 
 class EventDetailView(LoginRequiredMixin, generic.DetailView):
@@ -196,7 +200,10 @@ class PartnerAttendanceListView(PermissionRequiredMixin, generic.ListView):
 
     def get_queryset(self, **kwargs):
         partner_pk = self.kwargs.get('pk')
-        return Share.objects.select_related('event').filter(partner=Partner.objects.get(pk=partner_pk)).filter(payment__lt=F('attendees') * F('event__charge')).annotate(debt=F('attendees') * F('event__charge') - F('payment')).order_by('event__date').order_by('event__time')
+        return (Share.objects.select_related('event').filter(partner=Partner.objects.get(pk=partner_pk)).
+                filter(payment__lt=F('attendees') * F('event__charge')).
+                annotate(debt=F('attendees') * F('event__charge') - F('payment')).order_by('event__date').
+                order_by('event__time'))
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -205,7 +212,7 @@ class PartnerAttendanceListView(PermissionRequiredMixin, generic.ListView):
 
 
 class AttendeesListView(PermissionRequiredMixin, generic.ListView):
-    permission_required = ('partners.management')
+    permission_required = 'partners.management'
     paginate_by = 10
     context_object_name = 'attendees_list'
     template_name = 'events/attendees_list.html'
@@ -213,7 +220,8 @@ class AttendeesListView(PermissionRequiredMixin, generic.ListView):
     def get_queryset(self, **kwargs):
         event = self.kwargs.get('event')
         print(Share.objects.filter(event=event))
-        return Share.objects.select_related('event').filter(event=event).annotate(debt=F('attendees') * F('event__charge') - F('payment')).order_by('partner__partner_number')
+        return (Share.objects.select_related('event').filter(event=event).
+                annotate(debt=F('attendees') * F('event__charge') - F('payment')).order_by('partner__partner_number'))
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -231,7 +239,8 @@ class PartnerSharingListView(PermissionRequiredMixin, generic.ListView):
         partner_pk = self.kwargs.get('pk')
         partner = Partner.objects.get(pk=partner_pk)
         excluded_events = Share.objects.filter(partner=partner).values_list('event_id', flat=True)
-        return Event.objects.filter(automatic=False, date__gt=timezone.now()).exclude(id__in=excluded_events).annotate(vacancies=F('attendants') - Sum('share__attendees'))
+        return (Event.objects.filter(automatic=False, date__gt=timezone.now()).exclude(id__in=excluded_events).
+                annotate(vacancies=F('attendants') - Sum('share__attendees')))
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
