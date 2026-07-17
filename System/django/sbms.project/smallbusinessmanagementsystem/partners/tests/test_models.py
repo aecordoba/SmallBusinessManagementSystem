@@ -36,49 +36,49 @@ class PartnerModelTest(TestCase):
                                status='status_1')
 
     def test_doc_type_label(self):
-        person = Person.objects.get(id=1)
+        person = Person.objects.last()
         field_label = person._meta.get_field('identification').verbose_name
         self.assertEqual(field_label, 'Identification')
 
     def test_doc_number_label(self):
-        person = Person.objects.get(id=1)
+        person = Person.objects.last()
         field_label = person._meta.get_field('id_number').verbose_name
         self.assertEqual(field_label, 'Identification number')
 
     def test_social_security_label(self):
-        person = Person.objects.get(id=1)
+        person = Person.objects.last()
         field_label = person._meta.get_field('social_security').verbose_name
         self.assertEqual(field_label, 'Social Security')
 
     def test_country_name_max_length(self):
-        country = Country.objects.get(id=1)
+        country = Country.objects.last()
         max_length = country._meta.get_field('name').max_length
         self.assertEqual(max_length, 35)
 
     def test_state_name_max_length(self):
-        state = State.objects.get(id=1)
+        state = State.objects.last()
         max_length = state._meta.get_field('name').max_length
         self.assertEqual(max_length, 35)
 
     def test_city_name_max_length(self):
-        city = City.objects.get(id=1)
+        city = City.objects.last()
         max_length = city._meta.get_field('name').max_length
         self.assertEqual(max_length, 35)
 
     def test_person_str(self):
-        person = Person.objects.get(id=1)
+        person = Person.objects.last()
         expected_str = f'{person.last_name}, {person.first_name} - {_(person.identification)} {person.id_number}'
         self.assertEqual(str(person), expected_str)
 
     def test_partner_str(self):
-        partner = Partner.objects.get(id=1)
+        partner = Partner.objects.last()
         expected_str = f'{partner.partner_number} - {partner.person.last_name}, {partner.person.first_name}'
         self.assertEqual(str(partner), expected_str)
 
     def test_person_get_absolute_url(self):
-        person = Person.objects.get(id=1)
-        self.assertEqual(person.get_absolute_url(), '/person/1')
+        person = Person.objects.last()
+        self.assertEqual(person.get_absolute_url(), f'/person/{person.id}')
 
     def test_partner_get_absolute_url(self):
-        partner = Partner.objects.get(id=1)
-        self.assertEqual(partner.get_absolute_url(), '/partner/1')
+        partner = Partner.objects.last()
+        self.assertEqual(partner.get_absolute_url(), f'/partner/{partner.id}')

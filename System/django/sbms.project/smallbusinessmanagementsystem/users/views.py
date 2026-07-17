@@ -95,6 +95,7 @@ class UserDelete(PermissionRequiredMixin, DeleteView):
     model = User
     permission_required = 'users.delete_user'
     success_url = reverse_lazy('users')
+    context_object_name = 'user_to_delete'
 
     def form_valid(self, form):
         try:

@@ -38,30 +38,30 @@ class UserModelTest(TestCase):
         User.objects.create(name='User_1', partner=partner, is_active=True, is_staff=False)
 
     def test_name_label(self):
-        user = User.objects.get(id=1)
+        user = User.objects.last()
         field_label = user._meta.get_field('name').verbose_name
         self.assertEqual(field_label, 'Username')
 
     def test_name_max_length(self):
-        user = User.objects.get(id=1)
+        user = User.objects.last()
         max_length = user._meta.get_field('name').max_length
         self.assertEqual(max_length, 30)
 
     def test_is_active_default(self):
-        user = User.objects.get(id=1)
+        user = User.objects.last()
         default = user._meta.get_field('is_active').default
         self.assertTrue(default)
 
     def test_is_staff_default(self):
-        user = User.objects.get(id=1)
+        user = User.objects.last()
         default = user._meta.get_field('is_staff').default
         self.assertFalse(default)
 
     def test_user_str(self):
-        user = User.objects.get(id=1)
+        user = User.objects.last()
         expected_str = user.name
         self.assertEqual(str(user), expected_str)
 
     def test_user_get_absolute_url(self):
-        user = User.objects.get(id=1)
-        self.assertEqual(user.get_absolute_url(), '/users/1')
+        user = User.objects.last()
+        self.assertEqual(user.get_absolute_url(), f'/users/{user.id}')

@@ -41,7 +41,7 @@ class EventModelTest(TestCase):
 
         Share.objects.create(event=event, partner=partner, attendees=1, payment=0.0)
 
-        News.objects.create(event=event, brief='News_1', description='News_1 description.', )
+        News.objects.create(event=event, brief='News_1', description='News_1 description.')
 
     def test_event_name_max_length(self):
         event = Event.objects.get(id=1)

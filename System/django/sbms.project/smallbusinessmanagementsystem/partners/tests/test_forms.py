@@ -179,7 +179,8 @@ class PartnerFormTest(TestCase):
                 'identification': 'identification_1', 'id_number': 10000001, 'social_security': '100000/01',
                 'email': 'last_name_1@mail.com', 'birthdate': datetime.date.today(), 'gender': 'male',
                 'address': 'Address_1', 'zip_code': '000001', 'city': self.city, 'phone': '55550001',
-                'cellphone': '0015550001', 'incorporation': '2026-01-01', 'position': 'position_1', 'status': 'status_1'}
+                'cellphone': '0015550001', 'incorporation': '2026-01-01', 'position': 'position_1', 'status': 'status_1'
+                }
         form = PartnerForm(data)
         self.assertFalse(form.is_valid())
         self.assertIn('birthdate', form.errors)

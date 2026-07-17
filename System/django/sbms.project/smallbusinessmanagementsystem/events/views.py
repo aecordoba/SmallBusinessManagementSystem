@@ -27,7 +27,8 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.db import transaction
 from django.utils import timezone
-from django.db.models import Q, F, Sum
+from django.db.models import Q, F, Sum, Value
+from django.db.models.functions import Coalesce
 
 
 @login_required
@@ -103,6 +104,7 @@ def event_attend(request):
         share.attendees = request.POST.get('attendees')
         share.save()
         return HttpResponseRedirect(reverse('events-attendance-list'))
+    return HttpResponseRedirect(reverse('events'))
 
 
 @login_required
@@ -114,6 +116,7 @@ def allocate_payment(request):
         event = Event.objects.get(pk=request.POST.get('event_pk'))
         Share.objects.filter(partner=partner).filter(event=event).update(payment=F('payment') + request.POST.get('pay'))
         return redirect(reverse('partner-attendance-list', kwargs={'pk': partner_pk}))
+    return None
 
 
 @login_required
@@ -200,10 +203,10 @@ class PartnerAttendanceListView(PermissionRequiredMixin, generic.ListView):
 
     def get_queryset(self, **kwargs):
         partner_pk = self.kwargs.get('pk')
-        return (Share.objects.select_related('event').filter(partner=Partner.objects.get(pk=partner_pk)).
+        return ((Share.objects.select_related('event').filter(partner=Partner.objects.get(pk=partner_pk)).
                 filter(payment__lt=F('attendees') * F('event__charge')).
-                annotate(debt=F('attendees') * F('event__charge') - F('payment')).order_by('event__date').
-                order_by('event__time'))
+                annotate(debt=F('attendees') * F('event__charge') - F('payment'))).
+                order_by('event__date', 'event__time'))
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -219,7 +222,6 @@ class AttendeesListView(PermissionRequiredMixin, generic.ListView):
 
     def get_queryset(self, **kwargs):
         event = self.kwargs.get('event')
-        print(Share.objects.filter(event=event))
         return (Share.objects.select_related('event').filter(event=event).
                 annotate(debt=F('attendees') * F('event__charge') - F('payment')).order_by('partner__partner_number'))
 
@@ -239,8 +241,9 @@ class PartnerSharingListView(PermissionRequiredMixin, generic.ListView):
         partner_pk = self.kwargs.get('pk')
         partner = Partner.objects.get(pk=partner_pk)
         excluded_events = Share.objects.filter(partner=partner).values_list('event_id', flat=True)
-        return (Event.objects.filter(automatic=False, date__gt=timezone.now()).exclude(id__in=excluded_events).
-                annotate(vacancies=F('attendants') - Sum('share__attendees')))
+        return ((Event.objects.filter(automatic=False, date__gt=timezone.now()).exclude(id__in=excluded_events)
+                .annotate(vacancies=F('attendants') - Coalesce(Sum('share__attendees'), Value(0)))).
+                order_by('date', 'time'))
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

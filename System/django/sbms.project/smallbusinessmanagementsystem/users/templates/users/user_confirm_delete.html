@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block main %}
-    <h1>Delete User: {{ user }}</h1>
+    <h1>Delete User: {{ user_to_delete }}</h1>
     <p>{% trans "Are you sure you want to delete the user?" %}</p>
     <form action="" method="POST">
         {% csrf_token %}
