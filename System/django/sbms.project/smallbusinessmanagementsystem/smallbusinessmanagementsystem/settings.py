@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 from pathlib import Path
 import os
+import dj_database_url
 from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -53,6 +54,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     'django.middleware.locale.LocaleMiddleware',
@@ -85,17 +87,8 @@ WSGI_APPLICATION = "smallbusinessmanagementsystem.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'sbms',
-        'USER': 'sbmsapp',
-        'PASSWORD': 'sbmsapp123',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}
-
+DATABASES = {'default': dj_database_url.config(default='postgres://sbmsapp:sbmsapp123@localhost:5432/sbms',
+                                               conn_max_age=500, conn_health_checks=True)}
 
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
@@ -142,6 +135,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = "static/"
+# The absolute path to the directory where collectstatic will collect static files for deployment.
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 LOGIN_REDIRECT_URL = '/'
 
@@ -154,3 +149,12 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'software.dynamicmcs@gmail.com'
 EMAIL_HOST_PASSWORD = 'ximcqqrguuijkggy'
 DEFAULT_FROM_EMAIL = 'noreply@dynamicmcs.com'
+
+# Static file serving.
+# https://whitenoise.readthedocs.io/en/stable/django.html#add-compression-and-caching-support
+STORAGES = {
+    # ...
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
